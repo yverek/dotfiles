@@ -1,2 +1,9 @@
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/desktop-base/lines-theme/lockscreen/gnome-background.xml'
+show-desktop-icons=true
+
 [org/gnome/desktop/datetime]
 automatic-timezone=true
+
+[org/gnome/desktop/screensaver]
+picture-uri='file:///usr/share/desktop-base/spacefun-theme/wallpaper/gnome-background.xml'
