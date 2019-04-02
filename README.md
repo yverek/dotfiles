@@ -4,31 +4,50 @@ This is my personal collection of files and dotfiles for configuring a developme
 
 ## Table of Contents
  * [How it Works](#how-it-works)
- * [Software](#software)
+ * [Details](#details)
  * [Installation](#Installation)
+   * [Software](#software)
+   * [Dotfiles](#dotfiles)
  * [Updating](#updating)
- * [license](#license)
 
 ## How it Works
+You can install all the software just running `bootstrap.py` file.
 
-## Software
+With [stow](https://www.gnu.org/software/stow/), you can symlink all of the dotfiles into your $HOME directory.
+You can update your dotfiles with a `git pull` and everything still works!
 
+## Details
+ * CLI
+   * [Zsh](https://github.com/zsh-users/zsh)
+     * [zplug](https://github.com/zplug/zplug)
+     * [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
+ * GUI
 
 ## Installation
+First of all, clone this repository
 ```bash
 $ cd ~ && mkdir .dotfiles && cd .dotfiles
 $ git clone git@github.com:yverek/dotfiles.git .
 ```
 
-Use [stow](https://www.gnu.org/software/stow/) to symlink dotfiles
+### Software
+Just
 ```bash
+$ cd ~/.dotfiles
+$ python3 bootstrap.py
+```
+
+### Dotfiles
+Use [stow](https://www.gnu.org/software/stow/) to symlink dotfiles on your $HOME directory
+```bash
+$ cd ~/.dotfiles
 $ stow zsh
 $ sudo stow zsh -t /root # if you want your zsh's dotfiles for root user
 ```
 
-To remove dotfiles:
-
+To remove dotfiles
 ```bash
+$ cd ~/.dotfiles
 $ stow -D zsh
 ```
 
@@ -37,5 +56,3 @@ $ stow -D zsh
 $ cd ~/.dotfiles
 $ git pull origin master
 ```
-
-## License
