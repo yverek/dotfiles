@@ -87,6 +87,77 @@ def install_and_configure_firewall():
     print_success()
 
 
+def install_and_configure_fonts():
+    print_info('Installing fonts... ')
+
+    command = 'apt-get install font-manager fonts-freefont-ttf fonts-freefont-otf fonts-robo'
+
+    try:
+        subprocess.run(command, check=True, shell=True)
+    except subprocess.CalledProcessError as e:
+        print_error()
+        print(e.output)
+
+    print_success()
+    print_info('Configuring fonts... ')
+
+    try:
+        subprocess.run('mk', check=True, shell=True)
+    except subprocess.CalledProcessError as e:
+        print_error()
+        print(e.output)
+    print_success()
+
+"""
+
+Apriamo font-manager e andiamo nelle impostazioni.
+
+    Nella scheda Rendering, metti una spunta su Antialias e Hinting. Imposta su Slight la barra di Hinting Style;
+    Nella scheda Display, imposta Default la barra di LCD Filter;
+
+Adesso andiamo nel repository Nerd Fonts su GitHub, scarichiamo ed installiamo RobotoMono Nerd Font Regular.
+Apriamo gnome-tweak-tool, andiamo nella scheda Fonts e selezioniamo:
+
+    Roboto Regular 12 per le prime tre opzioni;
+    RobotoMono Nerd Font Regular 12 per l'ultima opzione;
+    Rgba per l'opzione Antialiasing;
+
+2.10 Gedit
+Gedit è l'editor di testo che viene installato automaticamente insieme a GNOME. È estensibile con vari plugin mantenendo, al tempo stesso, semplicità e facilità d'uso. Andiamo in Preferences > View e mettiamo la spunta a:
+
+    Display line numbers;
+    Display right margin at column: 150;
+    Display status bar;
+    Display overview map;
+    Highlight current line;
+    Highlight matching brackets;
+
+Andiamo nella scheda Editor e mettiamo la spunta a:
+
+    Tab width: 2;
+    Insert spaces instead of tabs;
+    Enable automatic indentation;
+
+Andiamo nella scheda Font & Colors e selezioniamo:
+
+    Use the system fixed width font;
+    Colour Scheme: Solarized Dark; (seguite le istruzioni)
+
+. Per finire, andiamo nella scheda Plugins e mettiamo la spunta a:
+
+    Bracket Completion
+    Code Comment
+    Document Statistics
+    Draw Spaces
+    File Browser Panel
+    Insert Date/Time
+    Snippets
+    Spell Checker
+    SyncTeX
+
+Se non troviamo questi plugin significa che non è presente il pacchetto nel nostro sistema. Lanciamo 
+"""
+
 def main():
     status = read_status_from_file()
 

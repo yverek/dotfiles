@@ -3,10 +3,6 @@ import os
 from pathlib import Path
 
 
-def check_root():
-    return os.getuid() == 0
-
-
 def read_status_from_file():
     file = Path.cwd() / 'software' / 'files' / 'tmp.txt'
 
