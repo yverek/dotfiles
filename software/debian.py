@@ -60,27 +60,25 @@ def edit_audio_config():
         print_error()
         print(e.output)
 
+    print_success()
 
-# TODO: Firewall
 
-"""
-Per installare UFW, lanciamo
+def install_and_configure_firewall():
+    print_info('Installing UFW... ')
+    try:
+        subprocess.run('apt-get install gufw', check=True, shell=True)
+    except subprocess.CalledProcessError as e:
+        print_error()
+        print(e.output)
+    print_success()
 
-# aptitude install gufw
-
-Questo comando installerà sia la GUI che il software. Aggiungiamo le regole di negazione predefinite e siamo a posto con un firewall di base.
-
-# ufw default deny
-
-Il comando seguente è sufficiente ad abilitare il firewall e aggiungerlo all'avvio del sistema.
-
-# ufw enable
-
-Possiamo controllare lo stato del firewall, in qualsiasi momento, lanciando i seguenti comandi
-
-# ufw status
-# ufw status verbose
-"""
+    print_info('Configuring UFW... ')
+    try:
+        subprocess.run('ufw default deny && ufw enable', check=True, shell=True)
+    except subprocess.CalledProcessError as e:
+        print_error()
+        print(e.output)
+    print_success()
 
 
 def main():
@@ -92,4 +90,6 @@ def main():
         write_status_to_file('Drivers installed')
 
     elif status == 'Drivers installed':
-        pass
+        edit_audio_config()
+        install_and_configure_firewall()
+
