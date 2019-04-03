@@ -77,11 +77,18 @@ def install_and_configure_fonts():
     print_success()
 
     print_info('Configuring fonts... ')
+
     command = 'mkdir -p ~/.config/fontconfig/conf.d/'
     run_command(command)
     command = 'cp ~/.dotfiles/software/files/fontconfig/* ~/.config/fontconfig/conf.d/'
     run_command(command)
 
+    command = 'mkdir -p ~/.local/share/fonts/'
+    run_command(command)
+    command = 'mv ~/.dotfiles/software/files/fonts/* ~/.local/share/fonts/'
+    run_command(command)
+    command = 'dconf load / < ~/.dotfiles/gnome/fonts.dconf.settings'
+    run_command(command)
     print_success()
 
 
