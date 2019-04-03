@@ -1,13 +1,38 @@
 from pathlib import Path
 
+import subprocess
+
+from .utils import print_info, print_success, print_error
+
 
 def rewrite_sources():
+    print_info('Rewriting /etc/apt/source.list... ')
     sources_list_old = Path('/etc/apt/sources.list')
     sources_list_new = Path.cwd() / 'software' / 'debian' / 'sources.list'
 
     sources_list_old.write_text(sources_list_new.read_text())
+    print_success()
 
-# TODO: overwrite /etc/apt/sources.list with the following, then run sudo apt update && sudo apt upgrade
+    print_info('Updating system... ')
+    try:
+        # Note that quiet level 2 (-qq) implies -y
+        subprocess.run('apt-get update -qq && apt-get upgrade -qq', check=True, shell=True)
+    except subprocess.CalledProcessError as e:
+        print_error()
+        print(e.output)
+    print_success()
+
+
+def install_firmware_and_drivers():
+    print_info('Installing firmwares and drivers... ')
+    try:
+        subprocess.run('apt-get install amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon')
+    except subprocess.CalledProcessError as e:
+        print_error()
+        print(e.output)
+    print_success()
+    print('Please reboot your system!')
+    input("Press Enter to continue...")
 
 # TODO: Install aptitude & synaptic apt install aptitude synaptic
 

@@ -1,15 +1,10 @@
-import os
 import sys
 
-from software.debian import debian
-
-
-def _check_root():
-    return os.getuid() == 0
+from software import debian, utils
 
 
 if __name__ == "__main__":
-    if not _check_root():
+    if not utils.check_root():
         sys.exit("This must be run as root!")
 
     debian.main()
