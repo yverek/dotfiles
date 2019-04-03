@@ -92,6 +92,13 @@ def install_and_configure_fonts():
     print_success()
 
 
+def configure_gedit():
+    print_info('Configuring Gedit... ')
+    command = 'dconf load / < ~/.dotfiles/gnome/gedit.dconf.settings'
+    run_command(command)
+    print_success()
+
+
 def main():
     status = read_status_from_file()
 

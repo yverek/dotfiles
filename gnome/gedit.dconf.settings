@@ -1,0 +1,19 @@
+[org/gnome/gedit/plugins]
+active-plugins=['spell', 'filebrowser', 'snippets', 'docinfo', 'codecomment', 'bracketcompletion']
+
+[org/gnome/gedit/preferences/editor]
+auto-indent=true
+bracket-matching=true
+display-line-numbers=true
+display-overview-map=true
+display-right-margin=true
+highlight-current-line=true
+insert-spaces=true
+right-margin-position=150
+scheme='solarized-dark'
+tabs-size=4
+
+[org/gnome/gedit/preferences/ui]
+show-tabs-mode='never'
+side-panel-visible=true
+statusbar-visible=true
