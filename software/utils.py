@@ -18,7 +18,7 @@ def read_status_from_file():
 
 def write_status_to_file(text):
     file = Path.cwd() / 'software' / 'files' / 'tmp.txt'
-    
+
     with file.open(mode='a') as f:
         f.write(text + '\n')
 

@@ -27,7 +27,8 @@ def rewrite_sources():
 def install_firmware_and_drivers():
     print_info('Installing firmwares and drivers... ')
     try:
-        subprocess.run('apt-get install amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon')
+        subprocess.run('apt-get install amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon',
+                       check=True, shell=True)
     except subprocess.CalledProcessError as e:
         print_error()
         print(e.output)
@@ -35,33 +36,30 @@ def install_firmware_and_drivers():
     print('Please reboot your system!')
     input("Press Enter to continue...")
 
-# TODO: Install aptitude & synaptic apt install aptitude synaptic
 
-# TODO: Firmware & Drivers
+def edit_audio_config():
+    print_info('Editing audio configuration files... ')
+    file = Path('/etc/pulse/daemon.conf')
 
-# TODO: Audio
+    with file.open() as f:
+        content = f.read()
 
+    content = content.replace('; resample-method = speex-float-1\n', 'resample-method = src-sinc-best-quality\n')
+    content = content.replace('; default-sample-format = s16le\n', 'default-sample-format = s24le\n')
+    content = content.replace('; default-sample-rate = 44100\n', 'default-sample-rate = 96000\n')
 
-"""
-# gedit /etc/pulse/daemon.conf
+    with file.open(mode='w') as f:
+        f.write(content)
 
-In questo file, dobbiamo cercare tre righe
+    print_success()
+    print_info('Rebooting PulseAudio... ')
+    try:
+        # kill the process and start a new one
+        subprocess.run('pulseaudio -k && pulseaudio --start', check=True, shell=True)
+    except subprocess.CalledProcessError as e:
+        print_error()
+        print(e.output)
 
-; resample-method = speex-float-1
-; default-sample-format = s16le
-; default-sample-rate = 44100
-
-Le ultime due righe sono vicine tra loro, mentre la prima è qualche riga sopra quest'ultime. Modificale affinché risultino così
-
-resample-method = src-sinc-best-quality
-default-sample-format = s24le
-default-sample-rate = 96000
-
-Dobbiamo essere sicuri che i ; siano rimossi da tutte le righe. Adesso possiamo salvare e riavviare PulseAudio con
-
-$ pulseaudio -k
-$ pulseaudio --start
-"""
 
 # TODO: Firewall
 
