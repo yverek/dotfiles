@@ -26,9 +26,15 @@ def rewrite_sources():
 
 def install_firmware_and_drivers():
     print_info('Installing firmwares and drivers... ')
+
+    file = Path.cwd() / 'software' / 'files' / 'drivers.txt'
+
+    # -2 because last one is empty line, -2 is the line we need, the second from last
+    packages = file.read_text().split('\n')[-2]
+    command = "apt-get install {packages}".format(packages=packages)
+
     try:
-        subprocess.run('apt-get install amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon',
-                       check=True, shell=True)
+        subprocess.run(command, check=True, shell=True)
     except subprocess.CalledProcessError as e:
         print_error()
         print(e.output)
