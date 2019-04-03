@@ -1,6 +1,16 @@
-import os
-
 from pathlib import Path
+
+import subprocess
+import sys
+
+
+def run_command(command):
+    try:
+        subprocess.run(command, check=True, shell=True, stdout=subprocess.PIPE)
+    except subprocess.CalledProcessError as e:
+        print_error()
+        print(e.output)
+        sys.exit(-1)
 
 
 def read_status_from_file():
