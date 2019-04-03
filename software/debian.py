@@ -3,12 +3,13 @@ from pathlib import Path
 import subprocess
 
 from .utils import print_info, print_success, print_error
+from .utils import read_status_from_file, write_status_to_file
 
 
 def rewrite_sources():
     print_info('Rewriting /etc/apt/source.list... ')
     sources_list_old = Path('/etc/apt/sources.list')
-    sources_list_new = Path.cwd() / 'software' / 'debian' / 'sources.list'
+    sources_list_new = Path.cwd() / 'software' / 'files' / 'sources.list'
 
     sources_list_old.write_text(sources_list_new.read_text())
     print_success()
@@ -85,4 +86,12 @@ Possiamo controllare lo stato del firewall, in qualsiasi momento, lanciando i se
 
 
 def main():
-    rewrite_sources()
+    status = read_status_from_file()
+
+    if status == 'First run':
+        rewrite_sources()
+        install_firmware_and_drivers()
+        write_status_to_file('Drivers installed')
+
+    elif status == 'Drivers installed':
+        pass

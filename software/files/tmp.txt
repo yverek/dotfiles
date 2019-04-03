@@ -1,2 +1,2 @@
 # This file keeps tracking software installation
-0
+First run
