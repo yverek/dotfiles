@@ -1,3 +1,0 @@
-# Change this file with the .deb packages you need
-# Remember to leave empty line at the end of the file
-amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon
