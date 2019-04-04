@@ -2,7 +2,8 @@ from pathlib import Path
 
 import subprocess
 
-from .utils import print_info, print_success, print_error, run_command
+from .utils import DRIVERS, SOFTWARE
+from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
 
 
@@ -24,12 +25,8 @@ def rewrite_sources():
 
 def install_firmware_and_drivers():
     print_info('Installing firmwares and drivers... ')
-    file = Path.cwd() / 'software' / 'files' / 'drivers.txt'
 
-    # -2 because last one is empty line, -2 is the line we need, the second from last
-    packages = file.read_text().split('\n')[-2]
-
-    command = "sudo apt-get install -qq {packages}".format(packages=packages)
+    command = "sudo apt-get install -qq {packages}".format(packages=DRIVERS)
     run_command(command)
     print_success()
     print('Please reboot your system!')
@@ -96,6 +93,24 @@ def configure_gedit():
     print_info('Configuring Gedit... ')
     command = 'dconf load / < ~/.dotfiles/gnome/gedit.dconf.settings'
     run_command(command)
+    print_success()
+
+
+def install_and_configure_software():
+    print_info('Installing Software... ')
+
+    command = "sudo apt-get install -qq {packages}".format(packages=SOFTWARE)
+    run_command(command)
+    print_success()
+
+    print_info('Configuring RedShift... ')
+
+    print_success()
+    print_info('Configuring MEGASync... ')
+
+    print_success()
+    print_info('Configuring Plank... ')
+
     print_success()
 
 

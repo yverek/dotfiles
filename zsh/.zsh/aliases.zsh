@@ -30,6 +30,7 @@ function take() {
 }
 
 # List directory contents
+alias ls='ls --color=auto'
 alias lsa='ls -lah'
 alias l='ls -lah'
 alias ll='ls -lh'

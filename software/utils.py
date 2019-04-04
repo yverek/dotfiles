@@ -3,6 +3,16 @@ from pathlib import Path
 import subprocess
 import sys
 
+#####
+# Edit the following section to fit your needs
+#####
+DRIVERS = 'amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon'
+
+SOFTWARE = "htop strace lshw qt4-qtconfig acpi acpi-support aspell-it "
+SOFTWARE += "hunspell-it mythes-it menulibre p7zip-rar redshift-gtk "
+SOFTWARE += "plank lm-sensors hddtemp"
+#####
+
 
 def run_command(command):
     try:

@@ -113,9 +113,6 @@ setopt interactive_comments
 # Perform a $PATH search even on command names with slashes in them
 setopt path_dirs
 
-# Print the exit value of programs with non-zero exit status
-setopt print_exit_value
-
 # If querying the user before executing 'rm *' or 'rm path/*', first wait ten seconds and ignore anything typed in that time
 setopt rm_star_wait
 
