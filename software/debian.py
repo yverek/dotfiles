@@ -98,18 +98,23 @@ def configure_gedit():
 
 def install_and_configure_software():
     print_info('Installing Software... ')
-
     command = "sudo apt-get install -qq {packages}".format(packages=SOFTWARE)
     run_command(command)
     print_success()
 
-    print_info('Configuring RedShift... ')
-
-    print_success()
-    print_info('Configuring MEGASync... ')
-
-    print_success()
     print_info('Configuring Plank... ')
+
+    print_success()
+
+    print_info('Configuring RedShift... ')
+    command = "sudo echo '\n[redshift]\nallowed=true\nsystem=false\nusers=' >> /etc/geoclue/geoclue.conf"
+    run_command(command)
+    print_success()
+
+    print("Put RedShift in your autostart applications (right click on RedShift icon and check 'autostart')")
+    input("Press ENTER when you are done")
+
+    print_info('Installing and configuring MEGASync... ')
 
     print_success()
 

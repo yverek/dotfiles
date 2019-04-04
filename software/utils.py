@@ -6,11 +6,36 @@ import sys
 #####
 # Edit the following section to fit your needs
 #####
+
 DRIVERS = 'amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon'
 
 SOFTWARE = "htop strace lshw qt4-qtconfig acpi acpi-support aspell-it "
 SOFTWARE += "hunspell-it mythes-it menulibre p7zip-rar redshift-gtk "
 SOFTWARE += "plank lm-sensors hddtemp"
+
+#####
+
+
+#####
+# Autostart Files
+#####
+
+REDSHIFT = """[Desktop Entry]
+Version=1.0
+Comment=Color temperature adjustment tool
+GenericName=Color temperature adjustment
+Type=Application
+Categories=Utility;
+X-GNOME-Autostart-enabled=true
+Icon=redshift
+Exec=redshift-gtk
+Terminal=false
+StartupNotify=true
+Name=Redshift
+Hidden=false
+"""
+
+
 #####
 
 
