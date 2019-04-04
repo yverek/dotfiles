@@ -107,7 +107,7 @@ def install_and_configure_software():
     print_success()
 
     print_info('Configuring RedShift... ')
-    command = "sudo echo '\n[redshift]\nallowed=true\nsystem=false\nusers=' >> /etc/geoclue/geoclue.conf"
+    command = "echo '\n[redshift]\nallowed=true\nsystem=false\nusers=' | sudo tee -a /etc/geoclue/geoclue.conf"
     run_command(command)
     print_success()
 
