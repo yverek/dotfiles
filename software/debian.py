@@ -2,7 +2,7 @@ from pathlib import Path
 
 import subprocess
 
-from .utils import DRIVERS, SOFTWARE
+from .utils import DRIVERS, SOFTWARE, MEGA_LINK
 from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
 
@@ -115,7 +115,12 @@ def install_and_configure_software():
     input("Press ENTER when you are done")
 
     print_info('Installing and configuring MEGASync... ')
-
+    command = "cd ~/Desktop && wget {}".format(MEGA_LINK)
+    run_command(command)
+    command = "sudo apt-get install ./megasync*"
+    run_command(command)
+    command = "echo file:///home/yverek/MEGA >> ~/.config/gtk-3.0/bookmarks"
+    run_command(command)
     print_success()
 
 

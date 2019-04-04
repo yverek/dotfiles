@@ -15,28 +15,15 @@ SOFTWARE += "plank lm-sensors hddtemp"
 
 #####
 
-
 #####
-# Autostart Files
+# Edit the following if updates
 #####
 
-REDSHIFT = """[Desktop Entry]
-Version=1.0
-Comment=Color temperature adjustment tool
-GenericName=Color temperature adjustment
-Type=Application
-Categories=Utility;
-X-GNOME-Autostart-enabled=true
-Icon=redshift
-Exec=redshift-gtk
-Terminal=false
-StartupNotify=true
-Name=Redshift
-Hidden=false
-"""
+MEGA_LINK = 'https://mega.nz/linux/MEGAsync/Debian_9.0/amd64/megasync-Debian_9.0_amd64.deb'
 
 
 #####
+
 
 
 def run_command(command):
