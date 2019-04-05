@@ -1,9 +1,19 @@
 # This file contains every settings you can modify to fit your needs
 
-SOURCES_LIST = """
+SOURCES_LIST_FILE = '/etc/apt/sources.list'
 
+SOURCES_LIST_CONTENT = """# Official Debian Repositories
+deb http://deb.debian.org/debian/ testing main contrib non-free
+deb-src http://deb.debian.org/debian/ testing main contrib non-free
+
+deb http://deb.debian.org/debian/ testing-updates main contrib non-free
+deb-src http://deb.debian.org/debian/ testing-updates main contrib non-free
+
+deb http://deb.debian.org/debian-security testing/updates main
+deb-src http://deb.debian.org/debian-security testing/updates main
 """
 
+# DRIVERS = 'intel-microcode firmware
 DRIVERS = 'amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon'
 
 SOFTWARE = "htop strace lshw qt4-qtconfig acpi acpi-support aspell-it "

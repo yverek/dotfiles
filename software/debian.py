@@ -2,20 +2,20 @@ from pathlib import Path
 
 import subprocess
 
-from .utils import DRIVERS, SOFTWARE, MEGA_LINK
+from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS, SOFTWARE
+
 from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
 
 
 def rewrite_sources():
-    print_info('Rewriting /etc/apt/source.list... ')
-    sources_list_old = Path('/etc/apt/sources.list')
-    sources_list_new = Path.cwd() / 'software' / 'files' / 'sources.list'
+    print_info("Rewriting /etc/apt/sources.list... ")
 
-    sources_list_old.write_text(sources_list_new.read_text())
+    command = 'sudo echo "{sources}" > {file}'.format(sources=SOURCES_LIST_CONTENT, file=SOURCES_LIST_FILE)
+    run_command(command)
     print_success()
 
-    print_info('Updating system... ')
+    print_info("Updating system... ")
 
     # Note that quiet level 2 (-qq) implies -y
     command = 'sudo apt-get update -qq && sudo apt-get upgrade -qq'
