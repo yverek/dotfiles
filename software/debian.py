@@ -78,6 +78,15 @@ def install_and_configure_fonts():
     print_info("Configuring fonts... ")
     command = 'dconf load / < {path}'.format(path=DCONF_FONTS_SETTINGS)
     run_command(command)
+    print("Now go to Font Manager's Settings and select:")
+    print("  - \u001b[31mRendering\u001b[0m tab: \u001b[33mAntialias\u001b[0m, \u001b[33mHinting\u001b[0m ", end="")
+    print("and set on \u001b[33mSlight\u001b[0m the \u001b[34mHinting Style\u001b[0m attribute;")
+    print("  - \u001b[31mDisplay\u001b[0m tab: set on \u001b[33mDefault\u001b[0m the ", end="")
+    print("\u001b[34mLCD Filter\u001b[0m attribute;")
+    command = 'font-manager'
+    run_command(command)
+    print()
+    input("Press Enter when you are done...")
     print_success()
 
 
@@ -94,7 +103,7 @@ def install_and_configure_software():
     run_command(command)
     print_success()
 
-    print_info('Configuring Plank... ')
+    print_info("Configuring Plank... ")
 
     print_success()
 
