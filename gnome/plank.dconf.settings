@@ -1,0 +1,8 @@
+[net/launchpad/plank/docks/dock1]
+alignment='center'
+hide-mode='none'
+icon-size=40
+pinned-only=false
+theme='Frost'
+zoom-enabled=true
+zoom-percent=150

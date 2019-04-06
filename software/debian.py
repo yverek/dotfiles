@@ -1,6 +1,11 @@
+import apt
+import time
+
 from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     SOFTWARE, FONTS, LOCAL_FONTS_PATH, NERD_FONTS,\
-                    DCONF_FONTS_SETTINGS, DCONF_GEDIT_SETTINGS
+                    DCONF_FONTS_SETTINGS, DCONF_GEDIT_SETTINGS, \
+                    PLANK_THEMES_PATH, FROST_THEMES_REPOSITORY, \
+                    DCONF_PLANK_SETTINGS
 
 from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
@@ -103,18 +108,25 @@ def install_and_configure_software():
     run_command(command)
     print_success()
 
-    print_info("Configuring Plank... ")
-
-    print_success()
-
-    print_info('Installing and configuring MEGASync... ')
-    command = "cd ~/Desktop && wget {}".format(MEGA_LINK)
-    run_command(command)
-    command = "sudo apt-get install ./megasync*"
-    run_command(command)
-    command = "echo file:///home/yverek/MEGA >> ~/.config/gtk-3.0/bookmarks"
-    run_command(command)
-    print_success()
+    cache = apt.Cache()
+    if cache['plank'].is_installed:
+        print_info("Configuring Plank... ")
+        command = 'mkdir -p {path} && cd {path}'.format(path=PLANK_THEMES_PATH)
+        run_command(command)
+        command = 'git clone {repository} .'.format(repository=FROST_THEMES_REPOSITORY)
+        run_command(command)
+        # clean the other files
+        command = 'rm -rf .git && rm install.sh && rm LICENSE && rm README.md'
+        run_command(command)
+        command = 'dconf load / < {path}'.format(path=DCONF_PLANK_SETTINGS)
+        run_command(command)
+        print("\nAdd Plank to \u001b[33mStartup Applications\u001b[0m from \u001b[34mgnome-tweak-tool\u001b[0m")
+        print("Close the application when you are done")
+        time.sleep(1)
+        run_command('gnome-tweak-tool')
+        run_command('echo -n "$(tput cuu 3;tput ed)"')
+        print_info("Configuring Plank... ")
+        print_success()
 
 
 def main():

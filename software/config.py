@@ -42,8 +42,13 @@ DCONF_GEDIT_SETTINGS = '~/.dotfiles/gnome/gedit.dconf.settings'
 SOFTWARE = 'htop strace lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp '
 SOFTWARE += 'hunspell-it mythes-it menulibre p7zip-rar plank lm-sensors'
 
+PLANK_THEMES_PATH = '~/.local/share/plank/themes/'
+FROST_THEMES_REPOSITORY = 'https://github.com/dikiaap/frost-plank-theme.git'
+DCONF_PLANK_SETTINGS = '~/.dotfiles/gnome/plank.dconf.settings'
 
 MEGA_LINK = 'https://mega.nz/linux/MEGAsync/Debian_9.0/amd64/megasync-Debian_9.0_amd64.deb'
 
-
 # echo '\n[redshift]\nallowed=true\nsystem=false\nusers=' | sudo tee -a /etc/geoclue/geoclue.conf
+# echo file:///home/yverek/MEGA >> ~/.config/gtk-3.0/bookmarks
+# dock-items=['org.gnome.Evolution.dockitem', 'eog.dockitem', 'firefox-esr.dockitem', 'org.gnome.Totem.dockitem',
+#             'org.gnome.Totem-1.dockitem', 'org.gnome.Evolution-1.dockitem', 'org.gnome.Terminal.dockitem']
