@@ -5,6 +5,7 @@ This is my personal collection of files and dotfiles for configuring a developme
 ## Table of Contents
  * [How it Works](#how-it-works)
  * [Details](#details)
+ * [Requirements](#requirements)
  * [Installation](#Installation)
    * [Software](#software)
    * [Dotfiles](#dotfiles)
@@ -14,7 +15,7 @@ This is my personal collection of files and dotfiles for configuring a developme
 You can install all the software just running `bootstrap.py` file.
 
 With [stow](https://www.gnu.org/software/stow/), you can symlink all of the dotfiles into your $HOME directory.
-You can update your dotfiles with a `git pull` and everything still works!
+You can update your dotfiles with `git pull`!
 
 ## Details
  * CLI
@@ -23,10 +24,22 @@ You can update your dotfiles with a `git pull` and everything still works!
      * [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
  * GUI
 
+## Prerequisites
+Make sure the following requirements are installed:
+
+ * [Git](https://git-scm.com/)
+ * [curl](https://curl.haxx.se/)
+ * [GNU Stow](https://www.gnu.org/software/stow/)
+
+Install them with
+```bash
+$ sudo apt install git curl stow
+```
+
 ## Installation
 First of all, clone this repository
 ```bash
-$ cd ~ && mkdir .dotfiles && cd .dotfiles
+$ mkdir ~/.dotfiles && cd ~/.dotfiles
 $ git clone git@github.com:yverek/dotfiles.git .
 ```
 
