@@ -1,8 +1,6 @@
-from pathlib import Path
-
-import subprocess
-
-from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS, SOFTWARE
+from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
+                    SOFTWARE, FONTS, LOCAL_FONTS_PATH, NERD_FONTS,\
+                    DCONF_FONTS_SETTINGS
 
 from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
@@ -10,31 +8,28 @@ from .utils import read_status_from_file, write_status_to_file
 
 def rewrite_sources():
     print_info("Rewriting /etc/apt/sources.list... ")
-
     command = 'sudo echo "{sources}" > {file}'.format(sources=SOURCES_LIST_CONTENT, file=SOURCES_LIST_FILE)
     run_command(command)
     print_success()
 
     print_info("Updating system... ")
-
-    # Note that quiet level 2 (-qq) implies -y
-    command = 'sudo apt-get update -qq && sudo apt-get upgrade -qq'
+    command = 'sudo apt-get update -qq && sudo apt-get upgrade -qq'  # Note that quiet level 2 (-qq) implies -y
     run_command(command)
     print_success()
 
 
 def install_firmware_and_drivers():
-    print_info('Installing firmwares and drivers... ')
-
-    command = "sudo apt-get install -qq {packages}".format(packages=DRIVERS)
+    print_info("Installing firmwares and drivers... ")
+    command = 'sudo apt-get install -qq {packages}'.format(packages=DRIVERS)
     run_command(command)
     print_success()
-    print('Please reboot your system!')
+
+    print("Please reboot your system!")
     input("Press Enter to continue...")
 
 
 def edit_audio_config():
-    print_info('Editing audio configuration files... ')
+    print_info("Editing audio configuration files... ")
 
     options = [
         ('; resample-method = speex-float-1', 'resample-method = src-sinc-best-quality'),
@@ -49,42 +44,39 @@ def edit_audio_config():
 
     print_success()
 
-    print_info('Rebooting PulseAudio... ')
+    print_info("Rebooting PulseAudio... ")
     command = 'sudo pulseaudio -k && sudo pulseaudio --start'
     run_command(command)
     print_success()
 
 
 def install_and_configure_firewall():
-    print_info('Installing UFW... ')
+    print_info("Installing UFW... ")
     command = 'sudo apt-get install -qq gufw'
     run_command(command)
     print_success()
 
-    print_info('Configuring UFW... ')
+    print_info("Configuring UFW... ")
     command = 'sudo ufw default deny && sudo ufw enable'
     run_command(command)
     print_success()
 
 
 def install_and_configure_fonts():
-    print_info('Installing fonts... ')
-    command = 'sudo apt-get install -qq font-manager fonts-freefont-ttf fonts-freefont-otf fonts-robo'
+    print_info("Installing fonts... ")
+    command = 'sudo apt-get install -qq {fonts}'.format(fonts=FONTS)
     run_command(command)
+
+    command = 'mkdir -p {path} && cd {path}'.format(path=LOCAL_FONTS_PATH)
+    run_command(command)
+
+    for font in NERD_FONTS:
+        command = 'curl -fLo "{font_name}" {font_link}'.format(font_name=font[0], font_link=font[1])
+        run_command(command)
     print_success()
 
-    print_info('Configuring fonts... ')
-
-    command = 'mkdir -p ~/.config/fontconfig/conf.d/'
-    run_command(command)
-    command = 'cp ~/.dotfiles/software/files/fontconfig/* ~/.config/fontconfig/conf.d/'
-    run_command(command)
-
-    command = 'mkdir -p ~/.local/share/fonts/'
-    run_command(command)
-    command = 'mv ~/.dotfiles/software/files/fonts/* ~/.local/share/fonts/'
-    run_command(command)
-    command = 'dconf load / < ~/.dotfiles/gnome/fonts.dconf.settings'
+    print_info("Configuring fonts... ")
+    command = 'dconf load / < {path}'.format(path=DCONF_FONTS_SETTINGS)
     run_command(command)
     print_success()
 
