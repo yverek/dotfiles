@@ -29,9 +29,6 @@ def install_firmware_and_drivers():
     run_command(command)
     print_success()
 
-    print("Please reboot your system!")
-    input("Press Enter to continue...")
-
 
 def edit_audio_config():
     print_info("Editing audio configuration files... ")
