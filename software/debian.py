@@ -88,10 +88,12 @@ def install_and_configure_fonts():
     print("and set on \u001b[33mSlight\u001b[0m the \u001b[34mHinting Style\u001b[0m attribute;")
     print("  - \u001b[31mDisplay\u001b[0m tab: set on \u001b[33mDefault\u001b[0m the ", end="")
     print("\u001b[34mLCD Filter\u001b[0m attribute;")
-    command = 'font-manager'
-    run_command(command)
-    print()
-    input("Press Enter when you are done...")
+    print("Close the application when you are done")
+    time.sleep(1)
+    run_command('font-manager')
+    # clear all the previous messages by going up for 5 lines (tput cuu 5) and clearing (tput ed) the prompt
+    run_command('echo -n "$(tput cuu 5;tput ed)"')
+    print_info("Configuring fonts... ")
     print_success()
 
 
