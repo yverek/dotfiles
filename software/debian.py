@@ -1,6 +1,6 @@
 from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     SOFTWARE, FONTS, LOCAL_FONTS_PATH, NERD_FONTS,\
-                    DCONF_FONTS_SETTINGS
+                    DCONF_FONTS_SETTINGS, DCONF_GEDIT_SETTINGS
 
 from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
@@ -82,8 +82,8 @@ def install_and_configure_fonts():
 
 
 def configure_gedit():
-    print_info('Configuring Gedit... ')
-    command = 'dconf load / < ~/.dotfiles/gnome/gedit.dconf.settings'
+    print_info("Configuring Gedit... ")
+    command = 'dconf load / < {path}'.format(path=DCONF_GEDIT_SETTINGS)
     run_command(command)
     print_success()
 

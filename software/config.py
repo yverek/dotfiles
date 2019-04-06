@@ -37,6 +37,7 @@ NERD_FONTS = [  # every tuple of this list contains (font_name, font_link)
 
 DCONF_FONTS_SETTINGS = '~/.dotfiles/gnome/fonts.dconf.settings'
 
+DCONF_GEDIT_SETTINGS = '~/.dotfiles/gnome/gedit.dconf.settings'
 
 MEGA_LINK = 'https://mega.nz/linux/MEGAsync/Debian_9.0/amd64/megasync-Debian_9.0_amd64.deb'
 
