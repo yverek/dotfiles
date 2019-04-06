@@ -31,7 +31,7 @@ POWERLEVEL9K_OS_ICON_FOREGROUND="red"
 custom_virtualenv() {
     if [ ! -z "$VIRTUAL_ENV" ]; then
         echo -n '\ue235 ';
-        echo -n "$(basename $VIRTUAL_ENV | cut -f1 -d"-")";
+        echo -n "$(basename $VIRTUAL_ENV | cut -f1 -d"-")"; # delete hash from Pipenv venv names
     fi
 }
 POWERLEVEL9K_CUSTOM_VIRTUALENV="custom_virtualenv"
