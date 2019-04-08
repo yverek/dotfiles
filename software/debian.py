@@ -1,4 +1,5 @@
 import apt
+import sys
 import time
 
 from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
@@ -28,6 +29,9 @@ def install_firmwares_and_drivers():
     command = 'sudo apt-get install {packages}'.format(packages=DRIVERS)
     run_command(command)
     print_success()
+
+    print("Now you have to reboot your system!")
+    input("Press ENTER to continue")
 
 
 def edit_audio_config():
@@ -153,16 +157,28 @@ def install_zsh():
     run_command(command)
     print_success()
 
+    print("Now you have to restart your session and zplug will take care of everything!")
+    input("Press ENTER to continue")
+
 
 def main():
     status = read_status_from_file()
 
-    if status == 'First run':
+    if status == "First run":
         rewrite_sources()
         install_firmwares_and_drivers()
-        write_status_to_file('Drivers installed')
+        write_status_to_file("Drivers installed")
+        sys.exit(0)
 
-    elif status == 'Drivers installed':
+    elif status == "Drivers installed":
         edit_audio_config()
         install_firewall()
         install_fonts()
+        configure_gedit()
+        install_zsh()
+        write_status_to_file("Zsh installed")
+        sys.exit(0)
+
+    elif status == "Zsh installed":
+        pass
+        # ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
