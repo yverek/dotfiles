@@ -7,7 +7,7 @@
     │   └── settings.zsh
     └── .zshrc
 
-### Requirements
+## Requirements
 
 - `zplug` <<https://github.com/zplug/zplug>>
 - `powerlevel10k` <<https://github.com/romkatv/powerlevel10k>>
