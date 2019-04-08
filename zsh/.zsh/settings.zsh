@@ -2,25 +2,33 @@
 eval $(dircolors /home/yverek/.dir_colors/dircolors)
 
 # PyEnv Settings
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if which pyenv > /dev/null; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 # Snap Settings
-export PATH="/snap/bin:$PATH"
+if [ -d "/snap/bin" ]; then
+  export PATH="/snap/bin:$PATH"
+fi
 
 # NVM Settings
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+fi
 
-# ZSH AutoSuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
+# Zsh AutoSuggestions
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 
 # Zsh Alias Tips
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='ﯦ '
 
-# Neofetch's Settings
+# Neofetch
 if [ "$(pyenv version-name)" == "system" ]; then
-    neofetch;
+    if which neofetch > /dev/null; then
+        neofetch;
+    fi
 fi
