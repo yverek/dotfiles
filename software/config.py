@@ -46,6 +46,10 @@ PLANK_THEMES_PATH = '~/.local/share/plank/themes/'
 FROST_THEMES_REPOSITORY = 'https://github.com/dikiaap/frost-plank-theme.git'
 DCONF_PLANK_SETTINGS = '~/.dotfiles/software/gnome/plank.dconf.settings'
 
+# zplug
+ZPLUG_INSTALLER_LINK = 'https://raw.githubusercontent.com/zplug/installer/master/installer.zsh'
+
+
 MEGA_LINK = 'https://mega.nz/linux/MEGAsync/Debian_9.0/amd64/megasync-Debian_9.0_amd64.deb'
 
 # echo '\n[redshift]\nallowed=true\nsystem=false\nusers=' | sudo tee -a /etc/geoclue/geoclue.conf

@@ -5,7 +5,7 @@ from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     SOFTWARE, FONTS, LOCAL_FONTS_PATH, NERD_FONTS,\
                     DCONF_FONTS_SETTINGS, DCONF_GEDIT_SETTINGS, \
                     PLANK_THEMES_PATH, FROST_THEMES_REPOSITORY, \
-                    DCONF_PLANK_SETTINGS
+                    DCONF_PLANK_SETTINGS, ZPLUG_INSTALLER_LINK
 
 from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
@@ -23,7 +23,7 @@ def rewrite_sources():
     print_success()
 
 
-def install_firmware_and_drivers():
+def install_firmwares_and_drivers():
     print_info("Installing firmwares and drivers... ")
     command = 'sudo apt-get install {packages}'.format(packages=DRIVERS)
     run_command(command)
@@ -52,7 +52,7 @@ def edit_audio_config():
     print_success()
 
 
-def install_and_configure_firewall():
+def install_firewall():
     print_info("Installing UFW... ")
     command = 'sudo apt-get install gufw'
     run_command(command)
@@ -64,7 +64,7 @@ def install_and_configure_firewall():
     print_success()
 
 
-def install_and_configure_fonts():
+def install_fonts():
     print_info("Installing fonts... ")
     command = 'sudo apt-get install {fonts}'.format(fonts=FONTS)
     run_command(command)
@@ -104,7 +104,7 @@ def configure_gedit():
     print_success()
 
 
-def install_and_configure_software():
+def install_software():
     print_info("Installing Software... ")
     command = 'sudo apt-get install {packages}'.format(packages=SOFTWARE)
     run_command(command)
@@ -137,14 +137,32 @@ def install_and_configure_software():
         print_success()
 
 
+def install_zsh():
+    print_info("Installing Zsh... ")
+    command = 'sudo apt-get install zsh'
+    run_command(command)
+    print_success()
+
+    print_info("Configuring Zsh... ")
+    command = 'chsh yverek -s $(which zsh)'
+    run_command(command, sleep=0)
+    print_success()
+
+    print_info("Installing zplug... ")
+    command = 'curl -sL --proto-redir -all,https {installer_link} | zsh'.format(installer_link=ZPLUG_INSTALLER_LINK)
+    run_command(command)
+    print_success()
+
+
 def main():
     status = read_status_from_file()
 
     if status == 'First run':
         rewrite_sources()
-        install_firmware_and_drivers()
+        install_firmwares_and_drivers()
         write_status_to_file('Drivers installed')
 
     elif status == 'Drivers installed':
         edit_audio_config()
-        install_and_configure_firewall()
+        install_firewall()
+        install_fonts()
