@@ -1,6 +1,6 @@
 [user]
-	name = Mauro Dattilo
-	email = mau.dattilo@gmail.com
+    name = Mauro Dattilo
+    email = mau.dattilo@gmail.com
 
 [color]
     diff = auto
@@ -8,5 +8,8 @@
     branch = auto
     ui = true
 
+[core]
+    excludesfile = ~/.gitignore
+
 [push]
-	default = simple
+    default = simple
