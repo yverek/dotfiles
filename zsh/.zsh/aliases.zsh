@@ -22,7 +22,6 @@ alias -g ......='../../../../..'
 
 # Folder creation
 alias md='mkdir -p'
-alias take='mkdir'
 alias rd=rmdir
 
 function take() {

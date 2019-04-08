@@ -33,10 +33,10 @@ NERD_FONTS = [
     ),
 ]
 
-DCONF_FONTS_SETTINGS = '~/.dotfiles/gnome/fonts.dconf.settings'
+DCONF_FONTS_SETTINGS = '~/.dotfiles/software/gnome/fonts.dconf.settings'
 
 # Gedit Configuration
-DCONF_GEDIT_SETTINGS = '~/.dotfiles/gnome/gedit.dconf.settings'
+DCONF_GEDIT_SETTINGS = '~/.dotfiles/software/gnome/gedit.dconf.settings'
 
 # Software list
 SOFTWARE = 'htop strace lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp '
@@ -44,7 +44,7 @@ SOFTWARE += 'hunspell-it mythes-it menulibre p7zip-rar plank lm-sensors'
 
 PLANK_THEMES_PATH = '~/.local/share/plank/themes/'
 FROST_THEMES_REPOSITORY = 'https://github.com/dikiaap/frost-plank-theme.git'
-DCONF_PLANK_SETTINGS = '~/.dotfiles/gnome/plank.dconf.settings'
+DCONF_PLANK_SETTINGS = '~/.dotfiles/software/gnome/plank.dconf.settings'
 
 MEGA_LINK = 'https://mega.nz/linux/MEGAsync/Debian_9.0/amd64/megasync-Debian_9.0_amd64.deb'
 

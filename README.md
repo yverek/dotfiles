@@ -5,7 +5,7 @@ This is my personal collection of files and dotfiles for configuring a developme
 ## Table of Contents
  * [How it Works](#how-it-works)
  * [Details](#details)
- * [Requirements](#requirements)
+ * [Prerequisites](#prerequisites)
  * [Installation](#Installation)
    * [Software](#software)
    * [Dotfiles](#dotfiles)
@@ -39,8 +39,7 @@ $ sudo apt install git curl stow
 ## Installation
 First of all, clone this repository
 ```bash
-$ mkdir ~/.dotfiles && cd ~/.dotfiles
-$ git clone git@github.com:yverek/dotfiles.git .
+$ git clone git@github.com:yverek/dotfiles.git ~/.dotfiles
 ```
 
 ### Software
