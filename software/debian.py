@@ -130,6 +130,12 @@ def install_and_configure_software():
         print_info("Configuring Plank... ")
         print_success()
 
+    if cache['lm-sensors'].is_installed:
+        print_info("Configuring sensors... ")
+        command = 'sudo sensors-detect'
+        run_command(command, sleep=5)
+        print_success()
+
 
 def main():
     status = read_status_from_file()
