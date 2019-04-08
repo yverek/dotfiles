@@ -1,5 +1,4 @@
 # Zsh
-
     ├── .zsh
     │   ├── aliases.zsh
     │   ├── options.zsh
@@ -8,6 +7,11 @@
     └── .zshrc
 
 ## Requirements
-
 - `zplug` <<https://github.com/zplug/zplug>>
 - `powerlevel10k` <<https://github.com/romkatv/powerlevel10k>>
+
+## Installation
+Before install this section, change `.gitconfig` with your credentials.
+
+## Thanks
+- `github/gitignore` <<https://github.com/github/gitignore>>

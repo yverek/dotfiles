@@ -1,8 +1,3 @@
-source ~/.dotfiles/zsh/.zsh/powerlevel10k.zsh
-source ~/.dotfiles/zsh/.zsh/settings.zsh
-source ~/.dotfiles/zsh/.zsh/aliases.zsh
-source ~/.dotfiles/zsh/.zsh/options.zsh
-
 # Set up the prompt
 autoload -Uz promptinit
 promptinit
@@ -78,3 +73,8 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+
+source ~/.dotfiles/zsh/.zsh/powerlevel10k.zsh
+source ~/.dotfiles/zsh/.zsh/settings.zsh
+source ~/.dotfiles/zsh/.zsh/aliases.zsh
+source ~/.dotfiles/zsh/.zsh/options.zsh

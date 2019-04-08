@@ -1,8 +1,5 @@
-import sys
-
-from software import debian, utils
+from software import debian
 
 
 if __name__ == "__main__":
-    # debian.rewrite_sources()
     debian.main()

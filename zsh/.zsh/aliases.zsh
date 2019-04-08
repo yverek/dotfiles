@@ -4,9 +4,9 @@ alias open_zplug='nautilus ~/.zplug'
 alias zshreload='source ~/.zshrc'
 
 # Aptitude
+alias search='aptitude search'
 alias clean='sudo aptitude clean'
 alias purge='sudo aptitude purge'
-alias search='sudo aptitude search'
 alias update='sudo aptitude update'
 alias remove='sudo aptitude remove'
 alias upgrade='sudo aptitude upgrade'

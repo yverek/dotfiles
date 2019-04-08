@@ -4,9 +4,15 @@ import subprocess
 import sys
 
 
-def run_command(command):
+def run_command(command, clear=True, sleep=2):
+    if clear:
+        if sleep > 0:
+            command = 'tput sc; {cmd}; sleep {sleep}; tput rc; tput ed;'.format(cmd=command, sleep=sleep)
+        else:
+            command = 'tput sc; {cmd}; tput rc; tput ed;'.format(cmd=command)
+
     try:
-        subprocess.run(command, check=True, shell=True, stdout=subprocess.PIPE)
+        subprocess.run(command, check=True, shell=True)
     except subprocess.CalledProcessError as e:
         print_error()
         print(e.output)
