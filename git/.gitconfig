@@ -1,0 +1,12 @@
+[user]
+	name = Mauro Dattilo
+	email = mau.dattilo@gmail.com
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+    
+[push]
+	default = simple
