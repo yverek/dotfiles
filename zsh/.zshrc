@@ -74,7 +74,7 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-source ~/.dotfiles/zsh/.zsh/powerlevel10k.zsh
-source ~/.dotfiles/zsh/.zsh/settings.zsh
-source ~/.dotfiles/zsh/.zsh/aliases.zsh
-source ~/.dotfiles/zsh/.zsh/options.zsh
+source .zsh/options.zsh
+source .zsh/aliases.zsh
+source .zsh/powerlevel10k.zsh
+source .zsh/settings.zsh
