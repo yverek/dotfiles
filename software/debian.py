@@ -1,5 +1,4 @@
 import apt
-import getpass
 import os
 import sys
 import time
@@ -13,13 +12,13 @@ from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     PYENV_PACKAGES_DEP, PYENV_INSTALLER_URL, POETRY_INSTALLER_URL, \
                     PG_HBA_PATH, JETBRAINS_TOOLBOX_URL
 
-from .utils import print_info, print_success, run_command, update_system, install_software
+from .utils import print_info, print_success, run_command, update_system, install_debian_packages
 from .utils import read_status_from_file, write_status_to_file
 
 
 def rewrite_sources():
     print_info("Rewriting /etc/apt/sources.list... ")
-    command = 'echo "{sources}" | sudo tee {file} > /dev/null'
+    command = 'echo "" && echo "{sources}" | sudo tee {file} > /dev/null'
     run_command(command.format(sources=SOURCES_LIST_CONTENT, file=SOURCES_LIST_FILE), sleep=0)
     print_success()
 
@@ -30,7 +29,7 @@ def rewrite_sources():
 
 def install_firmwares_and_drivers():
     print_info("Installing firmwares and drivers... ")
-    install_software(DRIVERS)
+    install_debian_packages(DRIVERS)
     print_success()
 
     print("Now you have to reboot your system!")

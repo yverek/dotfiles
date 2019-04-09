@@ -59,8 +59,8 @@ def update_system(new_line=True):
     run_command(command)
 
 
-def install_software(_packages, new_line=True):
-    command = 'sudo apt-get install {packages}'.format(packages=_packages)
+def install_debian_packages(packages, new_line=True):
+    command = 'sudo apt-get install {packages}'.format(packages=packages)
 
     if new_line:
         command = 'echo "" && ' + command
