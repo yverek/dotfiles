@@ -144,7 +144,7 @@ def install_software():
 
 def install_zsh():
     print_info("Installing Zsh... ")
-    command = 'sudo apt-get install zsh'
+    command = 'sudo apt-get install zsh gawk'  # gawk for zplug
     run_command(command)
     print_success()
 
