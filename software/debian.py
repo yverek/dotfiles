@@ -8,7 +8,8 @@ from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     DCONF_FONTS_SETTINGS, DCONF_GEDIT_SETTINGS, \
                     PLANK_THEMES_PATH, FROST_THEMES_REPOSITORY, \
                     DCONF_PLANK_SETTINGS, ZPLUG_INSTALLER_LINK, \
-                    GITHUB_SSH_LINK, BITBUCKET_SSH_LINK
+                    GITHUB_SSH_LINK, BITBUCKET_SSH_LINK, PYTHON_DEV_LIB, \
+                    PYENV_PACKAGES_DEP, PYENV_INSTALLER_LINK, POETRY_INSTALLER_LINK
 
 from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
@@ -206,6 +207,39 @@ def generate_ssh_key():
     run_command(command, sleep=0)
     run_command('echo -n "$(tput cuu 3;tput ed)"', sleep=0)
     print_success()
+
+
+def install_python3_libs():
+    cache = apt.Cache()
+    if not cache['python3'].is_installed:
+        command = 'sudo apt-get install python3'
+        run_command(command)
+
+    print_info("Installing Python3 libs... ")
+    command = 'sudo apt-get install {packages}'.format(packages=PYTHON_DEV_LIB)
+    run_command(command)
+    print_success()
+
+    print_info("Installing Python3 PIP... ")
+    command = 'sudo apt-get install python3-pip'
+    run_command(command)
+    print_success()
+
+    print_info("Installing pyenv... ")
+    command = 'sudo apt-get install {packages}'.format(packages=PYENV_PACKAGES_DEP)
+    run_command(command)
+
+    command = 'curl -L {pyenv_installer_link} | bash'.format(pyenv_installer_link=PYENV_INSTALLER_LINK)
+    run_command(command)
+    print_success()
+
+    print_info("Installing Poetry... ")
+    command = 'curl -sSL {poetry_installer_link} | python'.format(poetry_installer_link=POETRY_INSTALLER_LINK)
+    run_command(command)
+    print_success()
+
+    print("Now you have to restart your terminal!")
+    input("Press ENTER to continue")
 
 
 def main():

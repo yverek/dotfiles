@@ -53,6 +53,15 @@ ZPLUG_INSTALLER_LINK = 'https://raw.githubusercontent.com/zplug/installer/master
 GITHUB_SSH_LINK = 'https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account'
 BITBUCKET_SSH_LINK = 'https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html'
 
+# Python
+PYTHON_DEV_LIB = 'libpq−dev python3−dev'
+
+PYENV_PACKAGES_DEP = 'make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget '
+PYENV_PACKAGES_DEP += 'llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl'
+
+PYENV_INSTALLER_LINK = 'https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer'
+POETRY_INSTALLER_LINK = 'https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py'
+
 MEGA_LINK = 'https://mega.nz/linux/MEGAsync/Debian_9.0/amd64/megasync-Debian_9.0_amd64.deb'
 
 # echo '\n[redshift]\nallowed=true\nsystem=false\nusers=' | sudo tee -a /etc/geoclue/geoclue.conf
