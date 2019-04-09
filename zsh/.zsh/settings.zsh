@@ -14,12 +14,6 @@ if [ -d "/snap/bin" ]; then
   export PATH="/snap/bin:$PATH"
 fi
 
-# NVM Settings
-if [ -d "$HOME/.nvm" ]; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-fi
-
 # Zsh AutoSuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 

@@ -55,6 +55,7 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 
 # other plugins
+zplug "lukechilds/zsh-nvm"
 zplug "djui/alias-tips"
 zplug "zdharma/fast-syntax-highlighting"
 zplug "zlsun/solarized-man"
