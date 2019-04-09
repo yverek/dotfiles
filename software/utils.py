@@ -66,3 +66,8 @@ def install_debian_packages(packages, new_line=True):
         command = 'echo "" && ' + command
 
     run_command(command)
+
+
+def load_dconf_settings(file):
+    command = 'dconf load / < {file}'.format(file=file)
+    run_command(command, sleep=1)

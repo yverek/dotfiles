@@ -12,7 +12,7 @@ from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     PYENV_PACKAGES_DEP, PYENV_INSTALLER_URL, POETRY_INSTALLER_URL, \
                     PG_HBA_PATH, JETBRAINS_TOOLBOX_URL
 
-from .utils import print_info, print_success, run_command, update_system, install_debian_packages
+from .utils import print_info, print_success, run_command, update_system, install_debian_packages, load_dconf_settings
 from .utils import read_status_from_file, write_status_to_file
 
 
@@ -32,7 +32,7 @@ def install_firmwares_and_drivers():
     install_debian_packages(DRIVERS)
     print_success()
 
-    print("Now you have to reboot your system!")
+    print("Now you have to \u001b[32mreboot your system\u001b[0m!")
     input("Press ENTER to continue")
 
 
@@ -60,8 +60,7 @@ def edit_audio_config():
 
 def install_firewall():
     print_info("Installing UFW... ")
-    command = 'sudo apt-get install gufw'
-    run_command(command)
+    install_debian_packages('gufw')
     print_success()
 
     print_info("Configuring UFW... ")
@@ -72,8 +71,7 @@ def install_firewall():
 
 def install_fonts():
     print_info("Installing fonts... ")
-    command = 'sudo apt-get install {fonts}'.format(fonts=FONTS)
-    run_command(command)
+    install_debian_packages(FONTS)
 
     command = 'mkdir -p {path} && cd {path}'.format(path=LOCAL_FONTS_PATH)
     run_command(command, sleep=0)
@@ -87,8 +85,7 @@ def install_fonts():
     print_success()
 
     print_info("Configuring fonts... ")
-    command = 'dconf load / < {path}'.format(path=DCONF_FONTS_SETTINGS)
-    run_command(command, sleep=0)
+    load_dconf_settings(DCONF_FONTS_SETTINGS)
     print("Now go to Font Manager's Settings and select:")
     print("  - \u001b[31mRendering\u001b[0m tab: \u001b[33mAntialias\u001b[0m, \u001b[33mHinting\u001b[0m ", end="")
     print("and set on \u001b[33mSlight\u001b[0m the \u001b[34mHinting Style\u001b[0m attribute;")
@@ -105,15 +102,13 @@ def install_fonts():
 
 def configure_gedit():
     print_info("Configuring Gedit... ")
-    command = 'dconf load / < {path}'.format(path=DCONF_GEDIT_SETTINGS)
-    run_command(command, sleep=0)
+    load_dconf_settings(DCONF_GEDIT_SETTINGS)
     print_success()
 
 
 def install_software():
     print_info("Installing Software... ")
-    command = 'sudo apt-get install {packages}'.format(packages=SOFTWARE)
-    run_command(command)
+    install_debian_packages(SOFTWARE)
     print_success()
 
     cache = apt.Cache()
@@ -126,8 +121,7 @@ def install_software():
         # clean the other files
         command = 'rm -rf .git && rm install.sh && rm LICENSE && rm README.md'
         run_command(command, sleep=0)
-        command = 'dconf load / < {path}'.format(path=DCONF_PLANK_SETTINGS)
-        run_command(command, sleep=0)
+        load_dconf_settings(DCONF_PLANK_SETTINGS)
         print("\nAdd Plank to \u001b[33mStartup Applications\u001b[0m from \u001b[34mgnome-tweak-tool\u001b[0m")
         print("Close the application when you are done")
         time.sleep(2)
@@ -145,8 +139,7 @@ def install_software():
 
 def install_zsh():
     print_info("Installing Zsh... ")
-    command = 'sudo apt-get install zsh gawk'  # gawk for zplug
-    run_command(command)
+    install_debian_packages('zsh gawk')
     print_success()
 
     print_info("Configuring Zsh... ")
