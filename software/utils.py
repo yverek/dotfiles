@@ -7,9 +7,12 @@ import sys
 def run_command(command, clear=True, sleep=2):
     if clear:
         if sleep > 0:
-            command = 'tput sc; {cmd}; sleep {sleep}; tput rc; tput ed;'.format(cmd=command, sleep=sleep)
+            command = 'tput sc; {cmd}; sleep {sleep}; tput rc; tput ed'.format(cmd=command, sleep=sleep)
         else:
-            command = 'tput sc; {cmd}; tput rc; tput ed;'.format(cmd=command)
+            command = 'tput sc; {cmd}; tput rc; tput ed'.format(cmd=command)
+    else:
+        if sleep > 0:
+            command = '{cmd}; sleep {sleep}'.format(cmd=command, sleep=sleep)
 
     try:
         subprocess.run(command, check=True, shell=True)
@@ -36,12 +39,30 @@ def write_status_to_file(text):
 
 
 def print_info(text):
-    print(text, end='')
+    run_command('echo -n "{text}"'.format(text=text), sleep=1, clear=False)
 
 
 def print_success():
-    print('\u001b[32m[ok]\u001b[0m')
+    run_command('echo \u001b[32m[ok]\u001b[0m', sleep=1, clear=False)
 
 
 def print_error():
-    print('\u001b[31m[error]\u001b[0m')
+    run_command('echo \u001b[31m[error]\u001b[0m', sleep=1, clear=False)
+
+
+def update_system(new_line=True):
+    command = 'sudo apt-get update && sudo apt-get upgrade'
+
+    if new_line:
+        command = 'echo "" && ' + command
+
+    run_command(command)
+
+
+def install_software(_packages, new_line=True):
+    command = 'sudo apt-get install {packages}'.format(packages=_packages)
+
+    if new_line:
+        command = 'echo "" && ' + command
+
+    run_command(command)

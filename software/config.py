@@ -10,8 +10,7 @@ deb http://deb.debian.org/debian/ testing-updates main contrib non-free
 deb-src http://deb.debian.org/debian/ testing-updates main contrib non-free
 
 deb http://deb.debian.org/debian-security testing/updates main
-deb-src http://deb.debian.org/debian-security testing/updates main
-'''
+deb-src http://deb.debian.org/debian-security testing/updates main'''
 
 # Switch between the two following lines: first one for my Notebook, second one for my Desktop PC
 # DRIVERS = 'intel-microcode firmware-realtek firmware-atheros nvidia-driver nvidia-settings'
@@ -47,11 +46,11 @@ FROST_THEMES_REPOSITORY = 'https://github.com/dikiaap/frost-plank-theme.git'
 DCONF_PLANK_SETTINGS = '~/.dotfiles/software/gnome/plank.dconf.settings'
 
 # zplug
-ZPLUG_INSTALLER_LINK = 'https://raw.githubusercontent.com/zplug/installer/master/installer.zsh'
+ZPLUG_INSTALLER_URL = 'https://raw.githubusercontent.com/zplug/installer/master/installer.zsh'
 
 # SSH
-GITHUB_SSH_LINK = 'https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account'
-BITBUCKET_SSH_LINK = 'https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html'
+GITHUB_SSH_URL = 'https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account'
+BITBUCKET_SSH_URL = 'https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html'
 
 # Python
 PYTHON_DEV_LIB = 'libpq−dev python3−dev'
@@ -59,11 +58,14 @@ PYTHON_DEV_LIB = 'libpq−dev python3−dev'
 PYENV_PACKAGES_DEP = 'make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget '
 PYENV_PACKAGES_DEP += 'llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl'
 
-PYENV_INSTALLER_LINK = 'https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer'
-POETRY_INSTALLER_LINK = 'https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py'
+PYENV_INSTALLER_URL = 'https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer'
+POETRY_INSTALLER_URL = 'https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py'
 
 # PostgreSQL
 PG_HBA_PATH = '/etc/postgresql/11/main/pg_hba.conf'
+
+# JetBrains
+JETBRAINS_TOOLBOX_URL = 'https://data.services.jetbrains.com/products/download?platform=linux&code=TBA'
 
 MEGA_LINK = 'https://mega.nz/linux/MEGAsync/Debian_9.0/amd64/megasync-Debian_9.0_amd64.deb'
 

@@ -8,31 +8,29 @@ from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     SOFTWARE, FONTS, LOCAL_FONTS_PATH, NERD_FONTS,\
                     DCONF_FONTS_SETTINGS, DCONF_GEDIT_SETTINGS, \
                     PLANK_THEMES_PATH, FROST_THEMES_REPOSITORY, \
-                    DCONF_PLANK_SETTINGS, ZPLUG_INSTALLER_LINK, \
-                    GITHUB_SSH_LINK, BITBUCKET_SSH_LINK, PYTHON_DEV_LIB, \
-                    PYENV_PACKAGES_DEP, PYENV_INSTALLER_LINK, POETRY_INSTALLER_LINK, \
-                    PG_HBA_PATH
+                    DCONF_PLANK_SETTINGS, ZPLUG_INSTALLER_URL, \
+                    GITHUB_SSH_URL, BITBUCKET_SSH_URL, PYTHON_DEV_LIB, \
+                    PYENV_PACKAGES_DEP, PYENV_INSTALLER_URL, POETRY_INSTALLER_URL, \
+                    PG_HBA_PATH, JETBRAINS_TOOLBOX_URL
 
-from .utils import print_info, print_success, run_command
+from .utils import print_info, print_success, run_command, update_system, install_software
 from .utils import read_status_from_file, write_status_to_file
 
 
 def rewrite_sources():
     print_info("Rewriting /etc/apt/sources.list... ")
-    command = 'sudo echo "{sources}" > {file}'.format(sources=SOURCES_LIST_CONTENT, file=SOURCES_LIST_FILE)
-    run_command(command, sleep=0)
+    command = 'echo "{sources}" | sudo tee {file} > /dev/null'
+    run_command(command.format(sources=SOURCES_LIST_CONTENT, file=SOURCES_LIST_FILE), sleep=0)
     print_success()
 
     print_info("Updating system... ")
-    command = 'sudo apt-get update && sudo apt-get upgrade'
-    run_command(command)
+    update_system()
     print_success()
 
 
 def install_firmwares_and_drivers():
     print_info("Installing firmwares and drivers... ")
-    command = 'sudo apt-get install {packages}'.format(packages=DRIVERS)
-    run_command(command)
+    install_software(DRIVERS)
     print_success()
 
     print("Now you have to reboot your system!")
@@ -158,7 +156,7 @@ def install_zsh():
     print_success()
 
     print_info("Installing zplug... ")
-    command = 'curl -sL --proto-redir -all,https {installer_link} | zsh'.format(installer_link=ZPLUG_INSTALLER_LINK)
+    command = 'curl -sL --proto-redir -all,https {installer_link} | zsh'.format(installer_link=ZPLUG_INSTALLER_URL)
     run_command(command)
     print_success()
 
@@ -197,7 +195,7 @@ def generate_ssh_key():
     print("Wait for your \u001b[31mbrowser\u001b[0m and follow the guide.")
     print("Close the application when you are done.")
     time.sleep(1)
-    command = 'xdg-open {link}'.format(link=GITHUB_SSH_LINK)
+    command = 'xdg-open {link}'.format(link=GITHUB_SSH_URL)
     run_command(command, sleep=0)
     run_command('echo -n "$(tput cuu 4;tput ed)"', sleep=0)
     print_info("Adding SSH key to GitHub... ")
@@ -209,7 +207,7 @@ def generate_ssh_key():
     print("Wait for your \u001b[31mbrowser\u001b[0m and follow the guide.")
     print("Close the application when you are done.")
     time.sleep(1)
-    command = 'xdg-open {link}'.format(link=BITBUCKET_SSH_LINK)
+    command = 'xdg-open {link}'.format(link=BITBUCKET_SSH_URL)
     run_command(command, sleep=0)
     run_command('echo -n "$(tput cuu 4;tput ed)"', sleep=0)
     print_info("Adding SSH key to Bitbucket... ")
@@ -236,12 +234,12 @@ def install_python3_libs():
     command = 'sudo apt-get install {packages}'.format(packages=PYENV_PACKAGES_DEP)
     run_command(command)
 
-    command = 'curl -L {pyenv_installer_link} | bash'.format(pyenv_installer_link=PYENV_INSTALLER_LINK)
+    command = 'curl -L {pyenv_installer_link} | bash'.format(pyenv_installer_link=PYENV_INSTALLER_URL)
     run_command(command)
     print_success()
 
     print_info("Installing Poetry... ")
-    command = 'curl -sSL {poetry_installer_link} | python'.format(poetry_installer_link=POETRY_INSTALLER_LINK)
+    command = 'curl -sSL {poetry_installer_link} | python'.format(poetry_installer_link=POETRY_INSTALLER_URL)
     run_command(command)
     print_success()
 
@@ -271,6 +269,17 @@ def install_postgresql():
     print_success()
 
 
+def install_jetbrains_toolbox():
+    print_info("Installing JetBrains ToolBox... ")
+    command = 'wget -cO jetbrains-toolbox.tar.gz "{link}"'.format(link=JETBRAINS_TOOLBOX_URL)
+    run_command(command)
+    command = 'tar -xzf jetbrains-toolbox.tar.gz'
+    run_command(command)
+    command = 'cd jetbrains-toolbox*/ && ./jetbrains-toolbox'
+    run_command(command)
+    print_success()
+
+
 def main():
     status = read_status_from_file()
 
@@ -291,6 +300,8 @@ def main():
 
     elif status == "Zsh installed":
         generate_ssh_key()
-        pass
+        install_python3_libs()
+        install_postgresql()
+        install_jetbrains_toolbox()
         # hosts file from the internet
         # jetbrains .jar settings
