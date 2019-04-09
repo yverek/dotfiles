@@ -263,6 +263,9 @@ def install_postgresql():
 
     command = 'sudo sed -i \'s/peer/md5/\' {pg_hba}'.format(pg_hba=PG_HBA_PATH)
     run_command(command)
+
+    command = 'sudo systemctl restart postgresql'
+    run_command(command)
     run_command('echo -n "$(tput cuu 2;tput ed)"')
     print_info("Installing PostgreSQL... ")
     print_success()
