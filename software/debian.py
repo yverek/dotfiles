@@ -97,9 +97,8 @@ def install_fonts():
     print("Close the application when you are done")
     time.sleep(2)
     run_command('font-manager', sleep=0)
-    # clear all the previous messages by going up for 5 lines (tput cuu 5) and clearing (tput ed) the prompt
-    run_command('echo -n "$(tput cuu 5;tput ed)"', sleep=0)
-    print_info("Configuring fonts... ")
+    # clear all the previous messages by going up for 4 lines (tput cuu 4) and clearing (tput ed) the prompt
+    run_command('echo -n "$(tput cuu 4;tput ed)"', sleep=0)
     print_success()
 
 
@@ -132,8 +131,7 @@ def install_software():
         print("Close the application when you are done")
         time.sleep(2)
         run_command('gnome-tweak-tool', sleep=0)
-        run_command('echo -n "$(tput cuu 3;tput ed)"', sleep=0)
-        print_info("Configuring Plank... ")
+        run_command('echo -n "$(tput cuu 2;tput ed)"', sleep=0)
         print_success()
 
     if cache['lm-sensors'].is_installed:
@@ -178,10 +176,19 @@ def generate_ssh_key():
     run_command(command)
     print_success()
 
+    print_info("Copying SSH key to clipboard... ")
+    time.sleep(1)
+    print("\u001b[32mCopy the following key (Ctrl + Shift + C)\u001b[0m")
+    time.sleep(1)
+    command = 'cat ~/.ssh/id_rsa.pub'
+    run_command(command, sleep=5)
+    run_command('echo -n "$(tput cuu 1;tput ed)"', sleep=0)
+    print_success()
+
     print_info("Adding SSH key to GitHub... ")
     time.sleep(1)
-    print("\nNow you have to add your \u001b[32mSSH key\u001b[0m to \u001b[34mGitHub\u001b[0m,"
-          " wait for \u001b[31mFirefox\u001b[0m to open and follow the instruction!")
+    print("\nNow you have to add your \u001b[32mSSH key\u001b[0m to \u001b[34mGitHub\u001b[0m.")
+    print("Wait for your \u001b[31mbrowser\u001b[0m and follow the guide.")
     print("Close the application when you are done.")
     time.sleep(1)
     command = 'xdg-open {link}'.format(link=GITHUB_SSH_LINK)
@@ -191,8 +198,8 @@ def generate_ssh_key():
 
     print_info("Adding SSH key to Bitbucket... ")
     time.sleep(1)
-    print("\nNow you have to add your \u001b[32mSSH key\u001b[0m to \u001b[34mBitbucket\u001b[0m,"
-          " wait for \u001b[31mFirefox\u001b[0m to open and follow the instruction!")
+    print("\nNow you have to add your \u001b[32mSSH key\u001b[0m to \u001b[34mBitbucket\u001b[0m.")
+    print("Wait for your \u001b[31mbrowser\u001b[0m and follow the guide.")
     print("Close the application when you are done.")
     time.sleep(1)
     command = 'xdg-open {link}'.format(link=BITBUCKET_SSH_LINK)
@@ -220,7 +227,7 @@ def main():
         sys.exit(0)
 
     elif status == "Zsh installed":
+        generate_ssh_key()
         pass
-        # ssh-keygen -t rsa -b 4096
         # hosts file from the internet
         # jetbrains .jar settings
