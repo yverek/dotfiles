@@ -62,7 +62,8 @@ PYENV_PACKAGES_DEP += 'llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev lib
 PYENV_INSTALLER_LINK = 'https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer'
 POETRY_INSTALLER_LINK = 'https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py'
 
-# Node.js
+# PostgreSQL
+PG_HBA_PATH = '/etc/postgresql/11/main/pg_hba.conf'
 
 MEGA_LINK = 'https://mega.nz/linux/MEGAsync/Debian_9.0/amd64/megasync-Debian_9.0_amd64.deb'
 

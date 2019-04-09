@@ -1,4 +1,5 @@
 import apt
+import getpass
 import os
 import sys
 import time
@@ -9,7 +10,8 @@ from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     PLANK_THEMES_PATH, FROST_THEMES_REPOSITORY, \
                     DCONF_PLANK_SETTINGS, ZPLUG_INSTALLER_LINK, \
                     GITHUB_SSH_LINK, BITBUCKET_SSH_LINK, PYTHON_DEV_LIB, \
-                    PYENV_PACKAGES_DEP, PYENV_INSTALLER_LINK, POETRY_INSTALLER_LINK
+                    PYENV_PACKAGES_DEP, PYENV_INSTALLER_LINK, POETRY_INSTALLER_LINK, \
+                    PG_HBA_PATH
 
 from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
@@ -98,8 +100,9 @@ def install_fonts():
     print("Close the application when you are done")
     time.sleep(2)
     run_command('font-manager', sleep=0)
-    # clear all the previous messages by going up for 4 lines (tput cuu 4) and clearing (tput ed) the prompt
-    run_command('echo -n "$(tput cuu 4;tput ed)"', sleep=0)
+    # clear all the previous messages by going up for 5 lines (tput cuu 5) and clearing (tput ed) the prompt
+    run_command('echo -n "$(tput cuu 5;tput ed)"', sleep=0)
+    print_info("Configuring fonts... ")
     print_success()
 
 
@@ -132,7 +135,8 @@ def install_software():
         print("Close the application when you are done")
         time.sleep(2)
         run_command('gnome-tweak-tool', sleep=0)
-        run_command('echo -n "$(tput cuu 2;tput ed)"', sleep=0)
+        run_command('echo -n "$(tput cuu 3;tput ed)"', sleep=0)
+        print_info("Configuring Plank... ")
         print_success()
 
     if cache['lm-sensors'].is_installed:
@@ -179,11 +183,12 @@ def generate_ssh_key():
 
     print_info("Copying SSH key to clipboard... ")
     time.sleep(1)
-    print("\u001b[32mCopy the following key (Ctrl + Shift + C)\u001b[0m")
+    print("\n\u001b[32mCopy the following key (Ctrl + Shift + C)\u001b[0m")
     time.sleep(1)
     command = 'cat ~/.ssh/id_rsa.pub'
     run_command(command, sleep=5)
-    run_command('echo -n "$(tput cuu 1;tput ed)"', sleep=0)
+    run_command('echo -n "$(tput cuu 2;tput ed)"', sleep=0)
+    print_info("Copying SSH key to clipboard... ")
     print_success()
 
     print_info("Adding SSH key to GitHub... ")
@@ -194,7 +199,8 @@ def generate_ssh_key():
     time.sleep(1)
     command = 'xdg-open {link}'.format(link=GITHUB_SSH_LINK)
     run_command(command, sleep=0)
-    run_command('echo -n "$(tput cuu 3;tput ed)"', sleep=0)
+    run_command('echo -n "$(tput cuu 4;tput ed)"', sleep=0)
+    print_info("Adding SSH key to GitHub... ")
     print_success()
 
     print_info("Adding SSH key to Bitbucket... ")
@@ -205,7 +211,8 @@ def generate_ssh_key():
     time.sleep(1)
     command = 'xdg-open {link}'.format(link=BITBUCKET_SSH_LINK)
     run_command(command, sleep=0)
-    run_command('echo -n "$(tput cuu 3;tput ed)"', sleep=0)
+    run_command('echo -n "$(tput cuu 4;tput ed)"', sleep=0)
+    print_info("Adding SSH key to Bitbucket... ")
     print_success()
 
 
@@ -240,6 +247,25 @@ def install_python3_libs():
 
     print("Now you have to restart your terminal!")
     input("Press ENTER to continue")
+
+
+def install_postgresql():
+    print_info("Installing PostgreSQL... ")
+    command = 'sudo apt-get install postgresql postgresql−contrib'
+    run_command(command)
+    print_success()
+
+    print_info("Configuring PostgreSQL... ")
+    time.sleep(1)
+    print("\nInsert postgres password!")
+    command = 'sudo -su postgres psql -c "ALTER USER postgres PASSWORD \'$postgres\';"'
+    run_command(command)
+
+    command = 'sudo sed -i \'s/peer/md5/\' {pg_hba}'.format(pg_hba=PG_HBA_PATH)
+    run_command(command)
+    run_command('echo -n "$(tput cuu 2;tput ed)"')
+    print_info("Installing PostgreSQL... ")
+    print_success()
 
 
 def main():
