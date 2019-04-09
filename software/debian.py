@@ -1,4 +1,5 @@
 import apt
+import os
 import sys
 import time
 
@@ -6,7 +7,8 @@ from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     SOFTWARE, FONTS, LOCAL_FONTS_PATH, NERD_FONTS,\
                     DCONF_FONTS_SETTINGS, DCONF_GEDIT_SETTINGS, \
                     PLANK_THEMES_PATH, FROST_THEMES_REPOSITORY, \
-                    DCONF_PLANK_SETTINGS, ZPLUG_INSTALLER_LINK
+                    DCONF_PLANK_SETTINGS, ZPLUG_INSTALLER_LINK, \
+                    GITHUB_SSH_LINK, BITBUCKET_SSH_LINK
 
 from .utils import print_info, print_success, run_command
 from .utils import read_status_from_file, write_status_to_file
@@ -161,6 +163,44 @@ def install_zsh():
     input("Press ENTER to continue")
 
 
+def generate_ssh_key():
+    print_info("Generating SSH key... ")
+    command = 'ssh-keygen -t rsa -b 4096'
+    run_command(command)
+    print_success()
+
+    print_info("Adding SSH key to ssh-agent... ")
+    if os.environ.get('SSH_AUTH_SOCK') is None:
+        command = 'ssh-agent'
+        run_command(command)
+
+    command = 'ssh-add ~/.ssh/id_rsa'
+    run_command(command)
+    print_success()
+
+    print_info("Adding SSH key to GitHub... ")
+    time.sleep(1)
+    print("\nNow you have to add your \u001b[32mSSH key\u001b[0m to \u001b[34mGitHub\u001b[0m,"
+          " wait for \u001b[31mFirefox\u001b[0m to open and follow the instruction!")
+    print("Close the application when you are done.")
+    time.sleep(1)
+    command = 'xdg-open {link}'.format(link=GITHUB_SSH_LINK)
+    run_command(command, sleep=0)
+    run_command('echo -n "$(tput cuu 3;tput ed)"', sleep=0)
+    print_success()
+
+    print_info("Adding SSH key to Bitbucket... ")
+    time.sleep(1)
+    print("\nNow you have to add your \u001b[32mSSH key\u001b[0m to \u001b[34mBitbucket\u001b[0m,"
+          " wait for \u001b[31mFirefox\u001b[0m to open and follow the instruction!")
+    print("Close the application when you are done.")
+    time.sleep(1)
+    command = 'xdg-open {link}'.format(link=BITBUCKET_SSH_LINK)
+    run_command(command, sleep=0)
+    run_command('echo -n "$(tput cuu 3;tput ed)"', sleep=0)
+    print_success()
+
+
 def main():
     status = read_status_from_file()
 
@@ -181,4 +221,6 @@ def main():
 
     elif status == "Zsh installed":
         pass
-        # ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+        # ssh-keygen -t rsa -b 4096
+        # hosts file from the internet
+        # jetbrains .jar settings

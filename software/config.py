@@ -49,6 +49,9 @@ DCONF_PLANK_SETTINGS = '~/.dotfiles/software/gnome/plank.dconf.settings'
 # zplug
 ZPLUG_INSTALLER_LINK = 'https://raw.githubusercontent.com/zplug/installer/master/installer.zsh'
 
+# SSH
+GITHUB_SSH_LINK = 'https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account'
+BITBUCKET_SSH_LINK = 'https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html'
 
 MEGA_LINK = 'https://mega.nz/linux/MEGAsync/Debian_9.0/amd64/megasync-Debian_9.0_amd64.deb'
 

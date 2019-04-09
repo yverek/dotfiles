@@ -10,6 +10,7 @@ This is my personal collection of files and dotfiles for configuring a developme
    * [Software](#software)
    * [Dotfiles](#dotfiles)
  * [Updating](#updating)
+ * [Thanks](#thanks)
 
 ## How it Works
 You can install all the software just running `bootstrap.py` file.
@@ -37,13 +38,17 @@ $ sudo apt install git curl stow
 ```
 
 ## Installation
+**Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and
+remove things you don’t want or need. Use at your own risk!
+
 First of all, clone this repository
 ```bash
 $ git clone git@github.com:yverek/dotfiles.git ~/.dotfiles
 ```
 
 ### Software
-Just
+Edit `config.py` and run this
+
 ```bash
 $ cd ~/.dotfiles
 $ python3 bootstrap.py
@@ -64,7 +69,11 @@ $ stow -D zsh
 ```
 
 ## Updating
+Just run this
 ```bash
 $ cd ~/.dotfiles
 $ git pull origin master
 ```
+
+## Thanks
+Many thanks to the [dotfiles community](http://dotfiles.github.io/) and the creators of the incredibly useful tools.

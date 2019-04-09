@@ -2,6 +2,7 @@
 alias zshconfig='gedit ~/.zshrc'
 alias open_zplug='nautilus ~/.zplug'
 alias zshreload='source ~/.zshrc'
+alias print_path='echo -e ${PATH//:/\\\n}'
 
 # Aptitude
 alias search='aptitude search'
