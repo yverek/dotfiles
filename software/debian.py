@@ -11,7 +11,8 @@ from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
                     DCONF_PLANK_SETTINGS, ZPLUG_INSTALLER_URL, \
                     GITHUB_SSH_URL, BITBUCKET_SSH_URL, PYTHON_DEV_LIB, \
                     PYENV_PACKAGES_DEP, PYENV_INSTALLER_URL, POETRY_INSTALLER_URL, \
-                    PG_HBA_PATH, JETBRAINS_TOOLBOX_URL
+                    PG_HBA_PATH, JETBRAINS_TOOLBOX_URL, GNOME_SHELL_EXTENSIONS, \
+                    THEME_DEPENDECIES, TMP_DIR, CURSORS_PATH, CURSORS_URL
 
 from .utils import print_info, print_success, run_command, update_system, install_debian_packages, load_dconf_settings
 from .utils import read_status_from_file, write_status_to_file
@@ -218,18 +219,15 @@ def install_python3_libs():
         run_command(command)
 
     print_info("Installing Python3 libs... ")
-    command = 'sudo apt-get install {packages}'.format(packages=PYTHON_DEV_LIB)
-    run_command(command)
+    install_debian_packages(PYTHON_DEV_LIB)
     print_success()
 
     print_info("Installing Python3 PIP... ")
-    command = 'sudo apt-get install python3-pip'
-    run_command(command)
+    install_debian_packages('python3-pip')
     print_success()
 
     print_info("Installing pyenv... ")
-    command = 'sudo apt-get install {packages}'.format(packages=PYENV_PACKAGES_DEP)
-    run_command(command)
+    install_debian_packages(PYENV_PACKAGES_DEP)
 
     command = 'curl -L {pyenv_installer_link} | bash'.format(pyenv_installer_link=PYENV_INSTALLER_URL)
     run_command(command)
@@ -246,8 +244,7 @@ def install_python3_libs():
 
 def install_postgresql():
     print_info("Installing PostgreSQL... ")
-    command = 'sudo apt-get install postgresql postgresql−contrib'
-    run_command(command)
+    install_debian_packages('postgresql postgresql-contrib')
     print_success()
 
     print_info("Configuring PostgreSQL... ")
@@ -275,6 +272,29 @@ def install_jetbrains_toolbox():
     command = 'cd jetbrains-toolbox*/ && ./jetbrains-toolbox'
     run_command(command)
     print_success()
+
+
+def install_themes_and_icons():
+    install_debian_packages(THEME_DEPENDECIES)
+    command = 'mkdir -p {tmp}'.format(tmp=TMP_DIR)
+    run_command(command)
+    command = 'cd {tmp} && git clone https://github.com/andreisergiu98/arc-flatabulous-theme --depth 1 && ' \
+              'cd arc-flatabulous-theme && ./autogen.sh --prefix=/usr && sudo make install'
+    run_command(command)
+
+    command = 'wget -qO- https://raw.githubusercontent.com/gusbemacbe/suru-plus/master/install.sh | sh'
+    run_command(command)
+
+    command = 'mkdir -p {path}'.format(path=CURSORS_PATH)
+    run_command(command)
+    command = 'cd {tmp} && git clone {cursors_url} && cp -pr capitaine-cursors/dist/* {cursors_path}'.format(
+        tmp=TMP_DIR,
+        cursors_url=CURSORS_URL,
+        cursors_path=CURSORS_PATH
+    )
+    run_command('gsettings set org.gnome.shell disable-user-extensions false', sleep=0)
+    run_command('gsettings set org.gnome.shell enabled-extensions {exts}').format(ext=GNOME_SHELL_EXTENSIONS)
+
 
 
 def main():
