@@ -89,15 +89,15 @@ DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 #           Functions            #
 # ============================== #
 
-function rewriting_sources_list() {
+function rewrite_sources_list() {
     echo "$SOURCES_LIST_CONTENT" | sudo tee "$SOURCES_LIST_FILE" > /dev/null
 }
 
-function updating_system() {
+function update_system() {
     sudo apt-get update && sudo apt-get upgrade
 }
 
-function installing_drivers() {
+function install_drivers() {
     install_deb_packages ${DRIVERS}
 }
 
@@ -111,7 +111,7 @@ function edit_pulseaudio_file() {
     done
 }
 
-function rebooting_pulseaudio() {
+function reboot_pulseaudio() {
     pulseaudio -k && pulseaudio --start
 }
 
@@ -119,11 +119,11 @@ function install_firewall() {
     install_deb_packages gufw
 }
 
-function configuring_firewall() {
+function configure_firewall() {
     sudo ufw default deny && sudo ufw enable
 }
 
-function installing_fonts() {
+function install_fonts() {
     install_deb_packages ${FONTS}
 
     mkdir -p ${LOCAL_FONTS_PATH} && cd ${LOCAL_FONTS_PATH}
@@ -133,12 +133,12 @@ function installing_fonts() {
     done
 }
 
-function activating_fonts() {
+function activate_fonts() {
     fc-cache -f
     load_dconf_settings ${DCONF_FONTS_SETTINGS}
 }
 
-function configuring_font_manager() {
+function configure_font_manager() {
     echo -e "\n${WHITE}Now go to ${GREEN}Font Manager's Settings${WHITE} and select:"
     echo -e "  => ${RED}Rendering${WHITE} tab:"
     echo -e "    - ${BLUE}Antialias${WHITE}: ${GREEN}\xE2\x9C\x94${WHITE};"
