@@ -18,41 +18,6 @@ from .utils import print_info, print_success, run_command, update_system, instal
 from .utils import read_status_from_file, write_status_to_file
 
 
-def install_fonts():
-    print_info("Installing fonts... ")
-    install_debian_packages(FONTS)
-
-    command = 'mkdir -p {path}'.format(path=LOCAL_FONTS_PATH)
-    run_command(command, sleep=0)
-
-    for font in NERD_FONTS:
-        command = 'cd {path} && curl -fLo "{font_name}" {font_link}'.format(
-            path=LOCAL_FONTS_PATH,
-            font_name=font[0],
-            font_link=font[1]
-        )
-        run_command(command)
-
-    command = 'fc-cache -f -v'
-    run_command(command)
-    print_success()
-
-    print_info("Configuring fonts... ")
-    load_dconf_settings(DCONF_FONTS_SETTINGS)
-    print("\nNow go to Font Manager's Settings and select:")
-    print("  => \u001b[31mRendering\u001b[0m tab: \u001b[33mAntialias\u001b[0m, \u001b[33mHinting\u001b[0m ", end="")
-    print("and set on \u001b[33mSlight\u001b[0m the \u001b[34mHinting Style\u001b[0m attribute;")
-    print("  => \u001b[31mDisplay\u001b[0m tab: set on \u001b[33mDefault\u001b[0m the ", end="")
-    print("\u001b[34mLCD Filter\u001b[0m attribute;")
-    print("Close the application when you are done")
-    time.sleep(2)
-    run_command('font-manager', sleep=0)
-    # clear all the previous messages by going up for 5 lines (tput cuu 5) and clearing (tput ed) the prompt
-    run_command('echo -n "$(tput cuu 5;tput ed)"', sleep=0)
-    print_info("Configuring fonts... ")
-    print_success()
-
-
 def configure_gedit():
     print_info("Configuring Gedit... ")
     load_dconf_settings(DCONF_GEDIT_SETTINGS)

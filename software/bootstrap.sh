@@ -48,4 +48,8 @@ elif dpkg -s "zsh" &> /dev/null; then
     info "Configuring Font Manager... "
     clear configuring_font_manager
     ok
+
+    info "Configuring Gedit... "
+    clear configure_gedit
+    ok
 fi

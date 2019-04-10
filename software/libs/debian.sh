@@ -83,6 +83,7 @@ NERDFONT_URLS=('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts
 
 DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
 
+DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 
 # ============================== #
 #           Functions            #
@@ -148,4 +149,8 @@ function configuring_font_manager() {
     echo -e "\nClose the application when you are done..."
     sleep 2
     font-manager
+}
+
+function configure_gedit() {
+    load_dconf_settings ${DCONF_GEDIT_SETTINGS}
 }
