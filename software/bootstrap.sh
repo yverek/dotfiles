@@ -81,4 +81,8 @@ elif true; then
     clear add_ssh_key_to_sshagent
     ok
 
+    info "Copying SSH key to clipboard... "
+    clear open_gedit_with_ssh_key
+    ok
+
 fi

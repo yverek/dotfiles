@@ -204,3 +204,9 @@ function add_ssh_key_to_sshagent() {
 
     ssh-add ~/.ssh/id_rsa
 }
+
+function open_gedit_with_ssh_key() {
+    gedit ~/.ssh/id_rsa.pub
+    echo -e "${WHITE}Now you have to ${GREEN}copy${WHITE} your ${RED}SSH key${WHITE}!"
+    echo "Close the application when you are done..."
+}
