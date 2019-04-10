@@ -3,7 +3,6 @@
 source ./libs/debian.sh
 
 if ! dpkg -s ${DRIVERS} &> /dev/null; then
-    # update sources.list
     info "Rewriting /etc/apt/sources.list... "
     clear rewriting_sources_list
     ok
@@ -12,7 +11,6 @@ if ! dpkg -s ${DRIVERS} &> /dev/null; then
     clear updating_system
     ok
 
-    # install drivers
     info "Installing drivers... "
     clear installing_drivers
     ok
@@ -20,9 +18,9 @@ if ! dpkg -s ${DRIVERS} &> /dev/null; then
     echo -e ${WHITE}"Now you have to "${GREEN}"reboot your system"${WHITE}"!"
     read -p "Press enter to continue..."
     exit 0
-elif ! dpkg -s "zsh" &> /dev/null; then
+elif dpkg -s "zsh" &> /dev/null; then
     info "Editing PulseAudio configuration files... "
-    clear edit_pulseaudio_file
+    edit_pulseaudio_file
     ok
 
     info "Rebooting PulseAudio... "
@@ -35,5 +33,17 @@ elif ! dpkg -s "zsh" &> /dev/null; then
 
     info "Configuring FireWall... "
     clear configuring_firewall
+    ok
+
+    info "Installing fonts... "
+    clear installing_fonts
+    ok
+
+    info "Activating fonts... "
+    clear activating_fonts
+    ok
+
+    info "Configuring Font Manager... "
+    clear configuring_font_manager
     ok
 fi

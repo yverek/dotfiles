@@ -18,59 +18,6 @@ from .utils import print_info, print_success, run_command, update_system, instal
 from .utils import read_status_from_file, write_status_to_file
 
 
-def rewrite_sources():
-    print_info("Rewriting /etc/apt/sources.list... ")
-    command = 'echo "" && echo "{sources}" | sudo tee {file} > /dev/null'
-    run_command(command.format(sources=SOURCES_LIST_CONTENT, file=SOURCES_LIST_FILE), sleep=0)
-    print_success()
-
-    print_info("Updating system... ")
-    update_system()
-    print_success()
-
-
-def install_firmwares_and_drivers():
-    print_info("Installing firmwares and drivers... ")
-    install_debian_packages(DRIVERS)
-    print_success()
-
-    print("Now you have to \u001b[32mreboot your system\u001b[0m!")
-    input("Press ENTER to continue")
-
-
-def edit_audio_config():
-    print_info("Editing audio configuration files... ")
-
-    options = [
-        ('; resample-method = speex-float-1', 'resample-method = src-sinc-best-quality'),
-        ('; default-sample-format = s16le', 'default-sample-format = s24le'),
-        ('; default-sample-rate = 44100', 'default-sample-rate = 96000')
-    ]
-
-    command = "sudo sed -i 's/{old}/{new}/g' /etc/pulse/daemon.conf"
-
-    for line in options:
-        run_command(command.format(old=line[0], new=line[1]), sleep=0)
-
-    print_success()
-
-    print_info("Rebooting PulseAudio... ")
-    command = 'pulseaudio -k && pulseaudio --start'
-    run_command(command, sleep=0)
-    print_success()
-
-
-def install_firewall():
-    print_info("Installing UFW... ")
-    install_debian_packages('gufw')
-    print_success()
-
-    print_info("Configuring UFW... ")
-    command = 'sudo ufw default deny && sudo ufw enable'
-    run_command(command, sleep=0)
-    print_success()
-
-
 def install_fonts():
     print_info("Installing fonts... ")
     install_debian_packages(FONTS)
