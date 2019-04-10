@@ -1,11 +1,25 @@
 #!/usr/bin/env bash
 
-source libs/utils.sh
-source libs/debian.sh
+source ./libs/debian.sh
 
-# update sources.list
+if ! dpkg -s ${DRIVERS} &> /dev/null; then
+    # update sources.list
+    info "Rewriting /etc/apt/sources.list... "
+    clear rewriting_sources_list
+    ok
 
-# install drivers
+    info "Updating system... "
+    clear updating_system
+    ok
 
-# reboot system
+    # install drivers
+    info "Installing drivers... "
+    clear installing_drivers
+    ok
 
+    echo -e ${WHITE}"Now you have to "${GREEN}"reboot your system"${WHITE}"!"
+    read -p "Press enter to continue..."
+    exit 0
+else
+    echo "Continuo..."
+fi
