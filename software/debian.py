@@ -1,6 +1,7 @@
 import apt
 import os
 import sys
+import subprocess
 import time
 
 from .config import SOURCES_LIST_CONTENT, SOURCES_LIST_FILE, DRIVERS,\
@@ -73,11 +74,15 @@ def install_fonts():
     print_info("Installing fonts... ")
     install_debian_packages(FONTS)
 
-    command = 'mkdir -p {path} && cd {path}'.format(path=LOCAL_FONTS_PATH)
+    command = 'mkdir -p {path}'.format(path=LOCAL_FONTS_PATH)
     run_command(command, sleep=0)
 
     for font in NERD_FONTS:
-        command = 'curl -fLo "{font_name}" {font_link}'.format(font_name=font[0], font_link=font[1])
+        command = 'cd {path} && curl -fLo "{font_name}" {font_link}'.format(
+            path=LOCAL_FONTS_PATH,
+            font_name=font[0],
+            font_link=font[1]
+        )
         run_command(command)
 
     command = 'fc-cache -f -v'
@@ -86,10 +91,10 @@ def install_fonts():
 
     print_info("Configuring fonts... ")
     load_dconf_settings(DCONF_FONTS_SETTINGS)
-    print("Now go to Font Manager's Settings and select:")
-    print("  - \u001b[31mRendering\u001b[0m tab: \u001b[33mAntialias\u001b[0m, \u001b[33mHinting\u001b[0m ", end="")
+    print("\nNow go to Font Manager's Settings and select:")
+    print("  => \u001b[31mRendering\u001b[0m tab: \u001b[33mAntialias\u001b[0m, \u001b[33mHinting\u001b[0m ", end="")
     print("and set on \u001b[33mSlight\u001b[0m the \u001b[34mHinting Style\u001b[0m attribute;")
-    print("  - \u001b[31mDisplay\u001b[0m tab: set on \u001b[33mDefault\u001b[0m the ", end="")
+    print("  => \u001b[31mDisplay\u001b[0m tab: set on \u001b[33mDefault\u001b[0m the ", end="")
     print("\u001b[34mLCD Filter\u001b[0m attribute;")
     print("Close the application when you are done")
     time.sleep(2)
@@ -114,13 +119,19 @@ def install_software():
     cache = apt.Cache()
     if cache['plank'].is_installed:
         print_info("Configuring Plank... ")
-        command = 'mkdir -p {path} && cd {path}'.format(path=PLANK_THEMES_PATH)
+        command = 'mkdir -p {path}'.format(path=PLANK_THEMES_PATH)
         run_command(command, sleep=0)
-        command = 'git clone {repository} .'.format(repository=FROST_THEMES_REPOSITORY)
+
+        command = 'cd {path} && git clone {repository} .'.format(
+            path=PLANK_THEMES_PATH,
+            repository=FROST_THEMES_REPOSITORY
+        )
         run_command(command)
+
         # clean the other files
-        command = 'rm -rf .git && rm install.sh && rm LICENSE && rm README.md'
+        command = 'cd {path} && rm -rf .git && rm install.sh LICENSE README.md'.format(path=PLANK_THEMES_PATH)
         run_command(command, sleep=0)
+
         load_dconf_settings(DCONF_PLANK_SETTINGS)
         print("\nAdd Plank to \u001b[33mStartup Applications\u001b[0m from \u001b[34mgnome-tweak-tool\u001b[0m")
         print("Close the application when you are done")
@@ -128,12 +139,6 @@ def install_software():
         run_command('gnome-tweak-tool', sleep=0)
         run_command('echo -n "$(tput cuu 3;tput ed)"', sleep=0)
         print_info("Configuring Plank... ")
-        print_success()
-
-    if cache['lm-sensors'].is_installed:
-        print_info("Configuring sensors... ")
-        command = 'sudo sensors-detect'
-        run_command(command, sleep=5)
         print_success()
 
 
@@ -152,7 +157,7 @@ def install_zsh():
     run_command(command)
     print_success()
 
-    print("Now you have to restart your session and zplug will take care of everything!")
+    print("Now you have to \u001b[32mrestart your session\u001b[0m and zplug will take care of everything!")
     input("Press ENTER to continue")
 
 
@@ -275,25 +280,26 @@ def install_jetbrains_toolbox():
 def main():
     status = read_status_from_file()
 
-    if status == "First run":
-        rewrite_sources()
-        install_firmwares_and_drivers()
-        write_status_to_file("Drivers installed")
-        sys.exit(0)
-
-    elif status == "Drivers installed":
-        edit_audio_config()
-        install_firewall()
-        install_fonts()
-        configure_gedit()
-        install_zsh()
-        write_status_to_file("Zsh installed")
-        sys.exit(0)
-
-    elif status == "Zsh installed":
-        generate_ssh_key()
-        install_python3_libs()
-        install_postgresql()
-        install_jetbrains_toolbox()
+    install_fonts()
+    # if status == "First run":
+    #     rewrite_sources()
+    #     install_firmwares_and_drivers()
+    #     write_status_to_file("Drivers installed")
+    #     sys.exit(0)
+    #
+    # elif status == "Drivers installed":
+    #     edit_audio_config()
+    #     install_firewall()
+    #     install_fonts()
+    #     configure_gedit()
+    #     install_zsh()
+    #     write_status_to_file("Zsh installed")
+    #     sys.exit(0)
+    #
+    # elif status == "Zsh installed":
+    #     generate_ssh_key()
+    #     install_python3_libs()
+    #     install_postgresql()
+    #     install_jetbrains_toolbox()
         # hosts file from the internet
         # jetbrains .jar settings

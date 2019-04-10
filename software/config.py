@@ -27,9 +27,9 @@ LOCAL_FONTS_PATH = '~/.local/share/fonts/'
 NERD_FONTS = [
     (
         'Roboto Mono Nerd Font Complete Mono.ttf',
-        'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono'
+        'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono'
         '%20Nerd%20Font%20Complete%20Mono.ttf'
-    ),
+    )
 ]
 
 DCONF_FONTS_SETTINGS = '~/.dotfiles/software/gnome/fonts.dconf.settings'
