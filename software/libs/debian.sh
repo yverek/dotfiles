@@ -188,3 +188,7 @@ function install_zsh() {
     install_deb_packages "zsh gawk"
     chsh $(whoami) -s $(which zsh)
 }
+
+function install_zplug() {
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+}

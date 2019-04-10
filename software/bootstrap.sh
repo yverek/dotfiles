@@ -16,7 +16,7 @@ if ! dpkg -s ${DRIVERS} &> /dev/null; then
     clear install_drivers
     ok
 
-    echo -e ${WHITE}"Now you have to "${GREEN}"reboot your system"${WHITE}"!"
+    echo -e "${WHITE}Now you have to ${GREEN}reboot your system${WHITE}!"
     read -p "Press enter to continue..."
     exit 0
 elif dpkg -s "zsh" &> /dev/null; then
@@ -64,4 +64,12 @@ elif dpkg -s "zsh" &> /dev/null; then
     info "Installing Zsh... "
     clear install_zsh
     ok
+
+    info "Installing zplug... "
+    clear install_zplug
+    ok
+
+    echo -e "${WHITE}Now you have to ${GREEN}restart your terminal${WHITE} and zplug will take care of everything!"
+    read -p "Press enter to continue..."
+    exit 0
 fi
