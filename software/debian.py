@@ -18,60 +18,6 @@ from .utils import print_info, print_success, run_command, update_system, instal
 from .utils import read_status_from_file, write_status_to_file
 
 
-def configure_gedit():
-    print_info("Configuring Gedit... ")
-    load_dconf_settings(DCONF_GEDIT_SETTINGS)
-    print_success()
-
-
-def install_software():
-    print_info("Installing Software... ")
-    install_debian_packages(SOFTWARE)
-    print_success()
-
-    cache = apt.Cache()
-    if cache['plank'].is_installed:
-        print_info("Configuring Plank... ")
-        command = 'mkdir -p {path}'.format(path=PLANK_THEMES_PATH)
-        run_command(command, sleep=0)
-
-        command = 'cd {path} && git clone {repository} .'.format(
-            path=PLANK_THEMES_PATH,
-            repository=FROST_THEMES_REPOSITORY
-        )
-        run_command(command)
-
-        # clean the other files
-        command = 'cd {path} && rm -rf .git && rm install.sh LICENSE README.md'.format(path=PLANK_THEMES_PATH)
-        run_command(command, sleep=0)
-
-        load_dconf_settings(DCONF_PLANK_SETTINGS)
-        print("\nAdd Plank to \u001b[33mStartup Applications\u001b[0m from \u001b[34mgnome-tweak-tool\u001b[0m")
-        print("Close the application when you are done")
-        time.sleep(2)
-        run_command('gnome-tweak-tool', sleep=0)
-        run_command('echo -n "$(tput cuu 3;tput ed)"', sleep=0)
-        print_info("Configuring Plank... ")
-        print_success()
-
-
-def install_zsh():
-    print_info("Installing Zsh... ")
-    install_debian_packages('zsh gawk')
-    print_success()
-
-    print_info("Configuring Zsh... ")
-    command = 'chsh yverek -s $(which zsh)'
-    run_command(command, sleep=0)
-    print_success()
-
-    print_info("Installing zplug... ")
-    command = 'curl -sL --proto-redir -all,https {installer_link} | zsh'.format(installer_link=ZPLUG_INSTALLER_URL)
-    run_command(command)
-    print_success()
-
-    print("Now you have to \u001b[32mrestart your session\u001b[0m and zplug will take care of everything!")
-    input("Press ENTER to continue")
 
 
 def generate_ssh_key():

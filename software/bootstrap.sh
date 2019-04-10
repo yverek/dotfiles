@@ -60,4 +60,8 @@ elif dpkg -s "zsh" &> /dev/null; then
     info "Configuring Plank... "
     clear configure_plank
     ok
+
+    info "Installing Zsh... "
+    clear install_zsh
+    ok
 fi

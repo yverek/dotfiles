@@ -183,3 +183,8 @@ function configure_plank() {
         gnome-tweaks
     fi
 }
+
+function install_zsh() {
+    install_deb_packages "zsh gawk"
+    chsh $(whoami) -s $(which zsh)
+}
