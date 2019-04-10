@@ -19,7 +19,7 @@ if ! dpkg -s ${DRIVERS} &> /dev/null; then
     echo -e "${WHITE}Now you have to ${GREEN}reboot your system${WHITE}!"
     read -p "Press enter to continue..."
     exit 0
-elif dpkg -s "zsh" &> /dev/null; then
+elif ! dpkg -s "zsh" &> /dev/null; then
     tput reset
     info "Editing PulseAudio configuration files... "
     clear edit_pulseaudio_file
@@ -72,4 +72,9 @@ elif dpkg -s "zsh" &> /dev/null; then
     echo -e "${WHITE}Now you have to ${GREEN}restart your terminal${WHITE} and zplug will take care of everything!"
     read -p "Press enter to continue..."
     exit 0
+elif true; then
+    info "Generating SSH key... "
+    clear generate_ssh_key
+    ok
+
 fi

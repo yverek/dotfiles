@@ -192,3 +192,7 @@ function install_zsh() {
 function install_zplug() {
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 }
+
+function generate_ssh_key() {
+    ssh-keygen -t rsa -b 4096
+}

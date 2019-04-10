@@ -18,8 +18,6 @@ from .utils import print_info, print_success, run_command, update_system, instal
 from .utils import read_status_from_file, write_status_to_file
 
 
-
-
 def generate_ssh_key():
     print_info("Generating SSH key... ")
     command = 'ssh-keygen -t rsa -b 4096'
