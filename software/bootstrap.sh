@@ -77,4 +77,8 @@ elif true; then
     clear generate_ssh_key
     ok
 
+    info "Adding SSH key to ssh-agent... "
+    clear add_ssh_key_to_sshagent
+    ok
+
 fi

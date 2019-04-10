@@ -196,3 +196,11 @@ function install_zplug() {
 function generate_ssh_key() {
     ssh-keygen -t rsa -b 4096
 }
+
+function add_ssh_key_to_sshagent() {
+    if [[ -z "${SSH_AUTH_SOCK}" ]]; then
+        ssh-agent
+    fi
+
+    ssh-add ~/.ssh/id_rsa
+}
