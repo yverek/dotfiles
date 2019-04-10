@@ -85,6 +85,9 @@ DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
 
 DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 
+SOFTWARE="htop strace lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp hunspell-it mythes-it menulibre p7zip-rar plank lm-sensors"
+
+
 # ============================== #
 #           Functions            #
 # ============================== #
@@ -153,4 +156,8 @@ function configure_font_manager() {
 
 function configure_gedit() {
     load_dconf_settings ${DCONF_GEDIT_SETTINGS}
+}
+
+function install_software() {
+    install_deb_packages ${SOFTWARE}
 }

@@ -52,4 +52,9 @@ elif dpkg -s "zsh" &> /dev/null; then
     info "Configuring Gedit... "
     clear configure_gedit
     ok
+
+    info "Installing software... "
+    clear install_software
+    ok
+
 fi
