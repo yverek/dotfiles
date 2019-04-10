@@ -57,4 +57,7 @@ elif dpkg -s "zsh" &> /dev/null; then
     clear install_software
     ok
 
+    info "Configuring Plank... "
+    clear configure_plank
+    ok
 fi

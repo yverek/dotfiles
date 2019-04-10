@@ -87,6 +87,12 @@ DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 
 SOFTWARE="htop strace lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp hunspell-it mythes-it menulibre p7zip-rar plank lm-sensors"
 
+PLANK_THEME_PATH=~/.local/share/plank/themes/
+
+TMP_DIR=~/delete_me
+
+FROST_THEME_REPOSITORY="https://github.com/dikiaap/frost-plank-theme.git"
+DCONF_PLANK_SETTINGS=gnome/plank.dconf.settings
 
 # ============================== #
 #           Functions            #
@@ -160,4 +166,20 @@ function configure_gedit() {
 
 function install_software() {
     install_deb_packages ${SOFTWARE}
+}
+
+function configure_plank() {
+    if dpkg -s "plank" &> /dev/null; then
+        mkdir -p ${PLANK_THEME_PATH}
+        mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
+        git clone ${FROST_THEME_REPOSITORY} .
+        cp -r Frost ${PLANK_THEME_PATH}
+        rm -rf ${TMP_DIR}
+
+        load_dconf_settings ${DCONF_PLANK_SETTINGS}
+        echo -e "\n${WHITE}Add Plank to ${GREEN}Startup Applications${WHITE} from ${RED}gnome-tweaks${WHITE}!"
+        echo "Close the application when you are done..."
+        sleep 2
+        gnome-tweaks
+    fi
 }
