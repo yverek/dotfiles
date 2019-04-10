@@ -79,3 +79,17 @@ function updating_system() {
 function installing_drivers() {
     sudo apt-get install ${DRIVERS}
 }
+
+function edit_pulseaudio_file() {
+    old=('; resample-method = speex-float-1', '; default-sample-format = s16le', '; default-sample-rate = 44100')
+    new=('resample-method = src-sinc-best-quality', 'default-sample-format = s24le', 'default-sample-rate = 96000')
+
+    # Number of elements of 'old' array
+    for i in ${#old[@]}; do
+        sudo sed -i "s/old[$i]/new[$i]/g" /etc/pulse/daemon.conf
+    done
+}
+
+function rebooting_pulseaudio() {
+    pulseaudio -k && pulseaudio --start
+}

@@ -20,6 +20,12 @@ if ! dpkg -s ${DRIVERS} &> /dev/null; then
     echo -e ${WHITE}"Now you have to "${GREEN}"reboot your system"${WHITE}"!"
     read -p "Press enter to continue..."
     exit 0
-else
-    echo "Continuo..."
+elif ! dpkg -s "zsh" &> /dev/null; then
+    info "Editing PulseAudio configuration files... "
+    clear edit_pulseaudio_file
+    ok
+
+    info "Rebooting PulseAudio... "
+    clear rebooting_pulseaudio
+    ok
 fi
