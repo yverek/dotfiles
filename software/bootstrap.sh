@@ -3,6 +3,7 @@
 source ./libs/debian.sh
 
 if ! dpkg -s ${DRIVERS} &> /dev/null; then
+    tput reset
     info "Rewriting /etc/apt/sources.list... "
     clear rewriting_sources_list
     ok
@@ -19,6 +20,7 @@ if ! dpkg -s ${DRIVERS} &> /dev/null; then
     read -p "Press enter to continue..."
     exit 0
 elif dpkg -s "zsh" &> /dev/null; then
+    tput reset
     info "Editing PulseAudio configuration files... "
     edit_pulseaudio_file
     ok

@@ -30,6 +30,15 @@ function clear() {
     tput ed
 }
 
+function install_deb_packages() {
+    # Note that quiet level 2 (-qq) implies -y
+    sudo apt-get install -qq $1
+}
+
+function load_dconf_settings() {
+    dconf load / < $1
+}
+
 
 # ============================== #
 #            Settings            #
@@ -67,12 +76,12 @@ DRIVERS="amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon"
 # Fonts
 FONTS="font-manager fonts-freefont-ttf fonts-freefont-otf fonts-roboto"
 
-LOCAL_FONTS_PATH="~/.local/share/fonts/"
+LOCAL_FONTS_PATH=~/.local/share/fonts/
 
-NERDFONT_NAMES=('Roboto Mono Nerd Font Complete Mono.ttf')
-NERDFONT_URLS=('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf')
+NERDFONT_NAMES=('Roboto Mono Nerd Font Complete Mono.ttf' 'Droid Sans Mono for Powerline Nerd Font Complete.otf')
+NERDFONT_URLS=('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf' 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf')
 
-DCONF_FONTS_SETTINGS="gnome/fonts.dconf.settings"
+DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
 
 
 # ============================== #
@@ -88,7 +97,7 @@ function updating_system() {
 }
 
 function installing_drivers() {
-    sudo apt-get install ${DRIVERS}
+    install_deb_packages ${DRIVERS}
 }
 
 function edit_pulseaudio_file() {
@@ -106,7 +115,7 @@ function rebooting_pulseaudio() {
 }
 
 function install_firewall() {
-    sudo apt-get install gufw
+    install_deb_packages gufw
 }
 
 function configuring_firewall() {
@@ -114,7 +123,7 @@ function configuring_firewall() {
 }
 
 function installing_fonts() {
-    sudo apt-get install ${FONTS}
+    install_deb_packages ${FONTS}
 
     mkdir -p ${LOCAL_FONTS_PATH} && cd ${LOCAL_FONTS_PATH}
 
@@ -124,8 +133,8 @@ function installing_fonts() {
 }
 
 function activating_fonts() {
-    fc-cache -f -v
-    dconf load / < ${DCONF_FONTS_SETTINGS}
+    fc-cache -f
+    load_dconf_settings ${DCONF_FONTS_SETTINGS}
 }
 
 function configuring_font_manager() {
