@@ -28,4 +28,12 @@ elif ! dpkg -s "zsh" &> /dev/null; then
     info "Rebooting PulseAudio... "
     clear rebooting_pulseaudio
     ok
+
+    info "Installing FireWall... "
+    clear installing_firewall
+    ok
+
+    info "Configuring FireWall... "
+    clear configuring_firewall
+    ok
 fi

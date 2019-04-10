@@ -93,3 +93,11 @@ function edit_pulseaudio_file() {
 function rebooting_pulseaudio() {
     pulseaudio -k && pulseaudio --start
 }
+
+function install_firewall() {
+    sudo apt-get install gufw
+}
+
+function configuring_firewall() {
+    sudo ufw default deny && sudo ufw enable
+}
