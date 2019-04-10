@@ -85,4 +85,11 @@ elif true; then
     clear open_gedit_with_ssh_key
     ok
 
+    info "Adding SSH key to GitHub... "
+    clear add_ssh_key_to_github
+    ok
+
+    info "Adding SSH key to Bitbucket... "
+    clear add_ssh_key_to_bitbucket
+    ok
 fi

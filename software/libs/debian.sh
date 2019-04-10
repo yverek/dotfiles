@@ -94,6 +94,9 @@ TMP_DIR=~/delete_me
 FROST_THEME_REPOSITORY="https://github.com/dikiaap/frost-plank-theme.git"
 DCONF_PLANK_SETTINGS=gnome/plank.dconf.settings
 
+GITHUB_SSH_URL="https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account"
+BITBUCKET_SSH_URL="https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html"
+
 # ============================== #
 #           Functions            #
 # ============================== #
@@ -209,4 +212,20 @@ function open_gedit_with_ssh_key() {
     gedit ~/.ssh/id_rsa.pub
     echo -e "${WHITE}Now you have to ${GREEN}copy${WHITE} your ${RED}SSH key${WHITE}!"
     echo "Close the application when you are done..."
+}
+
+function add_ssh_key_to_github() {
+    echo -e "\n${WHITE}Now you have to add your ${RED}SSH key${WHITE} to ${BLUE}GitHub${WHITE}."
+    echo -e "Wait for your ${GREEN}browser${WHITE} and follow the guide."
+    echo "Close the application when you are done..."
+    sleep 2
+    xdg-open ${GITHUB_SSH_URL}
+}
+
+function add_ssh_key_to_bitbucket() {
+    echo -e "\n${WHITE}Now you have to add your ${RED}SSH key${WHITE} to ${BLUE}Bitbucket${WHITE}."
+    echo -e "Wait for your ${GREEN}browser${WHITE} and follow the guide."
+    echo "Close the application when you are done..."
+    sleep 2
+    xdg-open ${BITBUCKET_SSH_URL}
 }
