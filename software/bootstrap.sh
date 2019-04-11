@@ -124,4 +124,20 @@ elif true; then
     info "Installing JetBrains ToolBox... "
     clear install_jetbrains_toolbox
     ok
+
+    info "Installing GNOME Extensions... "
+    clear install_gnome_extensions
+    ok
+
+    info "Installing Arc-Flatabulous theme... "
+    clear install_themes
+    ok
+
+    info "Installing Suru++ icons... "
+    clear install_icons
+    ok
+
+    info "Installing Capitaine cursors... "
+    clear install_cursors
+    ok
 fi

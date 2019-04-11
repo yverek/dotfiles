@@ -79,13 +79,16 @@ FONTS="font-manager fonts-freefont-ttf fonts-freefont-otf fonts-roboto"
 LOCAL_FONTS_PATH=~/.local/share/fonts/
 
 NERDFONT_NAMES=('Roboto Mono Nerd Font Complete Mono.ttf' 'Droid Sans Mono for Powerline Nerd Font Complete.otf')
-NERDFONT_URLS=('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf' 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf')
+NERDFONT_URLS=('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/\
+Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf' 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/\
+DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf')
 
 DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
 
 DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 
-SOFTWARE="htop strace lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp hunspell-it mythes-it menulibre p7zip-rar plank lm-sensors"
+SOFTWARE="htop strace lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp hunspell-it mythes-it\
+ menulibre p7zip-rar plank lm-sensors"
 
 PLANK_THEME_PATH=~/.local/share/plank/themes/
 
@@ -100,7 +103,8 @@ BITBUCKET_SSH_URL="https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-
 # Python
 PYTHON_DEV_LIB="libpq−dev python3−dev"
 
-PYENV_PACKAGES_DEP="make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl"
+PYENV_PACKAGES_DEP="make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev\
+ wget llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl"
 
 # PostgreSQL
 PG_HBA_PATH=/etc/postgresql/11/main/pg_hba.conf
@@ -116,15 +120,15 @@ ICONS_URL="https://raw.githubusercontent.com/gusbemacbe/suru-plus/master/install
 CURSORS_PATH=~/.icons/capitaine-cursors
 CURSORS_URL="https://github.com/keeferrourke/capitaine-cursors"
 
-GNOME_SHELL_EXTENSIONS="['impatience@gfxmonk.net', 'openweather-extension@jenslody.de', " \
-                         "'dynamic-panel-transparency@rockon999.github.io', 'suspend-button@laserb', " \
-                         "'TopIcons@phocean.net', 'sound-output-device-chooser@kgshank.net'," \
-                         "'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'arc-menu@linxgem33.com' " \
-                         "'drive-menu@gnome-shell-extensions.gcampax.github.com'," \
-                         "'user-theme@gnome-shell-extensions.gcampax.github.com', 'clipboard-indicator@tudmotu.com', " \
-                         "'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'lockkeys@vaina.lt', " \
-                         "'status-area-horizontal-spacing@mathematical.coffee.gmail.com', " \
-                         "'workspace-indicator@gnome-shell-extensions.gcampax.github.com']"
+GNOME_SHELL_EXTENSIONS="['impatience@gfxmonk.net', 'openweather-extension@jenslody.de',\
+ 'dynamic-panel-transparency@rockon999.github.io', 'suspend-button@laserb',\
+ 'TopIcons@phocean.net', 'sound-output-device-chooser@kgshank.net',\
+ 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'arc-menu@linxgem33.com'\
+ 'drive-menu@gnome-shell-extensions.gcampax.github.com',\
+ 'user-theme@gnome-shell-extensions.gcampax.github.com', 'clipboard-indicator@tudmotu.com',\
+ 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'lockkeys@vaina.lt',\
+ 'status-area-horizontal-spacing@mathematical.coffee.gmail.com',\
+ 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']"
 
 # ============================== #
 #           Functions            #
@@ -300,6 +304,11 @@ function install_jetbrains_toolbox() {
     tar -xzf jetbrains-toolbox.tar.gz
     cd jetbrains-toolbox*/ && ./jetbrains-toolbox
     rm -rf ${TMP_DIR}
+}
+
+function install_gnome_extensions() {
+    gsettings set org.gnome.shell disable-user-extensions false
+    gsettings set org.gnome.shell enabled-extensions ${GNOME_SHELL_EXTENSIONS}
 }
 
 function install_themes() {
