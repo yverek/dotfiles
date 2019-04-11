@@ -108,6 +108,24 @@ PG_HBA_PATH=/etc/postgresql/11/main/pg_hba.conf
 # JetBrains
 JETBRAINS_TOOLBOX_URL="https://data.services.jetbrains.com/products/download?platform=linux&code=TBA"
 
+THEME_DEPENDECIES="autoconf automake sassc pkg-config libgtk-3-dev gnome-themes-standard gtk2-engines-murrine"
+THEME_URL="https://github.com/andreisergiu98/arc-flatabulous-theme"
+
+ICONS_URL="https://raw.githubusercontent.com/gusbemacbe/suru-plus/master/install.sh"
+
+CURSORS_PATH=~/.icons/capitaine-cursors
+CURSORS_URL="https://github.com/keeferrourke/capitaine-cursors"
+
+GNOME_SHELL_EXTENSIONS="['impatience@gfxmonk.net', 'openweather-extension@jenslody.de', " \
+                         "'dynamic-panel-transparency@rockon999.github.io', 'suspend-button@laserb', " \
+                         "'TopIcons@phocean.net', 'sound-output-device-chooser@kgshank.net'," \
+                         "'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'arc-menu@linxgem33.com' " \
+                         "'drive-menu@gnome-shell-extensions.gcampax.github.com'," \
+                         "'user-theme@gnome-shell-extensions.gcampax.github.com', 'clipboard-indicator@tudmotu.com', " \
+                         "'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'lockkeys@vaina.lt', " \
+                         "'status-area-horizontal-spacing@mathematical.coffee.gmail.com', " \
+                         "'workspace-indicator@gnome-shell-extensions.gcampax.github.com']"
+
 # ============================== #
 #           Functions            #
 # ============================== #
@@ -281,5 +299,29 @@ function install_jetbrains_toolbox() {
     wget -cO jetbrains-toolbox.tar.gz ${JETBRAINS_TOOLBOX_URL}
     tar -xzf jetbrains-toolbox.tar.gz
     cd jetbrains-toolbox*/ && ./jetbrains-toolbox
+    rm -rf ${TMP_DIR}
+}
+
+function install_themes() {
+    install_debian_packages ${THEME_DEPENDECIES}
+    mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
+    git clone ${THEME_URL} --depth 1
+    cd arc-flatabulous-theme
+    ./autogen.sh --prefix=/usr
+    sudo make install
+    rm -rf ${TMP_DIR}
+}
+
+function install_icons() {
+    mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
+    wget -qO- ${ICONS_URL} | sh
+    rm -rf ${TMP_DIR}
+}
+
+function install_cursors() {
+    mkdir -p ${CURSORS_PATH}
+    mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
+    git clone ${CURSORS_URL}
+    cp -pr capitaine-cursors/dist/* ${CURSORS_PATH}
     rm -rf ${TMP_DIR}
 }
