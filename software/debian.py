@@ -18,38 +18,6 @@ from .utils import print_info, print_success, run_command, update_system, instal
 from .utils import read_status_from_file, write_status_to_file
 
 
-def install_postgresql():
-    print_info("Installing PostgreSQL... ")
-    install_debian_packages('postgresql postgresql-contrib')
-    print_success()
-
-    print_info("Configuring PostgreSQL... ")
-    time.sleep(1)
-    print("\nInsert postgres password!")
-    command = 'sudo -su postgres psql -c "ALTER USER postgres PASSWORD \'$postgres\';"'
-    run_command(command)
-
-    command = 'sudo sed -i \'s/peer/md5/\' {pg_hba}'.format(pg_hba=PG_HBA_PATH)
-    run_command(command)
-
-    command = 'sudo systemctl restart postgresql'
-    run_command(command)
-    run_command('echo -n "$(tput cuu 2;tput ed)"')
-    print_info("Installing PostgreSQL... ")
-    print_success()
-
-
-def install_jetbrains_toolbox():
-    print_info("Installing JetBrains ToolBox... ")
-    command = 'wget -cO jetbrains-toolbox.tar.gz "{link}"'.format(link=JETBRAINS_TOOLBOX_URL)
-    run_command(command)
-    command = 'tar -xzf jetbrains-toolbox.tar.gz'
-    run_command(command)
-    command = 'cd jetbrains-toolbox*/ && ./jetbrains-toolbox'
-    run_command(command)
-    print_success()
-
-
 def install_themes_and_icons():
     install_debian_packages(THEME_DEPENDECIES)
     command = 'mkdir -p {tmp}'.format(tmp=TMP_DIR)

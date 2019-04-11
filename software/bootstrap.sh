@@ -120,4 +120,8 @@ elif true; then
     info "Configuring PostgreSQL... "
     clear configure_postgresql
     ok
+
+    info "Installing JetBrains ToolBox... "
+    clear install_jetbrains_toolbox
+    ok
 fi

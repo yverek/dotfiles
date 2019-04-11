@@ -275,3 +275,11 @@ function configure_postgresql() {
     sudo sed -i 's/peer/md5/' ${PG_HBA_PATH}
     sudo systemctl restart postgresql
 }
+
+function install_jetbrains_toolbox() {
+    mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
+    wget -cO jetbrains-toolbox.tar.gz ${JETBRAINS_TOOLBOX_URL}
+    tar -xzf jetbrains-toolbox.tar.gz
+    cd jetbrains-toolbox*/ && ./jetbrains-toolbox
+    rm -rf ${TMP_DIR}
+}
