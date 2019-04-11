@@ -92,4 +92,20 @@ elif true; then
     info "Adding SSH key to Bitbucket... "
     clear add_ssh_key_to_bitbucket
     ok
+
+    info "Installing Python3... "
+    clear install_python3
+    ok
+
+    info "Installing PIP... "
+    clear install_python3_pip
+    ok
+
+    info "Installing pyenv... "
+    clear install_pyenv
+    ok
+
+    info "Installing Poetry... "
+    clear install_poetry
+    ok
 fi

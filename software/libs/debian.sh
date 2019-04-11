@@ -97,6 +97,12 @@ DCONF_PLANK_SETTINGS=gnome/plank.dconf.settings
 GITHUB_SSH_URL="https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account"
 BITBUCKET_SSH_URL="https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html"
 
+# Python
+PYTHON_DEV_LIB="libpq−dev python3−dev"
+
+PYENV_PACKAGES_DEP="make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl"
+
+
 # ============================== #
 #           Functions            #
 # ============================== #
@@ -228,4 +234,26 @@ function add_ssh_key_to_bitbucket() {
     echo "Close the application when you are done..."
     sleep 2
     xdg-open ${BITBUCKET_SSH_URL}
+}
+
+function install_python3() {
+    if ! dpkg -s "python3" &> /dev/null; then
+        install_deb_packages 'python3'
+    fi
+
+    install_deb_packages ${PYTHON_DEV_LIB}
+}
+
+function install_python3_pip() {
+    install_deb_packages 'python3-pip'
+}
+
+function install_pyenv() {
+    install_debian_packages ${PYENV_PACKAGES_DEP}
+
+    curl https://pyenv.run | bash
+}
+
+function install_poetry() {
+    curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 }
