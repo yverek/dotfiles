@@ -2,8 +2,9 @@
 
 source ./libs/debian.sh
 
+tput reset
+
 if ! dpkg -s ${DRIVERS} &> /dev/null; then
-    tput reset
     info "Rewriting /etc/apt/sources.list... "
     clear rewrite_sources_list
     ok
@@ -20,7 +21,6 @@ if ! dpkg -s ${DRIVERS} &> /dev/null; then
     read -p "Press enter to continue..."
     exit 0
 elif ! dpkg -s "zsh" &> /dev/null; then
-    tput reset
     info "Editing PulseAudio configuration files... "
     clear edit_pulseaudio_file
     ok
@@ -29,17 +29,23 @@ elif ! dpkg -s "zsh" &> /dev/null; then
     clear reboot_pulseaudio
     ok
 
-    info "Installing FireWall... "
-    clear install_firewall
-    ok
+    if ! dpkg -s "gufw" &> /dev/null; then
+        info "Installing FireWall... "
+        clear install_firewall
+        ok
+    fi
 
-    info "Configuring FireWall... "
-    clear configure_firewall
-    ok
+    if [[ "$(sudo ufw status)" != "Status: active" ]]; then
+        info "Configuring FireWall... "
+        clear configure_firewall
+        ok
+    fi
 
-    info "Installing fonts... "
-    clear install_fonts
-    ok
+    if [[ ! -d ${LOCAL_FONTS_PATH} ]]; then
+        info "Installing fonts... "
+        clear install_fonts
+        ok
+    fi
 
     info "Activating fonts... "
     clear activate_fonts
@@ -53,29 +59,39 @@ elif ! dpkg -s "zsh" &> /dev/null; then
     clear configure_gedit
     ok
 
-    info "Installing software... "
-    clear install_software
-    ok
+    if ! dpkg -s ${SOFTWARE} &> /dev/null; then
+        info "Installing software... "
+        clear install_software
+        ok
+    fi
 
-    info "Configuring Plank... "
-    clear configure_plank
-    ok
+    if [[ ! -e ~/.config/autostart/plank.desktop ]]; then
+        info "Configuring Plank... "
+        clear configure_plank
+        ok
+    fi
 
-    info "Installing Zsh... "
-    clear install_zsh
-    ok
+    if [[ "$(echo $SHELL)" != "/usr/bin/zsh" ]]; then
+        info "Installing Zsh... "
+        clear install_zsh
+        ok
+    fi
 
-    info "Installing zplug... "
-    clear install_zplug
-    ok
+    if [[ ! -d ~/.zplug/ ]]; then
+        info "Installing zplug... "
+        clear install_zplug
+        ok
+    fi
 
     echo -e "${WHITE}Now you have to ${GREEN}restart your terminal${WHITE} and zplug will take care of everything!"
     read -p "Press enter to continue..."
     exit 0
 elif ! command -v pipenv; then
-    info "Generating SSH key... "
-    clear generate_ssh_key
-    ok
+    if [[ ! -e ~/.ssh/id_rsa.pub ]]; then
+        info "Generating SSH key... "
+        clear generate_ssh_key
+        ok
+    fi
 
     info "Adding SSH key to ssh-agent... "
     clear add_ssh_key_to_sshagent
@@ -101,13 +117,17 @@ elif ! command -v pipenv; then
     clear install_python3_pip
     ok
 
-    info "Installing pyenv... "
-    clear install_pyenv
-    ok
+    if [[ ! -d ~/.pyenv/ ]]; then
+        info "Installing pyenv... "
+        clear install_pyenv
+        ok
+    fi
 
-    info "Installing Pipenv... "
-    clear install_pipenv
-    ok
+    if ! command -v pipenv; then
+        info "Installing Pipenv... "
+        clear install_pipenv
+        ok
+    fi
 
     echo -e "${WHITE}Now you have to ${GREEN}restart your terminal${WHITE}!"
     read -p "Press enter to continue..."
@@ -121,29 +141,39 @@ elif true; then
     clear configure_postgresql
     ok
 
-    info "Installing JetBrains ToolBox... "
-    clear install_jetbrains_toolbox
-    ok
+    if [[ ! -d ~/.local/share/JetBrains/ ]]; then
+        info "Installing JetBrains ToolBox... "
+        clear install_jetbrains_toolbox
+        ok
+    fi
 
     info "Installing GNOME extensions... "
     clear install_gnome_extensions
     ok
 
-    info "Installing Arc-Flatabulous theme... "
-    clear install_themes
-    ok
+    if [[ ! -d /usr/share/themes/Arc-Flatabulous/ ]]; then
+        info "Installing Arc-Flatabulous theme... "
+        clear install_themes
+        ok
+    fi
 
-    info "Installing Suru++ icons... "
-    clear install_icons
-    ok
+    if [[ ! -d /usr/share/icons/Suru++/ ]]; then
+        info "Installing Suru++ icons... "
+        clear install_icons
+        ok
+    fi
 
-    info "Installing Capitaine cursors... "
-    clear install_cursors
-    ok
+    if [[ ! -d ~/.icons/capitaine-cursors/ ]]; then
+        info "Installing Capitaine cursors... "
+        clear install_cursors
+        ok
+    fi
 
-    info "Installing GRUB theme... "
-    clear install_grub_theme
-    ok
+    if [[ ! -d /boot/grub/themes/Atomic/ ]]; then
+        info "Installing GRUB theme... "
+        clear install_grub_theme
+        ok
+    fi
 
     info "Configuring GNOME settings... "
     clear configure_gnome_settings

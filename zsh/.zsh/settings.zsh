@@ -10,7 +10,7 @@ if which pyenv > /dev/null; then
 fi
 
 # Snap Settings
-if [ -d "/snap/bin" ]; then
+if [[ -d "/snap/bin" ]]; then
   export PATH="/snap/bin:$PATH"
 fi
 
