@@ -254,6 +254,7 @@ function install_pyenv() {
     curl https://pyenv.run | bash
 }
 
-function install_poetry() {
-    curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+function install_pipenv() {
+    # why --user? https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv
+    pip3 install --user pipenv
 }

@@ -72,7 +72,7 @@ elif ! dpkg -s "zsh" &> /dev/null; then
     echo -e "${WHITE}Now you have to ${GREEN}restart your terminal${WHITE} and zplug will take care of everything!"
     read -p "Press enter to continue..."
     exit 0
-elif true; then
+elif ! command -v pipenv; then
     info "Generating SSH key... "
     clear generate_ssh_key
     ok
@@ -105,7 +105,11 @@ elif true; then
     clear install_pyenv
     ok
 
-    info "Installing Poetry... "
-    clear install_poetry
+    info "Installing Pipenv... "
+    clear install_pipenv
     ok
+
+    echo -e "${WHITE}Now you have to ${GREEN}restart your terminal${WHITE}!"
+    read -p "Press enter to continue..."
+    exit 0
 fi
