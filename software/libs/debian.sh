@@ -123,12 +123,13 @@ CURSORS_URL="https://github.com/keeferrourke/capitaine-cursors"
 GNOME_SHELL_EXTENSIONS="['impatience@gfxmonk.net', 'openweather-extension@jenslody.de',\
  'dynamic-panel-transparency@rockon999.github.io', 'suspend-button@laserb',\
  'TopIcons@phocean.net', 'sound-output-device-chooser@kgshank.net',\
- 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'arc-menu@linxgem33.com'\
- 'drive-menu@gnome-shell-extensions.gcampax.github.com',\
+ 'arc-menu@linxgem33.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com',\
  'user-theme@gnome-shell-extensions.gcampax.github.com', 'clipboard-indicator@tudmotu.com',\
  'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'lockkeys@vaina.lt',\
- 'status-area-horizontal-spacing@mathematical.coffee.gmail.com',\
- 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']"
+ 'status-area-horizontal-spacing@mathematical.coffee.gmail.com']"
+
+DCONF_SHELL_SETTINGS=gnome/shell.dconf.settings
+
 
 # ============================== #
 #           Functions            #
@@ -309,6 +310,7 @@ function install_jetbrains_toolbox() {
 function install_gnome_extensions() {
     gsettings set org.gnome.shell disable-user-extensions false
     gsettings set org.gnome.shell enabled-extensions ${GNOME_SHELL_EXTENSIONS}
+    load_dconf_settings ${GNOME_SHELL_EXTENSIONS}
 }
 
 function install_themes() {
@@ -319,12 +321,17 @@ function install_themes() {
     ./autogen.sh --prefix=/usr
     sudo make install
     rm -rf ${TMP_DIR}
+
+    gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Flatabulous-Darker'
+    gsettings set org.gnome.shell.extensions.user-theme name 'Arc-Flatabulous-Dark'
 }
 
 function install_icons() {
     mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
     wget -qO- ${ICONS_URL} | sh
     rm -rf ${TMP_DIR}
+
+    gsettings set org.gnome.desktop.interface icon-theme 'Suru++'
 }
 
 function install_cursors() {
@@ -333,4 +340,6 @@ function install_cursors() {
     git clone ${CURSORS_URL}
     cp -pr capitaine-cursors/dist/* ${CURSORS_PATH}
     rm -rf ${TMP_DIR}
+    
+    gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 }

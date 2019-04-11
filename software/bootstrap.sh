@@ -125,7 +125,7 @@ elif true; then
     clear install_jetbrains_toolbox
     ok
 
-    info "Installing GNOME Extensions... "
+    info "Installing GNOME extensions... "
     clear install_gnome_extensions
     ok
 
