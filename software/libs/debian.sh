@@ -344,17 +344,27 @@ function install_cursors() {
     gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 }
 
+function install_grub_theme() {
+    sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/lfelipe1501/Atomic-GRUB2-Theme/master/install.sh)"
+}
+
 function configure_gnome_settings() {
+    # Show desktop icons
     gsettings set org.gnome.desktop.background show-desktop-icons true
 
+    # Hide top bar applications menu
     gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gtk/ShellShowsAppMenu': <0>}"
 
+    # Show date and seconds in top bar's clock
     gsettings set org.gnome.desktop.interface clock-show-date true
     gsettings set org.gnome.desktop.interface clock-show-seconds true
 
+    # Show weeks on left side of the calendar
     gsettings set org.gnome.desktop.calendar show-weekdate true
 
+    # Show "minimize", "maximize" and "close" button in every window
     gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 
+    # Turn on NumLock on login
     gsettings set org.gnome.settings-daemon.peripherals.keyboard numlock-state on
 }

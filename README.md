@@ -13,7 +13,7 @@ This is my personal collection of files and dotfiles for configuring a developme
  * [Thanks](#thanks)
 
 ## How it Works
-You can install all the software just running `bootstrap.py` file.
+You can install all the software just running `software/bootstrap.sh` file.
 
 With [stow](https://www.gnu.org/software/stow/), you can symlink all of the dotfiles into your $HOME directory.
 You can update your dotfiles with `git pull`!

@@ -141,6 +141,10 @@ elif true; then
     clear install_cursors
     ok
 
+    info "Installing GRUB theme... "
+    clear install_grub_theme
+    ok
+
     info "Configuring GNOME settings... "
     clear configure_gnome_settings
     ok
