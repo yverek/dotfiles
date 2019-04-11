@@ -102,6 +102,11 @@ PYTHON_DEV_LIB="libpq−dev python3−dev"
 
 PYENV_PACKAGES_DEP="make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl"
 
+# PostgreSQL
+PG_HBA_PATH=/etc/postgresql/11/main/pg_hba.conf
+
+# JetBrains
+JETBRAINS_TOOLBOX_URL="https://data.services.jetbrains.com/products/download?platform=linux&code=TBA"
 
 # ============================== #
 #           Functions            #
@@ -257,4 +262,16 @@ function install_pyenv() {
 function install_pipenv() {
     # why --user? https://pipenv.readthedocs.io/en/latest/install/#installing-pipenv
     pip3 install --user pipenv
+}
+
+function install_postgresql() {
+    install_deb_packages 'postgresql postgresql-contrib'
+}
+
+function configure_postgresql() {
+    echo -e "Insert new postgres password"!
+    sleep 1
+    sudo -su postgres psql -c "ALTER USER postgres PASSWORD '$postgres';"
+    sudo sed -i 's/peer/md5/' ${PG_HBA_PATH}
+    sudo systemctl restart postgresql
 }

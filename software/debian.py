@@ -18,36 +18,6 @@ from .utils import print_info, print_success, run_command, update_system, instal
 from .utils import read_status_from_file, write_status_to_file
 
 
-def install_python3_libs():
-    cache = apt.Cache()
-    if not cache['python3'].is_installed:
-        command = 'sudo apt-get install python3'
-        run_command(command)
-
-    print_info("Installing Python3 libs... ")
-    install_debian_packages(PYTHON_DEV_LIB)
-    print_success()
-
-    print_info("Installing Python3 PIP... ")
-    install_debian_packages('python3-pip')
-    print_success()
-
-    print_info("Installing pyenv... ")
-    install_debian_packages(PYENV_PACKAGES_DEP)
-
-    command = 'curl -L {pyenv_installer_link} | bash'.format(pyenv_installer_link=PYENV_INSTALLER_URL)
-    run_command(command)
-    print_success()
-
-    print_info("Installing Poetry... ")
-    command = 'curl -sSL {poetry_installer_link} | python'.format(poetry_installer_link=POETRY_INSTALLER_URL)
-    run_command(command)
-    print_success()
-
-    print("Now you have to restart your terminal!")
-    input("Press ENTER to continue")
-
-
 def install_postgresql():
     print_info("Installing PostgreSQL... ")
     install_debian_packages('postgresql postgresql-contrib')

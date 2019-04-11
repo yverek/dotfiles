@@ -112,4 +112,12 @@ elif ! command -v pipenv; then
     echo -e "${WHITE}Now you have to ${GREEN}restart your terminal${WHITE}!"
     read -p "Press enter to continue..."
     exit 0
+elif true; then
+    info "Installing PostgreSQL... "
+    clear install_postgresql
+    ok
+
+    info "Configuring PostgreSQL... "
+    clear configure_postgresql
+    ok
 fi
