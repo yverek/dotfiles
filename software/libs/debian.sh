@@ -340,6 +340,21 @@ function install_cursors() {
     git clone ${CURSORS_URL}
     cp -pr capitaine-cursors/dist/* ${CURSORS_PATH}
     rm -rf ${TMP_DIR}
-    
+
     gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
+}
+
+function configure_gnome_settings() {
+    gsettings set org.gnome.desktop.background show-desktop-icons true
+
+    gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gtk/ShellShowsAppMenu': <0>}"
+
+    gsettings set org.gnome.desktop.interface clock-show-date true
+    gsettings set org.gnome.desktop.interface clock-show-seconds true
+
+    gsettings set org.gnome.desktop.calendar show-weekdate true
+
+    gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+
+    gsettings set org.gnome.settings-daemon.peripherals.keyboard numlock-state on
 }

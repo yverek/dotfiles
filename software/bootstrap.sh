@@ -140,4 +140,8 @@ elif true; then
     info "Installing Capitaine cursors... "
     clear install_cursors
     ok
+
+    info "Configuring GNOME settings... "
+    clear configure_gnome_settings
+    ok
 fi
