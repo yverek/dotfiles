@@ -88,7 +88,9 @@ DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
 DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 
 SOFTWARE="htop strace lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp hunspell-it mythes-it\
- menulibre p7zip-rar plank lm-sensors"
+ menulibre p7zip-rar plank lm-sensors tree"
+
+CHROME_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
 PLANK_THEME_PATH=~/.local/share/plank/themes/
 
@@ -203,6 +205,13 @@ function configure_gedit() {
 
 function install_software() {
     install_deb_packages ${SOFTWARE}
+}
+
+function install_chrome() {
+    mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
+    wget ${CHROME_URL}
+    sudo apt-get install ./google-chrome-stable_current_amd64.deb
+    rm -rf ${TMP_DIR}
 }
 
 function configure_plank() {

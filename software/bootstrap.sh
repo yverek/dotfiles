@@ -65,6 +65,12 @@ elif ! dpkg -s "zsh" &> /dev/null; then
         ok
     fi
 
+    if ! dpkg -s 'google-chrome-stable' &> /dev/null; then
+        info "Installing Chrome... "
+        clear install_chrome
+        ok
+    fi
+
     if [[ ! -e ~/.config/autostart/plank.desktop ]]; then
         info "Configuring Plank... "
         clear configure_plank
