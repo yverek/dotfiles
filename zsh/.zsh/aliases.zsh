@@ -15,6 +15,12 @@ alias apt-install='sudo aptitude install'
 alias autoremove='sudo aptitude autoremove'
 alias dist-upgrade='sudo aptitude dist-upgrade'
 
+function apt-clean() {
+    sudo apt-get clean
+    sudo apt-get autoclean
+    sudo apt-get autoremove
+}
+
 # Folder navigation
 alias -g ...='../..'
 alias -g ....='../../..'
@@ -30,9 +36,12 @@ function take() {
 }
 
 # List directory contents
-alias ls='ls --color=auto'
+alias ls='ls -Fh --color=auto --group-directories-first'
 alias lsa='ls -lah'
 alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
+
+# Filtering
+alias grep='grep --color=auto'
 

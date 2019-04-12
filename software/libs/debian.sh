@@ -88,7 +88,7 @@ DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
 DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 
 SOFTWARE="htop strace lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp hunspell-it mythes-it\
- menulibre p7zip-rar plank lm-sensors tree"
+ menulibre p7zip-rar plank lm-sensors tree neofetch"
 
 CHROME_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
