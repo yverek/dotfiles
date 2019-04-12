@@ -209,7 +209,7 @@ function install_software() {
 
 function install_chrome() {
     mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
-    wget ${CHROME_URL}
+    curl -L ${CHROME_URL}
     sudo apt-get install ./google-chrome-stable_current_amd64.deb
     rm -rf ${TMP_DIR}
 }
