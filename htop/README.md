@@ -10,4 +10,4 @@ You can install this package with
 
     $ stow htop -t ~/.config/htop
 
-Because the configuration folder is in `~/.config/htop/`.
+Because the configuration folder is in `~/.config/htop`.
