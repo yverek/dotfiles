@@ -71,6 +71,12 @@ elif ! dpkg -s "zsh" &> /dev/null; then
         ok
     fi
 
+    if ! dpkg -s 'albert' &> /dev/null; then
+        info "Installing Albert... "
+        clear install_albert
+        ok
+    fi
+
     if [[ ! -e ~/.config/autostart/plank.desktop ]]; then
         info "Configuring Plank... "
         clear configure_plank

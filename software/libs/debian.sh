@@ -214,6 +214,15 @@ function install_chrome() {
     rm -rf ${TMP_DIR}
 }
 
+function install_albert() {
+    echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/Debian_Testing/ /' | \
+         sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
+    wget -nv https://download.opensuse.org/repositories/home:manuelschneid3r/Debian_Testing/Release.key -O Release.key
+    sudo apt-key add - < Release.key
+    sudo apt-get update
+    sudo apt-get install albert
+}
+
 function configure_plank() {
     if dpkg -s "plank" &> /dev/null; then
         mkdir -p ${PLANK_THEME_PATH}
