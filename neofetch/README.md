@@ -3,7 +3,7 @@
     └── config.conf
 
 ## Requirements
-- `neofetch` <<https://github.com/dylanaraps/neofetch/>
+- `neofetch` <<https://github.com/dylanaraps/neofetch/>>
 
 ## Installation
 You can install this package with
