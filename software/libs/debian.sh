@@ -39,6 +39,10 @@ function load_dconf_settings() {
     dconf load / < $1
 }
 
+function is_installed() {
+    dpkg -s $1 &> /dev/null
+}
+
 
 # ============================== #
 #            Settings            #
@@ -132,13 +136,19 @@ GNOME_SHELL_EXTENSIONS="['impatience@gfxmonk.net', 'openweather-extension@jenslo
 
 DCONF_SHELL_SETTINGS=gnome/shell.dconf.settings
 
+EXA_URL="https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-0.8.0.zip"
 
 # ============================== #
 #           Functions            #
 # ============================== #
 
-function rewrite_sources_list() {
+function update_sources_list() {
     echo "$SOURCES_LIST_CONTENT" | sudo tee "$SOURCES_LIST_FILE" > /dev/null
+}
+
+function update_hosts_file() {
+    # https://someonewhocares.org/hosts/ is the project
+    curl https://someonewhocares.org/hosts/hosts | sudo tee /etc/hosts
 }
 
 function update_system() {
@@ -211,7 +221,7 @@ function install_chrome() {
     mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
     curl -L ${CHROME_URL}
     sudo apt-get install ./google-chrome-stable_current_amd64.deb
-    rm -rf ${TMP_DIR}
+    cd .. && rm -rf ${TMP_DIR}
 }
 
 function install_albert() {
@@ -224,12 +234,12 @@ function install_albert() {
 }
 
 function configure_plank() {
-    if dpkg -s "plank" &> /dev/null; then
+    if is_installed "plank"; then
         mkdir -p ${PLANK_THEME_PATH}
         mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
         git clone ${FROST_THEME_REPOSITORY} .
         cp -r Frost ${PLANK_THEME_PATH}
-        rm -rf ${TMP_DIR}
+        cd .. && rm -rf ${TMP_DIR}
 
         load_dconf_settings ${DCONF_PLANK_SETTINGS}
         echo -e "\n${WHITE}Add Plank to ${GREEN}Startup Applications${WHITE} from ${RED}gnome-tweaks${WHITE}!"
@@ -283,7 +293,7 @@ function add_ssh_key_to_bitbucket() {
 }
 
 function install_python3() {
-    if ! dpkg -s "python3" &> /dev/null; then
+    if ! is_installed "python3"; then
         install_deb_packages 'python3'
     fi
 
@@ -322,7 +332,7 @@ function install_jetbrains_toolbox() {
     wget -cO jetbrains-toolbox.tar.gz ${JETBRAINS_TOOLBOX_URL}
     tar -xzf jetbrains-toolbox.tar.gz
     cd jetbrains-toolbox*/ && ./jetbrains-toolbox
-    rm -rf ${TMP_DIR}
+    cd .. && rm -rf ${TMP_DIR}
 }
 
 function install_gnome_extensions() {
@@ -338,7 +348,7 @@ function install_themes() {
     cd arc-flatabulous-theme
     ./autogen.sh --prefix=/usr
     sudo make install
-    rm -rf ${TMP_DIR}
+    cd .. && rm -rf ${TMP_DIR}
 
     gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Flatabulous-Darker'
     gsettings set org.gnome.shell.extensions.user-theme name 'Arc-Flatabulous-Dark'
@@ -347,7 +357,7 @@ function install_themes() {
 function install_icons() {
     mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
     wget -qO- ${ICONS_URL} | sh
-    rm -rf ${TMP_DIR}
+    cd .. && rm -rf ${TMP_DIR}
 
     gsettings set org.gnome.desktop.interface icon-theme 'Suru++'
 }
@@ -357,7 +367,7 @@ function install_cursors() {
     mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
     git clone ${CURSORS_URL}
     cp -pr capitaine-cursors/dist/* ${CURSORS_PATH}
-    rm -rf ${TMP_DIR}
+    cd .. && rm -rf ${TMP_DIR}
 
     gsettings set org.gnome.desktop.interface cursor-theme 'capitaine-cursors'
 }
@@ -385,4 +395,12 @@ function configure_gnome_settings() {
 
     # Turn on NumLock on login
     gsettings set org.gnome.settings-daemon.peripherals.keyboard numlock-state on
+}
+
+function install_exa() {
+    mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
+    curl -Lo exa.zip ${EXA_URL}
+    unzip exa.zip
+    sudo mv exa-linux-x86_64 /usr/bin/exa
+    cd .. && rm -rf ${TMP_DIR}
 }

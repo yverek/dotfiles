@@ -5,8 +5,12 @@ source ./libs/debian.sh
 tput reset
 
 if ! dpkg -s ${DRIVERS} &> /dev/null; then
-    info "Rewriting /etc/apt/sources.list... "
-    clear rewrite_sources_list
+    info "Updating /etc/apt/sources.list... "
+    clear update_sources_list
+    ok
+
+    info "Updating /etc/hosts... "
+    clear update_hosts_file
     ok
 
     info "Updating system... "
@@ -20,7 +24,7 @@ if ! dpkg -s ${DRIVERS} &> /dev/null; then
     echo -e "${WHITE}Now you have to ${GREEN}reboot your system${WHITE}!"
     read -p "Press enter to continue..."
     exit 0
-elif ! dpkg -s "zsh" &> /dev/null; then
+elif ! is_installed "zsh"; then
     info "Editing PulseAudio configuration files... "
     clear edit_pulseaudio_file
     ok
@@ -29,7 +33,7 @@ elif ! dpkg -s "zsh" &> /dev/null; then
     clear reboot_pulseaudio
     ok
 
-    if ! dpkg -s "gufw" &> /dev/null; then
+    if ! is_installed "gufw"; then
         info "Installing FireWall... "
         clear install_firewall
         ok
@@ -59,19 +63,19 @@ elif ! dpkg -s "zsh" &> /dev/null; then
     clear configure_gedit
     ok
 
-    if ! dpkg -s ${SOFTWARE} &> /dev/null; then
+    if ! is_installed ${SOFTWARE}; then
         info "Installing software... "
         clear install_software
         ok
     fi
 
-    if ! dpkg -s 'google-chrome-stable' &> /dev/null; then
+    if ! is_installed 'google-chrome-stable'; then
         info "Installing Chrome... "
         clear install_chrome
         ok
     fi
 
-    if ! dpkg -s 'albert' &> /dev/null; then
+    if ! is_installed 'albert'; then
         info "Installing Albert... "
         clear install_albert
         ok
@@ -189,5 +193,9 @@ elif true; then
 
     info "Configuring GNOME settings... "
     clear configure_gnome_settings
+    ok
+
+    info "Installing exa... "
+    clear install_exa
     ok
 fi
