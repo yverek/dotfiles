@@ -36,11 +36,10 @@ function take() {
 }
 
 # List directory contents
-alias ls='ls -Fh --color=auto --group-directories-first'
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
+alias l='exa -l --group-directories-first'
+alias ls='exa -G --group-directories-first'
+alias la='exa -la --group-directories-first'
+alias ltree='exa -Tl --group-directories-first'
 
 # Filtering
 alias grep='grep --color=auto'
