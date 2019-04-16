@@ -195,7 +195,9 @@ elif true; then
     clear configure_gnome_settings
     ok
 
-    info "Installing exa... "
-    clear install_exa
-    ok
+    if ! command -v 'exa'; then
+        info "Installing exa... "
+        clear install_exa
+        ok
+    fi
 fi
