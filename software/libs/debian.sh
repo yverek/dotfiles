@@ -401,6 +401,6 @@ function install_exa() {
     mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
     curl -Lo exa.zip ${EXA_URL}
     unzip exa.zip
-    sudo mv exa-linux-x86_64 /usr/bin/exa
+    sudo mv exa-linux-x86_64 /usr/local/bin/exa
     cd .. && rm -rf ${TMP_DIR}
 }
