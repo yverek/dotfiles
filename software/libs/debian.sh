@@ -50,28 +50,15 @@ function is_installed() {
 
 SOURCES_LIST_FILE="/etc/apt/sources.list"
 
-#SOURCES_LIST_CONTENT="# Official Debian Repositories
-#deb http://deb.debian.org/debian/ testing main contrib non-free
-#deb-src http://deb.debian.org/debian/ testing main contrib non-free
-#
-#deb http://deb.debian.org/debian/ testing-updates main contrib non-free
-#deb-src http://deb.debian.org/debian/ testing-updates main contrib non-free
-#
-#deb http://deb.debian.org/debian-security testing/updates main
-#deb-src http://deb.debian.org/debian-security testing/updates main"
-
 SOURCES_LIST_CONTENT="# Official Debian Repositories
-deb http://deb.debian.org/debian/ stable main contrib non-free
-deb-src http://deb.debian.org/debian/ stable main contrib non-free
+deb http://deb.debian.org/debian/ testing main contrib non-free
+deb-src http://deb.debian.org/debian/ testing main contrib non-free
 
-deb http://deb.debian.org/debian/ stable-updates main contrib non-free
-deb-src http://deb.debian.org/debian/ stable-updates main contrib non-free
+deb http://deb.debian.org/debian/ testing-updates main contrib non-free
+deb-src http://deb.debian.org/debian/ testing-updates main contrib non-free
 
-deb http://deb.debian.org/debian-security stable/updates main
-deb-src http://deb.debian.org/debian-security stable/updates main
-
-deb http://ftp.debian.org/debian stretch-backports main
-deb-src http://ftp.debian.org/debian stretch-backports main"
+deb http://deb.debian.org/debian-security testing/updates main
+deb-src http://deb.debian.org/debian-security testing/updates main"
 
 # Switch between the two following lines: first one for my Notebook, second one for my Desktop PC
 # DRIVERS = 'intel-microcode firmware-realtek firmware-atheros nvidia-driver nvidia-settings'
