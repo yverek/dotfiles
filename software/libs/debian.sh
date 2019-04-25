@@ -60,9 +60,12 @@ deb-src http://deb.debian.org/debian/ testing-updates main contrib non-free
 deb http://deb.debian.org/debian-security testing/updates main
 deb-src http://deb.debian.org/debian-security testing/updates main"
 
-# Switch between the two following lines: first one for my Notebook, second one for my Desktop PC
-# DRIVERS = 'intel-microcode firmware-realtek firmware-atheros nvidia-driver nvidia-settings'
-DRIVERS="amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon"
+# Check if script is running on desktop or laptop
+if [[ "$(echo $HOSTNAME)" == "aloha" ]]; then
+    DRIVERS="amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon"
+elif [[ "$(echo $HOSTNAME)" == "venus" ]]; then
+    DRIVERS = 'intel-microcode firmware-realtek firmware-atheros nvidia-driver nvidia-settings'
+fi
 
 # Fonts
 FONTS="font-manager fonts-freefont-ttf fonts-freefont-otf fonts-roboto"
