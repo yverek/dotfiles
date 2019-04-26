@@ -88,15 +88,19 @@ PULSEAUDIO_CONF_NEW[0]="resample-method = src-sinc-best-quality"
 PULSEAUDIO_CONF_NEW[1]="default-sample-format = s24le"
 PULSEAUDIO_CONF_NEW[2]="default-sample-rate = 96000"
 
-
-FONTS="font-manager fonts-freefont-ttf fonts-freefont-otf fonts-roboto"
 LOCAL_FONTS_PATH=~/.local/share/fonts/
-NERDFONT_NAMES=('Roboto Mono Nerd Font Complete Mono.ttf' 'Droid Sans Mono for Powerline Nerd Font Complete.otf')
-NERDFONT_URLS=('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/\
-Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf' 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/\
-DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf')
-DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
+FONTS="font-manager fonts-freefont-ttf fonts-freefont-otf fonts-roboto"
 
+# if you want to add other Nerd fonts, just add names and urls to following arrays
+NERDFONT_NAMES[0]="Roboto Mono Nerd Font Complete Mono.ttf"
+NERDFONT_NAMES[1]="Droid Sans Mono for Powerline Nerd Font Complete.otf"
+
+NERDFONT_URLS[0]="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/\
+Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
+NERDFONT_URLS[1]="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/\
+DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf'"
+
+DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
 
 DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 
@@ -156,7 +160,7 @@ function update_sources_list() {
 }
 
 function update_hosts_file() {
-    curl -sL ${HOSTS_FILE_URL} | sudo tee ${HOSTS_FILE_PATH} &> /dev/null
+    curl -sfL ${HOSTS_FILE_URL} | sudo tee ${HOSTS_FILE_PATH} &> /dev/null
 }
 
 function update_system() {
@@ -183,7 +187,7 @@ function reboot_pulseaudio() {
 }
 
 function install_firewall() {
-    install_deb_packages gufw
+    install_deb_packages gufw # it will install ufw too
 }
 
 function configure_firewall() {
@@ -195,9 +199,11 @@ function install_fonts() {
 
     mkdir -p ${LOCAL_FONTS_PATH} && cd ${LOCAL_FONTS_PATH}
 
-    for i in "${!NERDFONT_NAMES[@]}"; do
-        curl -fLo "${NERDFONT_NAMES[$i]}" ${NERDFONT_URLS[$i]}
-    done
+    if [[ "${#NERDFONT_NAMES[@]}" -eq "${#NERDFONT_URLS[@]}" ]]; then
+        for i in "${!NERDFONT_NAMES[@]}"; do
+            curl -sfLo "${NERDFONT_NAMES[$i]}" ${NERDFONT_URLS[$i]}
+        done
+    fi
 }
 
 function activate_fonts() {
