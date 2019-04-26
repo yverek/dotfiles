@@ -32,9 +32,12 @@ if ! is_installed ${DRIVERS}; then
     read -p "Press ENTER to continue..."
     exit 0
 elif ! is_installed "zsh"; then
-    info "Editing PulseAudio configuration files... "
-    clear edit_pulseaudio_file
-    ok
+    # if last element is not in file
+    if ! grep -Fq "${PULSEAUDIO_CONF_NEW[-1]}" "${PULSEAUDIO_FILE_PATH}"; then
+        info "Editing PulseAudio configuration files... "
+        clear edit_pulseaudio_file
+        ok
+    fi
 
     info "Rebooting PulseAudio... "
     clear reboot_pulseaudio
