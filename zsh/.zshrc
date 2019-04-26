@@ -11,6 +11,9 @@ HISTFILE=~/.zsh_history
 autoload -Uz compinit
 compinit
 
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
