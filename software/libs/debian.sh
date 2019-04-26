@@ -48,6 +48,7 @@ function is_installed() {
 #            Settings            #
 # ============================== #
 
+### First Section ###
 SOURCES_LIST_FILE="/etc/apt/sources.list"
 SOURCES_LIST_CONTENT="# Official Debian Repositories
 deb http://deb.debian.org/debian/ testing main contrib non-free
@@ -67,20 +68,32 @@ HOSTS_FILE_PATH="/etc/hosts"
 if [[ "$(echo $HOSTNAME)" == "aloha" ]]; then
     DRIVERS="amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon"
 elif [[ "$(echo $HOSTNAME)" == "venus" ]]; then
-    DRIVERS = 'intel-microcode firmware-realtek firmware-atheros nvidia-driver nvidia-settings'
+    DRIVERS="intel-microcode firmware-realtek firmware-atheros nvidia-driver nvidia-settings"
 fi
 
-# Fonts
+### End First Section ###
+
+### Second Section ###
+PULSEAUDIO_FILE_PATH="/etc/pulse/daemon.conf"
+
+# PULSEAUDIO_CONF_NEW[0] will replace PULSEAUDIO_CONF_OLD[0] and so on... Just add lines if you need
+PULSEAUDIO_CONF_OLD[0]="; resample-method = speex-float-1"
+PULSEAUDIO_CONF_OLD[1]="; default-sample-format = s16le"
+PULSEAUDIO_CONF_OLD[2]="; default-sample-rate = 44100"
+
+PULSEAUDIO_CONF_NEW[0]="resample-method = src-sinc-best-quality"
+PULSEAUDIO_CONF_NEW[1]="default-sample-format = s24le"
+PULSEAUDIO_CONF_NEW[2]="default-sample-rate = 96000"
+
+
 FONTS="font-manager fonts-freefont-ttf fonts-freefont-otf fonts-roboto"
-
 LOCAL_FONTS_PATH=~/.local/share/fonts/
-
 NERDFONT_NAMES=('Roboto Mono Nerd Font Complete Mono.ttf' 'Droid Sans Mono for Powerline Nerd Font Complete.otf')
 NERDFONT_URLS=('https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/\
 Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf' 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/\
 DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf')
-
 DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
+
 
 DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 
@@ -136,11 +149,11 @@ EXA_URL="https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-
 # ============================== #
 
 function update_sources_list() {
-    echo "$SOURCES_LIST_CONTENT" | sudo tee "$SOURCES_LIST_FILE" > /dev/null
+    echo "$SOURCES_LIST_CONTENT" | sudo tee "$SOURCES_LIST_FILE" &> /dev/null
 }
 
 function update_hosts_file() {
-    curl -sL ${HOSTS_FILE_URL} | sudo tee ${HOSTS_FILE_PATH} > /dev/null
+    curl -sL ${HOSTS_FILE_URL} | sudo tee ${HOSTS_FILE_PATH} &> /dev/null
 }
 
 function update_system() {
@@ -152,13 +165,14 @@ function install_drivers() {
 }
 
 function edit_pulseaudio_file() {
-    old=('; resample-method = speex-float-1' '; default-sample-format = s16le' '; default-sample-rate = 44100')
-    new=('resample-method = src-sinc-best-quality' 'default-sample-format = s24le' 'default-sample-rate = 96000')
+    # CONF_OLD array lenght must be equal to CONF_NEW one
+    if [[ "${#PULSEAUDIO_CONF_OLD[@]}" -eq "${#PULSEAUDIO_CONF_NEW[@]}" ]]; then
 
-    # Number of elements of 'old' array
-    for i in "${!old[@]}"; do
-        sudo sed -i "s/${old[$i]}/${new[$i]}/g" /etc/pulse/daemon.conf
-    done
+        for i in "${!PULSEAUDIO_CONF_OLD[@]}"; do # "!" means all keys
+            sudo sed -i "s/${PULSEAUDIO_CONF_OLD[$i]}/${PULSEAUDIO_CONF_NEW[$i]}/g" ${PULSEAUDIO_FILE_PATH}
+        done
+
+    fi
 }
 
 function reboot_pulseaudio() {

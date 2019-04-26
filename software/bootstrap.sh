@@ -4,7 +4,7 @@ source ./libs/debian.sh
 
 tput reset
 
-if ! dpkg -s ${DRIVERS} &> /dev/null; then
+if ! is_installed ${DRIVERS}; then
     if ! grep -Fq "${SOURCES_LIST_CONTENT}" "${SOURCES_LIST_FILE}"; then
         info "Updating /etc/apt/sources.list... "
         clear update_sources_list
@@ -22,12 +22,14 @@ if ! dpkg -s ${DRIVERS} &> /dev/null; then
     clear update_system
     ok
 
-    info "Installing drivers... "
-    clear install_drivers
-    ok
+    if ! is_installed ${DRIVERS}; then
+        info "Installing drivers... "
+        clear install_drivers
+        ok
+    fi
 
     echo -e "${WHITE}Now you have to ${GREEN}reboot your system${WHITE}!"
-    read -p "Press enter to continue..."
+    read -p "Press ENTER to continue..."
     exit 0
 elif ! is_installed "zsh"; then
     info "Editing PulseAudio configuration files... "
