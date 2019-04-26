@@ -43,6 +43,9 @@ function is_installed() {
     dpkg -s $1 &> /dev/null
 }
 
+function string_is_in_file() {
+    grep -Fq "$1" "$2"
+}
 
 # ============================== #
 #            Settings            #

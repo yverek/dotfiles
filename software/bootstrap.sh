@@ -5,14 +5,15 @@ source ./libs/debian.sh
 tput reset
 
 if ! is_installed ${DRIVERS}; then
-    if ! grep -Fq "${SOURCES_LIST_CONTENT}" "${SOURCES_LIST_FILE}"; then
+
+    if ! string_is_in_file "${SOURCES_LIST_CONTENT}" "${SOURCES_LIST_FILE}"; then
         info "Updating /etc/apt/sources.list... "
         clear update_sources_list
         ok
     fi
 
     # -6 for slicing, removing "/hosts" from ${HOSTS_FILE_URL}
-    if ! grep -Fq "${HOSTS_FILE_URL::-6}" "${HOSTS_FILE_PATH}"; then
+    if ! string_is_in_file "${HOSTS_FILE_URL::-6}" "${HOSTS_FILE_PATH}"; then
         info "Updating /etc/hosts... "
         clear update_hosts_file
         ok
@@ -31,9 +32,11 @@ if ! is_installed ${DRIVERS}; then
     echo -e "${WHITE}Now you have to ${GREEN}reboot your system${WHITE}!"
     read -p "Press ENTER to continue..."
     exit 0
+
 elif ! is_installed "zsh"; then
+
     # if last element is not in file
-    if ! grep -Fq "${PULSEAUDIO_CONF_NEW[-1]}" "${PULSEAUDIO_FILE_PATH}"; then
+    if ! string_is_in_file "${PULSEAUDIO_CONF_NEW[-1]}" "${PULSEAUDIO_FILE_PATH}"; then
         info "Editing PulseAudio configuration files... "
         clear edit_pulseaudio_file
         ok
