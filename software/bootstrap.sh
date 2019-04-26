@@ -23,6 +23,12 @@ if ! is_installed ${DRIVERS}; then
     clear update_system
     ok
 
+    if ! is_installed ${SOFTWARE}; then
+        info "Installing software... "
+        clear install_software
+        ok
+    fi
+
     if ! is_installed ${DRIVERS}; then
         info "Installing drivers... "
         clear install_drivers
@@ -75,12 +81,6 @@ elif ! is_installed "zsh"; then
     info "Configuring Gedit... "
     clear configure_gedit
     ok
-
-    if ! is_installed ${SOFTWARE}; then
-        info "Installing software... "
-        clear install_software
-        ok
-    fi
 
     if ! is_installed 'google-chrome-stable'; then
         info "Installing Chrome... "

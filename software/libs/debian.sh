@@ -164,6 +164,10 @@ function update_system() {
     sudo apt-get -qq update && sudo apt-get -qq upgrade
 }
 
+function install_software() {
+    install_deb_packages ${SOFTWARE}
+}
+
 function install_drivers() {
     install_deb_packages ${DRIVERS}
 }
@@ -222,10 +226,6 @@ function configure_font_manager() {
 
 function configure_gedit() {
     load_dconf_settings ${DCONF_GEDIT_SETTINGS}
-}
-
-function install_software() {
-    install_deb_packages ${SOFTWARE}
 }
 
 function install_chrome() {
