@@ -144,7 +144,7 @@ function update_hosts_file() {
 }
 
 function update_system() {
-    sudo apt-get update && sudo apt-get upgrade
+    sudo apt-get -qq update && sudo apt-get -qq upgrade
 }
 
 function install_drivers() {
