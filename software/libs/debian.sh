@@ -89,16 +89,13 @@ PULSEAUDIO_CONF_NEW[1]="default-sample-format = s24le"
 PULSEAUDIO_CONF_NEW[2]="default-sample-rate = 96000"
 
 LOCAL_FONTS_PATH=~/.local/share/fonts/
-FONTS="font-manager fonts-freefont-ttf fonts-freefont-otf fonts-roboto"
+FONTS="font-manager fonts-freefont-ttf fonts-freefont-otf fonts-lato"
 
 # if you want to add other Nerd fonts, just add names and urls to following arrays
-NERDFONT_NAMES[0]="Roboto Mono Nerd Font Complete Mono.ttf"
-NERDFONT_NAMES[1]="Droid Sans Mono for Powerline Nerd Font Complete.otf"
+NERDFONT_NAMES[0]="Hack Regular Nerd Font Complete Mono.ttf"
 
-NERDFONT_URLS[0]="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/\
-Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
-NERDFONT_URLS[1]="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/\
-DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf'"
+NERDFONT_URLS[0]="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete\
+/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
 
 DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
 
@@ -207,7 +204,6 @@ function install_fonts() {
 }
 
 function activate_fonts() {
-    fc-cache -f
     load_dconf_settings ${DCONF_FONTS_SETTINGS}
 }
 

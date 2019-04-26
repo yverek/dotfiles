@@ -1,4 +1,4 @@
 [org/gnome/desktop/interface]
-font-name='Roboto 12'
-document-font-name='Roboto 12'
-monospace-font-name='RobotoMono Nerd Font Mono 12'
+font-name='Lato 12'
+document-font-name='Lato 12'
+monospace-font-name='Hack Nerd Font Mono 12'
