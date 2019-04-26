@@ -49,7 +49,6 @@ function is_installed() {
 # ============================== #
 
 SOURCES_LIST_FILE="/etc/apt/sources.list"
-
 SOURCES_LIST_CONTENT="# Official Debian Repositories
 deb http://deb.debian.org/debian/ testing main contrib non-free
 deb-src http://deb.debian.org/debian/ testing main contrib non-free
@@ -59,6 +58,10 @@ deb-src http://deb.debian.org/debian/ testing-updates main contrib non-free
 
 deb http://deb.debian.org/debian-security testing/updates main
 deb-src http://deb.debian.org/debian-security testing/updates main"
+
+# https://someonewhocares.org/hosts/ is the project
+HOSTS_FILE_URL="http://someonewhocares.org/hosts/hosts"
+HOSTS_FILE_PATH="/etc/hosts"
 
 # Check if script is running on desktop or laptop
 if [[ "$(echo $HOSTNAME)" == "aloha" ]]; then
@@ -137,8 +140,7 @@ function update_sources_list() {
 }
 
 function update_hosts_file() {
-    # https://someonewhocares.org/hosts/ is the project
-    curl https://someonewhocares.org/hosts/hosts | sudo tee /etc/hosts
+    curl -sL ${HOSTS_FILE_URL} | sudo tee ${HOSTS_FILE_PATH} > /dev/null
 }
 
 function update_system() {

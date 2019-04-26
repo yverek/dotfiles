@@ -5,13 +5,18 @@ source ./libs/debian.sh
 tput reset
 
 if ! dpkg -s ${DRIVERS} &> /dev/null; then
-    info "Updating /etc/apt/sources.list... "
-    clear update_sources_list
-    ok
+    if ! grep -Fq "${SOURCES_LIST_CONTENT}" "${SOURCES_LIST_FILE}"; then
+        info "Updating /etc/apt/sources.list... "
+        clear update_sources_list
+        ok
+    fi
 
-    info "Updating /etc/hosts... "
-    clear update_hosts_file
-    ok
+    # -6 for slicing, removing "/hosts" from ${HOSTS_FILE_URL}
+    if ! grep -Fq "${HOSTS_FILE_URL::-6}" "${HOSTS_FILE_PATH}"; then
+        info "Updating /etc/hosts... "
+        clear update_hosts_file
+        ok
+    fi
 
     info "Updating system... "
     clear update_system
