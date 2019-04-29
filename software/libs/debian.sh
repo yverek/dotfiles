@@ -67,6 +67,9 @@ deb-src http://deb.debian.org/debian-security testing/updates main"
 HOSTS_FILE_URL="http://someonewhocares.org/hosts/hosts"
 HOSTS_FILE_PATH="/etc/hosts"
 
+SOFTWARE="htop lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp hunspell-it mythes-it\
+ menulibre p7zip-rar plank lm-sensors neofetch kitty dconf-editor gnome-tweaks"
+
 # Check if script is running on desktop or laptop
 if [[ "$(echo $HOSTNAME)" == "aloha" ]]; then
     DRIVERS="amd64-microcode firmware-amd-graphics xserver-xorg-video-radeon"
@@ -98,17 +101,11 @@ NERDFONT_URLS[0]="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fon
 /Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
 
 DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
-
 DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
-
-SOFTWARE="htop lshw qt4-qtconfig acpi acpi-support aspell-it hddtemp hunspell-it mythes-it\
- menulibre p7zip-rar plank lm-sensors neofetch kitty dconf-editor gnome-tweaks"
 
 CHROME_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
 PLANK_THEME_PATH=~/.local/share/plank/themes/
-
-TMP_DIR=~/delete_me
 
 FROST_THEME_REPOSITORY="https://github.com/dikiaap/frost-plank-theme.git"
 DCONF_PLANK_SETTINGS=gnome/plank.dconf.settings
@@ -229,10 +226,8 @@ function configure_gedit() {
 }
 
 function install_chrome() {
-    mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
-    curl -L ${CHROME_URL}
-    sudo apt-get install ./google-chrome-stable_current_amd64.deb
-    cd .. && rm -rf ${TMP_DIR}
+    curl -Lo /tmp/chrome.deb ${CHROME_URL}
+    sudo apt-get install /tmp/chrome.deb
 }
 
 function install_albert() {
