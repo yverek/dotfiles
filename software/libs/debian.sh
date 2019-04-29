@@ -101,12 +101,12 @@ NERDFONT_URLS[0]="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fon
 /Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
 
 DCONF_FONTS_SETTINGS=gnome/fonts.dconf.settings
+
 DCONF_GEDIT_SETTINGS=gnome/gedit.dconf.settings
 
 CHROME_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
 PLANK_THEME_PATH=~/.local/share/plank/themes/
-
 FROST_THEME_REPOSITORY="https://github.com/dikiaap/frost-plank-theme.git"
 DCONF_PLANK_SETTINGS=gnome/plank.dconf.settings
 
@@ -243,9 +243,8 @@ function configure_plank() {
     if is_installed "plank"; then
         mkdir -p ${PLANK_THEME_PATH}
         mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
-        git clone ${FROST_THEME_REPOSITORY} .
-        cp -r Frost ${PLANK_THEME_PATH}
-        cd .. && rm -rf ${TMP_DIR}
+        git clone ${FROST_THEME_REPOSITORY} /tmp/frost-theme
+        cp -r /tmp/frost-theme/Frost ${PLANK_THEME_PATH}
 
         load_dconf_settings ${DCONF_PLANK_SETTINGS}
         echo -e "\n${WHITE}Add Plank to ${GREEN}Startup Applications${WHITE} from ${RED}gnome-tweaks${WHITE}!"
