@@ -233,8 +233,8 @@ function install_chrome() {
 function install_albert() {
     echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/Debian_Testing/ /' | \
          sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
-    wget -nv https://download.opensuse.org/repositories/home:manuelschneid3r/Debian_Testing/Release.key -O Release.key
-    sudo apt-key add - < Release.key
+    wget -nv https://download.opensuse.org/repositories/home:manuelschneid3r/Debian_Testing/Release.key -O /tmp/Release.key
+    sudo apt-key add - < /tmp/Release.key
     sudo apt-get update
     sudo apt-get install albert
 }
