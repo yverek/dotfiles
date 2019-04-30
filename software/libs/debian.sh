@@ -243,7 +243,6 @@ function install_albert() {
 function configure_plank() {
     if is_installed "plank"; then
         mkdir -p ${PLANK_THEME_PATH}
-        mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
         git clone ${FROST_THEME_REPOSITORY} /tmp/frost-theme
         cp -r /tmp/frost-theme/Frost ${PLANK_THEME_PATH}
 
