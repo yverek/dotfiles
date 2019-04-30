@@ -260,7 +260,6 @@ function install_zsh() {
 }
 
 function install_zplug() {
-    # TODO changing installation method: zplug is now available in deb repositories
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 }
 
@@ -277,9 +276,10 @@ function add_ssh_key_to_sshagent() {
 }
 
 function open_gedit_with_ssh_key() {
-    gedit ~/.ssh/id_rsa.pub
     echo -e "${WHITE}Now you have to ${GREEN}copy${WHITE} your ${RED}SSH key${WHITE}!"
     echo "Close the application when you are done..."
+    sleep 2
+    gedit ~/.ssh/id_rsa.pub
 }
 
 function add_ssh_key_to_github() {
