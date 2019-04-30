@@ -232,8 +232,9 @@ function install_chrome() {
 
 function install_albert() {
     echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/Debian_Testing/ /' | \
-         sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
-    wget -nv https://download.opensuse.org/repositories/home:manuelschneid3r/Debian_Testing/Release.key -O /tmp/Release.key
+        sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
+    wget -nv https://download.opensuse.org/repositories/home:manuelschneid3r/Debian_Testing/Release.key \
+        -O /tmp/Release.key
     sudo apt-key add - < /tmp/Release.key
     sudo apt-get update
     sudo apt-get install albert
@@ -260,6 +261,7 @@ function install_zsh() {
 }
 
 function install_zplug() {
+    # TODO changing installation method: zplug is now available in deb repositories
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 }
 
@@ -403,6 +405,7 @@ function configure_gnome_settings() {
 }
 
 function install_exa() {
+    # TODO changing installation method: exa is now available in deb repositories
     mkdir -p ${TMP_DIR} && cd ${TMP_DIR}
     curl -Lo exa.zip ${EXA_URL}
     unzip exa.zip
