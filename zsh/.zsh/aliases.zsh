@@ -4,23 +4,6 @@ alias open_zplug='nautilus ~/.zplug'
 alias zshreload='source ~/.zshrc'
 alias print_path='echo -e ${PATH//:/\\\n}'
 
-# Aptitude
-alias search='aptitude search'
-alias clean='sudo aptitude clean'
-alias purge='sudo aptitude purge'
-alias update='sudo aptitude update'
-alias remove='sudo aptitude remove'
-alias upgrade='sudo aptitude upgrade'
-alias apt-install='sudo aptitude install'
-alias autoremove='sudo aptitude autoremove'
-alias dist-upgrade='sudo aptitude dist-upgrade'
-
-function apt-clean() {
-    sudo apt-get clean
-    sudo apt-get autoclean
-    sudo apt-get autoremove
-}
-
 # Folder navigation
 alias -g ...='../..'
 alias -g ....='../../..'
