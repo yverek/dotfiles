@@ -6,11 +6,6 @@ if which pyenv > /dev/null; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
-# Snap Settings
-if [[ -d "/snap/bin" ]]; then
-  export PATH="/snap/bin:$PATH"
-fi
-
 # Zsh AutoSuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 
