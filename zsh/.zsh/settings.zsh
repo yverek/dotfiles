@@ -1,6 +1,3 @@
-# Dircolors Settings
-eval $(dircolors /home/yverek/.dir_colors/dircolors)
-
 # PyEnv Settings
 if which pyenv > /dev/null; then
     export PYENV_ROOT="$HOME/.pyenv"
