@@ -1,5 +1,4 @@
 # Albert
-
     └── albert.conf
 
 ## Requirements
@@ -8,5 +7,5 @@
 ## Installation
 You can install this package with
 
-    $ rm ~/.config/albert/albert.conf
+    $ rm -f ~/.config/albert/albert.conf
     $ stow albert -t ~/.config/albert
