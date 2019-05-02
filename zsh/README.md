@@ -13,3 +13,9 @@
 - `exa` (optional) <<https://github.com/ogham/exa>>
 - `pyenv` (optional) <<https://github.com/pyenv/pyenv>>
 - `neofetch` (optional) <<https://github.com/dylanaraps/neofetch>>
+
+## Installation
+You can install this package with
+
+    $ rm -rf ~/.zsh ~/.zshrc
+    $ stow zsh
