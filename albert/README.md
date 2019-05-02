@@ -8,6 +8,5 @@
 ## Installation
 You can install this package with
 
+    $ rm ~/.config/albert/albert.conf
     $ stow albert -t ~/.config/albert
-
-Because the configuration folder is in `~/.config/albert`.
