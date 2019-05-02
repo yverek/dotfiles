@@ -1,5 +1,8 @@
 # htop
-    └── htoprc
+    ├── .config
+    │   └── htop
+    │       └── htoprc
+    └── README.md
 
 ## Requirements
 - `htop` <<https://hisham.hm/htop>>

@@ -1,5 +1,8 @@
 # kitty
-    └── kitty.conf
+    ├── .config
+    │   └── kitty
+    │       └── kitty.conf
+    └── README.md
 
 ## Requirements
 - `kitty` <<https://github.com/kovidgoyal/kitty>>

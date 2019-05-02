@@ -1,5 +1,8 @@
 # Neofetch
-    └── config.conf
+    ├── .config
+    │   └── neofetch
+    │       └── config.conf
+    └── README.md
 
 ## Requirements
 - `neofetch` <<https://github.com/dylanaraps/neofetch>>

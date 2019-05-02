@@ -1,5 +1,8 @@
 # Albert
-    └── albert.conf
+    ├── .config
+    │   └── albert
+    │       └── albert.conf
+    └── README.md
 
 ## Requirements
 - `Albert` <<https://github.com/albertlauncher/albert>>
