@@ -8,4 +8,4 @@
 You can install this package with
 
     $ rm -f ~/.config/albert/albert.conf
-    $ stow albert -t ~/.config/albert
+    $ stow albert
