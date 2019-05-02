@@ -1,13 +1,11 @@
-# neofetch
-
+# Neofetch
     └── config.conf
 
 ## Requirements
-- `neofetch` <<https://github.com/dylanaraps/neofetch/>>
+- `neofetch` <<https://github.com/dylanaraps/neofetch>>
 
 ## Installation
 You can install this package with
 
+    $ rm -f ~/.config/neofetch/config.conf
     $ stow neofetch -t ~/.config/neofetch
-
-Because the configuration folder is in `~/.config/neofetch`.
