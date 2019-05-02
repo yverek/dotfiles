@@ -8,4 +8,4 @@
 You can install this package with
 
     $ rm -f ~/.config/neofetch/config.conf
-    $ stow neofetch -t ~/.config/neofetch
+    $ stow neofetch
