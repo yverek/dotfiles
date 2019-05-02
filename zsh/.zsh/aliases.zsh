@@ -19,10 +19,12 @@ function take() {
 }
 
 # List directory contents
-alias l='exa -Fghl --group-directories-first'
-alias ls='exa -FG --group-directories-first'
-alias la='exa -Fghla --group-directories-first'
-alias ltree='exa -FghTl --group-directories-first'
+if command -v exa; then
+    alias l='exa -Fghl --group-directories-first'
+    alias ls='exa -FG --group-directories-first'
+    alias la='exa -Fghla --group-directories-first'
+    alias ltree='exa -FghTl --group-directories-first'
+fi
 
 # Filtering
 alias grep='grep --color=auto'

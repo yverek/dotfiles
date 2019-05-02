@@ -12,7 +12,9 @@ autoload -Uz compinit
 compinit
 
 # Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+if command -v kitty; then
+    kitty + complete setup zsh | source /dev/stdin
+fi
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e

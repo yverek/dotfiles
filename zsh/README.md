@@ -8,4 +8,8 @@
 
 ## Requirements
 - `zplug` <<https://github.com/zplug/zplug>>
-- `powerlevel10k` <<https://github.com/romkatv/powerlevel10k>>
+- `A monospace Nerd Font` <<https://github.com/ryanoasis/nerd-fonts>>
+- `kitty` (optional) <<https://github.com/kovidgoyal/kitty>>
+- `exa` (optional) <<https://github.com/ogham/exa>>
+- `pyenv` (optional) <<https://github.com/pyenv/pyenv>>
+- `neofetch` (optional) <<https://github.com/dylanaraps/neofetch>>
