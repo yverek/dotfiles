@@ -12,7 +12,7 @@ autoload -Uz compinit
 compinit
 
 # Completion for kitty
-if command -v kitty; then
+if command -v kitty &> /dev/null; then
     kitty + complete setup zsh | source /dev/stdin
 fi
 

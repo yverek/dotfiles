@@ -19,7 +19,7 @@ function take() {
 }
 
 # List directory contents
-if command -v exa; then
+if command -v exa &> /dev/null; then
     alias l='exa -Fghl --group-directories-first'
     alias ls='exa -FG --group-directories-first'
     alias la='exa -Fghla --group-directories-first'
