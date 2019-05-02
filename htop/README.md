@@ -2,7 +2,7 @@
     └── htoprc
 
 ## Requirements
-- `htop` <<https://hisham.hm/htop/>>
+- `htop` <<https://hisham.hm/htop>>
 
 ## Installation
 You can install this package with
