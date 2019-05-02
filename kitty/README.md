@@ -8,4 +8,4 @@
 You can install this package with
 
     $ rm -f ~/.config/kitty/kitty.conf
-    $ stow kitty -t ~/.config/kitty
+    $ stow kitty
