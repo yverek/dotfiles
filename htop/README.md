@@ -1,5 +1,4 @@
 # htop
-
     └── htoprc
 
 ## Requirements
@@ -8,6 +7,5 @@
 ## Installation
 You can install this package with
 
+    $ rm -f ~/.config/htop/htoprc
     $ stow htop -t ~/.config/htop
-
-Because the configuration folder is in `~/.config/htop`.
