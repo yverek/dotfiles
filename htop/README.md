@@ -8,4 +8,4 @@
 You can install this package with
 
     $ rm -f ~/.config/htop/htoprc
-    $ stow htop -t ~/.config/htop
+    $ stow htop
