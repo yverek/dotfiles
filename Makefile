@@ -137,5 +137,5 @@ clean_backup:
 	@rm -f ~/.config/htop/htoprc_bak
 	@rm -f ~/.config/kitty/kitty.conf_bak
 	@rm -f ~/.config/neofetch/config.conf_bak
-	@rm -rf ~/.zshrc_bak	~/.zsh_bak
+	@rm -rf ~/.zshrc_bak ~/.zsh_bak
 	@printf "[ "${GREEN}"OK"${RESET}" ] Cleaning backup files... \\n"
