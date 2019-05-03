@@ -7,23 +7,22 @@ YELLOW  = "\x1b[33;01m"
 BLUE    = "\x1b[34;01m"
 
 help:
-	@printf "\\n\
-	"${GREEN}"Yverek's dotfiles"${RESET}"\\n\
-	\\n\
-	This tool will install dotfiles for my "${BLUE}"Arch Linux"${RESET}" development environment.\\n\
-	"${RED}"Do not forget to see README before installing packages!"${RESET}"\\n\
-	\\n\
-	"${GREEN}"USAGE: "${BLUE}"make "${YELLOW}"[target]"${RESET}"\\n\
-	\\n\
-	  "${BLUE}"make               "${GREEN}"Show this message"${RESET}"\\n\
-	\\n\
-	  "${BLUE}"make "${YELLOW}"install       "${GREEN}"Stow every package"${RESET}"\\n\
-	\\n\
-	  "${BLUE}"make "${YELLOW}"uninstall     "${GREEN}"Un-Stow every package"${RESET}"\\n\
-	\\n\
-	  "${BLUE}"make "${YELLOW}"clean_backup  "${GREEN}"Clean backup files"${RESET}"\\n\
-	\\n\
-	"
+	@printf "\\n"
+	@printf ${GREEN}"Yverek's dotfiles\\n"${RESET}
+	@printf "\\n"
+	@printf "This tool will install dotfiles for my "${BLUE}"Arch Linux"${RESET}" development environment.\\n"
+	@printf ${RED}"Do not forget to see README before installing packages!\\n"${RESET}
+	@printf "\\n"
+	@printf ${GREEN}"USAGE: "${BLUE}"make "${YELLOW}"[target]\\n"${RESET}
+	@printf "\\n"
+	@printf ${BLUE}"make               "${GREEN}"Show this message\\n"${RESET}
+	@printf "\\n"
+	@printf ${BLUE}"make "${YELLOW}"install       "${GREEN}"Stow every package\\n"${RESET}
+	@printf "\\n"
+	@printf ${BLUE}"make "${YELLOW}"uninstall     "${GREEN}"Un-Stow every package\\n"${RESET}
+	@printf "\\n"
+	@printf ${BLUE}"make "${YELLOW}"clean_backup  "${GREEN}"Clean backup files\\n"${RESET}
+	@printf "\\n"
 
 .PHONY: install uninstall clean_backup
 
