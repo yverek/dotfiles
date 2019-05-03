@@ -6,6 +6,8 @@ This is my personal collection dotfiles for configuring a development environmen
  * [Details](#details)
  * [Requirements](#requirements)
  * [Installation](#Installation)
+   * [Makefile](#makefile)
+   * [Manual](#manual)
  * [Updating](#updating)
  * [Thanks](#thanks)
 
@@ -33,29 +35,49 @@ $ sudo pacman -S git stow
 **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and
 remove things you don’t want or you don't need. Use at your own risk!
 
+Two things before proceeding:
+ 1. Before installing anything, you **must** install the `stow` package: check its [README](stow/README.md)!
+ 2. Before installing a package, remember to check `README` to get more information!
+
 First of all, clone this repository
 ```bash
 $ git clone git@github.com:yverek/dotfiles.git ~/.dotfiles
+$ cd ~/.dotfiles
 ```
 
-Before install anything, you **must** install the `stow` package: check its [README](stow/README.md)!
+Now you can install using Makefile or manually.
 
-Then, you can install every package you want, using [stow](https://www.gnu.org/software/stow)
+### Makefile
+Run
 ```bash
-$ cd ~/.dotfiles
+$ make install
+```
+To install every packages with a single command!
+
+This will create backup files, if you want to remove them run
+```bash
+$ make clean_backup
+```
+
+If you want more information about Makefile, just run
+```bash
+$ make
+```
+
+### Manual
+You can install every package you want using just [stow](https://www.gnu.org/software/stow)
+```bash
 $ stow zsh
 ```
-> Remember to check `READMEs` to get more information about installing packages!
  
 To remove dotfiles
 ```bash
-$ cd ~/.dotfiles
 $ stow -D zsh
 ```
 
 ## Updating
 ```bash
-$ cd ~/.dotfiles && git pull origin master
+$ git pull origin master
 ```
 
 ## Thanks
