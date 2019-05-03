@@ -3,28 +3,28 @@ This is my personal collection dotfiles for configuring a development environmen
 [Arch Linux](https://www.archlinux.org). :computer:
 
 ## Table of Contents
- * [Details](#details)
- * [Requirements](#requirements)
- * [Installation](#Installation)
-   * [Makefile](#makefile)
-   * [Manual](#manual)
- * [Updating](#updating)
- * [Thanks](#thanks)
+  * [Details](#details)
+  * [Requirements](#requirements)
+  * [Installation](#Installation)
+    * [Makefile](#makefile)
+    * [Manual](#manual)
+  * [Updating](#updating)
+  * [Thanks](#thanks)
 
 ## Details
- * CLI
-   * [Zsh](https://github.com/zsh-users/zsh)
-     * [zplug](https://github.com/zplug/zplug)
-     * [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
- * GUI
-
-TODO: complete this section
+  * CLI
+    * [Git](https://git-scm.com)
+    * [htop](https://hisham.hm/htop)
+    * [Neofetch](https://github.com/dylanaraps/neofetch)
+    * [Zsh](https://github.com/zsh-users/zsh)
+  * GUI
+    * [Albert](https://github.com/albertlauncher/albert)
+    * [kitty](https://github.com/kovidgoyal/kitty)
 
 ## Requirements
 Make sure the following requirements are installed:
-
- * [Git](https://git-scm.com)
- * [GNU Stow](https://www.gnu.org/software/stow)
+  * [Git](https://git-scm.com)
+  * [GNU Stow](https://www.gnu.org/software/stow)
 
 Install them with
 ```bash
@@ -36,8 +36,8 @@ $ sudo pacman -S git stow
 remove things you don’t want or you don't need. Use at your own risk!
 
 Two things before proceeding:
- 1. Before installing anything, you **must** install the `stow` package: check its [README](stow/README.md)!
- 2. Before installing a package, remember to check `README` to get more information!
+  1. Before installing anything, you **must** install the `stow` package: check its [README](stow/README.md)!
+  2. Before installing a package, remember to check `README` to get more information!
 
 First of all, clone this repository
 ```bash
