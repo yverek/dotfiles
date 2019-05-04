@@ -1,5 +1,6 @@
 all: help
 
+SHELL  := /bin/bash
 RESET   = "\x1b[39;49;00m"
 RED     = "\x1b[31;01m"
 GREEN   = "\x1b[32;01m"
@@ -29,10 +30,10 @@ help:
 install:
 # Stow must be the first one!
 	@printf "Installing "${BLUE}"Stow"${RESET}"... \\r"
-	if [[ -f ~/.stowrc ]]; then \
-		mv ~/.stowrc ~/.stowrc_bak \
+	@if [[ -f ~/.stowrc ]]; then \
+		mv ~/.stowrc ~/.stowrc_bak; \
 	fi
-	if [[ -f ~/.stow-global-ignore ]]; then \
+	@if [[ -f ~/.stow-global-ignore ]]; then \
 		mv ~/.stow-global-ignore ~/.stow-global-ignore_bak; \
 	fi
 	@stow stow -t ~ &> /dev/null
@@ -40,18 +41,18 @@ install:
 
 # Albert
 	@printf "Installing "${BLUE}"Albert"${RESET}"... \\r"
-	if [[ -f ~/.config/albert/albert.conf ]]; then \
-		mv ~/.config/albert/albert.conf_bak; \
+	@if [[ -f ~/.config/albert/albert.conf ]]; then \
+		mv ~/.config/albert/albert.conf ~/.config/albert/albert.conf_bak; \
 	fi
 	@stow albert &> /dev/null
 	@printf "[ "${GREEN}"OK"${RESET}" ] Installing "${BLUE}"Albert"${RESET}"... \\n"
 
 # Git
 	@printf "Installing "${BLUE}"Git"${RESET}"... \\r"
-	if [[ -f ~/.gitconfig ]]; then \
-		mv ~/.gitconfig ~/.gitconfig_bak \
+	@if [[ -f ~/.gitconfig ]]; then \
+		mv ~/.gitconfig ~/.gitconfig_bak; \
 	fi
-	if [[ -f ~/.gitignore ]]; then \
+	@if [[ -f ~/.gitignore ]]; then \
 		mv ~/.gitignore ~/.gitignore_bak; \
 	fi
 	@stow git &> /dev/null
@@ -59,7 +60,7 @@ install:
 
 # htop
 	@printf "Installing "${BLUE}"htop"${RESET}"... \\r"
-	if [[ -f ~/.config/htop/htoprc ]]; then \
+	@if [[ -f ~/.config/htop/htoprc ]]; then \
 		mv ~/.config/htop/htoprc ~/.config/htop/htoprc_bak; \
 	fi
 	@stow htop &> /dev/null
@@ -67,7 +68,7 @@ install:
 
 # kitty
 	@printf "Installing "${BLUE}"kitty"${RESET}"... \\r"
-	if [[ -f ~/.config/kitty/kitty.conf ]]; then \
+	@if [[ -f ~/.config/kitty/kitty.conf ]]; then \
 		mv ~/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf_bak; \
 	fi
 	@stow kitty &> /dev/null
@@ -75,7 +76,7 @@ install:
 
 # Neofetch
 	@printf "Installing "${BLUE}"Neofetch"${RESET}"... \\r"
-	if [[ -f ~/.config/neofetch/config.conf ]]; then \
+	@if [[ -f ~/.config/neofetch/config.conf ]]; then \
 		mv ~/.config/neofetch/config.conf ~/.config/neofetch/config.conf_bak; \
 	fi
 	@stow neofetch &> /dev/null
@@ -83,11 +84,11 @@ install:
 
 # Zsh
 	@printf "Installing "${BLUE}"Zsh"${RESET}"... \\r"
-	if [[ -f ~/.zshrc ]]; then \
+	@if [[ -f ~/.zshrc ]]; then \
 		mv ~/.zshrc ~/.zshrc_bak; \
 	fi
-	if [[ -d ~/.zsh ]]; then \
-		mv ~/.zsh ~/.zsh_bak \
+	@if [[ -d ~/.zsh ]]; then \
+		mv ~/.zsh ~/.zsh_bak; \
 	fi
 	@stow zsh &> /dev/null
 	@printf "[ "${GREEN}"OK"${RESET}" ] Installing "${BLUE}"Zsh"${RESET}"... \\n"
@@ -138,3 +139,4 @@ clean_backup:
 	@rm -f ~/.config/neofetch/config.conf_bak
 	@rm -rf ~/.zshrc_bak ~/.zsh_bak
 	@printf "[ "${GREEN}"OK"${RESET}" ] Cleaning backup files... \\n"
+
