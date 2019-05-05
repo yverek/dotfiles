@@ -48,7 +48,10 @@ function update_pyenv() {
 
 function update_system() {
     update_arch
+    sleep 1
     update_pyenv
+    sleep 1
     update_zplug
+    sleep 1
     update_vimplug
 }
