@@ -29,3 +29,26 @@ fi
 # Filtering
 alias grep='grep --color=auto'
 
+# Updating
+function update_arch() {
+    sudo pacman -Syu
+}
+
+function update_zplug() {
+    zplug update
+}
+
+function update_vimplug() {
+    nvim +PlugUpdate +sleep 1000m +qall
+}
+
+function update_pyenv() {
+    pyenv update
+}
+
+function update_system() {
+    update_arch
+    update_pyenv
+    update_zplug
+    update_vimplug
+}
