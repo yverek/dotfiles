@@ -19,6 +19,16 @@ fi
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
+#------------------------------
+# Variables
+#------------------------------
+if command -v firefox &> /dev/null; then
+    BROWSER="firefox"
+fi
+if command -v nvim &> /dev/null; then
+    EDITOR="nvim"
+fi
+
 # ============================== #
 #             zplug              #
 # ============================== #
