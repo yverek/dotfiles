@@ -15,8 +15,28 @@ HISTFILE=~/.zsh_history
 autoload -Uz compinit
 compinit
 
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -v
+
+
+# ============================== #
+#             Keymaps            #
+# ============================== #
+
+bindkey "^[[2~" overwrite-mode                  # Insert
+bindkey "^[[3~" delete-char                     # Delete
+bindkey "^[[H"  beginning-of-line               # Home
+bindkey "^[[F"  end-of-line                     # End
+bindkey "^[[5~" beginning-of-buffer-or-history  # Page Up
+bindkey "^[[6~" end-of-buffer-or-history        # Page Down
+
+bindkey "^[[A"  up-line-or-history              # Up Arrow
+bindkey "^[[B"  down-line-or-history            # Down Arrow
+bindkey "^[[C"  forward-char                    # Right Arrow
+bindkey "^[[D"  backward-char                   # Left Arrow
+
+bindkey "^?"    backward-delete-char            # Backspace
+bindkey "^[[Z"  reverse-menu-complete           # Shift + Tab
+bindkey "^H"    backward-delete-word            # Ctrl + Backspace
+bindkey "^K"    kill-whole-line                 # Ctrl + K
 
 
 
