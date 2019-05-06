@@ -1,8 +1,15 @@
 # General
-alias zshconfig='gedit ~/.zshrc'
-alias open_zplug='nautilus ~/.zplug'
-alias zshreload='source ~/.zshrc'
 alias print_path='echo -e ${PATH//:/\\\n}'
+
+# Zsh
+alias zshconfig='$EDITOR ~/.zshrc'
+alias open_zplug='cd ~/.zplug'
+alias zshreload='source ~/.zshrc'
+
+# Config files
+alias kittyconfig='$EDITOR ~/.config/kitty/kitty.conf'
+alias neofetchconfig='$EDITOR ~/.config/neofetch/config.conf'
+alias vimconfig='$EDITOR ~/.config/nvim/init.vim'
 
 # Folder navigation
 alias -g ...='../..'
