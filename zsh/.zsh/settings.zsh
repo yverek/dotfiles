@@ -17,3 +17,8 @@ if command -v pyenv &> /dev/null && [[ "$(pyenv version-name)" == "system" ]]; t
         neofetch;
     fi
 fi
+
+# Completion for kitty
+if command -v kitty &> /dev/null; then
+    kitty + complete setup zsh | source /dev/stdin
+fi

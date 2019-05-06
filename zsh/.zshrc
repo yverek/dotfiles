@@ -1,3 +1,7 @@
+#------------------------------
+# General
+#------------------------------
+
 # Set up the prompt
 autoload -Uz promptinit
 promptinit
@@ -11,17 +15,15 @@ HISTFILE=~/.zsh_history
 autoload -Uz compinit
 compinit
 
-# Completion for kitty
-if command -v kitty &> /dev/null; then
-    kitty + complete setup zsh | source /dev/stdin
-fi
-
 # Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
+bindkey -v
+
+
 
 #------------------------------
 # Variables
 #------------------------------
+
 if command -v firefox &> /dev/null; then
     BROWSER="firefox"
 fi
@@ -29,9 +31,11 @@ if command -v nvim &> /dev/null; then
     EDITOR="nvim"
 fi
 
-# ============================== #
-#             zplug              #
-# ============================== #
+
+
+#------------------------------
+# zplug
+#------------------------------
 
 source ~/.zplug/init.zsh
 
@@ -68,6 +72,12 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+
+
+
+#------------------------------
+# External Files
+#------------------------------
 
 source .zsh/options.zsh
 source .zsh/aliases.zsh
