@@ -1,3 +1,8 @@
 body {
-    background-image: url('img/background.png');
+  background-image: url('img/background.png');
+  background-color: #cccccc;
+  font-family: 'Merriweather', serif;
+  font-size: 12px;
+  position: relative;
+  overflow-y: scroll;
 }
