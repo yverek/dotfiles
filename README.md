@@ -41,7 +41,7 @@ Two things before proceeding:
 
 First of all, clone this repository
 ```bash
-$ git clone git@github.com:yverek/dotfiles.git ~/.dotfiles
+$ git clone https://github.com/yverek/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 ```
 
