@@ -16,7 +16,7 @@ if command --search exa > /dev/null
 end
 
 # fish
-alias fish_reload 'source ~/.zshrc'
+alias fish_reload 'source ~/.config/fish/config.fish'
 
 # config files
 alias kittyconfig '$EDITOR ~/.config/kitty/kitty.conf'
