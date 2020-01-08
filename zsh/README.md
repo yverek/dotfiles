@@ -13,6 +13,7 @@
 - `exa` (optional) <<https://github.com/ogham/exa>>
 - `pyenv` (optional) <<https://github.com/pyenv/pyenv>>
 - `neofetch` (optional) <<https://github.com/dylanaraps/neofetch>>
+- `reflector` (optional) <<https://wiki.archlinux.org/index.php/reflector>>
 
 ## Installation
 You can install this package with
