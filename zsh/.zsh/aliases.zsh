@@ -50,6 +50,10 @@ function clean_arch() {
 }
 
 # Updating
+function update_mirrorlist() {
+    sudo reflector --country "Italy" --latest 10 --number 10 --protocol http --sort rate --save /etc/pacman.d/mirrorlist
+}
+
 function update_arch() {
     sudo pacman -Syu
 }
