@@ -41,6 +41,14 @@ fi
 # Filtering
 alias grep='grep --color=auto'
 
+function clean_arch() {
+    # Uninstall all unneeded packages and their unused dependencies
+    sudo pacman -Rns $(pacman -Qtdq)
+
+    # delete old version of your packages
+    sudo pacman -Sc
+}
+
 # Updating
 function update_arch() {
     sudo pacman -Syu
