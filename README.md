@@ -15,6 +15,7 @@ This is my personal collection dotfiles for configuring a development environmen
     * [GPG](https://www.gnupg.org)
     * [htop](https://hisham.hm/htop)
     * [Neofetch](https://github.com/dylanaraps/neofetch)
+    * [Neovim](https://neovim.io)
     * [SSH](https://www.openssh.com/)
     * [Zsh](https://github.com/zsh-users/zsh)
   * GUI
