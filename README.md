@@ -6,7 +6,6 @@ This is my personal collection dotfiles for configuring a development environmen
   * [Details](#details)
   * [Requirements](#requirements)
   * [Installation](#Installation)
-    * [Makefile](#makefile)
     * [Manual](#manual)
   * [Updating](#updating)
   * [Thanks](#thanks)
@@ -43,25 +42,6 @@ First of all, clone this repository
 ```bash
 $ git clone https://github.com/yverek/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
-```
-
-Now you can install using Makefile or manually.
-
-### Makefile
-Run
-```bash
-$ make install
-```
-To install every packages with a single command!
-
-This will create backup files, if you want to remove them run
-```bash
-$ make clean_backup
-```
-
-If you want more information about Makefile, just run
-```bash
-$ make
 ```
 
 ### Manual
