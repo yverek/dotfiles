@@ -10,7 +10,7 @@
 - `A pair of SSH key`
 
 ## Installation
-First of all, copy your SSH keys (pub and private) into `~/.ssh` folder.
+First of all, copy your SSH keys (public and private) into `~/.ssh` folder.\
 Now install this package with
 
     $ stow ssh
