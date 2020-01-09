@@ -1,6 +1,5 @@
 # GPG
     └── .gnupg
-        ├── dirmngr.conf
         ├── gpg.conf
         └── gpg-agent.conf
 
