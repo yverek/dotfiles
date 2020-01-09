@@ -1,6 +1,7 @@
 [user]
     name = Mauro Dattilo
     email = mau.dattilo@gmail.com
+	signingkey = 6E00E50857D963B9
 
 [color]
     diff = auto
