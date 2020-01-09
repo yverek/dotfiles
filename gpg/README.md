@@ -7,10 +7,11 @@
 
 ## Requirements
 - `GnuPG` <<https://www.gnupg.org>>
-- `GPG subkeys`
+- `GPG subkeys` <Authenticate `A`, Sign `S` and Encrypt `E`>
 
 ## Installation
-First of all, import your GPG subkeys (Authenticate <A>, Sign <S> and Encrypt <E>).
+First of all, import your GPG subkeys.
+
     $ gpg --import {your_keys_uid}.sub_priv.asc
     
 Now install this package with
