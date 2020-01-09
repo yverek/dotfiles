@@ -6,15 +6,16 @@ This is my personal collection dotfiles for configuring a development environmen
   * [Details](#details)
   * [Requirements](#requirements)
   * [Installation](#Installation)
-    * [Manual](#manual)
   * [Updating](#updating)
   * [Thanks](#thanks)
 
 ## Details
   * CLI
     * [Git](https://git-scm.com)
+    * [GPG](https://www.gnupg.org)
     * [htop](https://hisham.hm/htop)
     * [Neofetch](https://github.com/dylanaraps/neofetch)
+    * [SSH](https://www.openssh.com/)
     * [Zsh](https://github.com/zsh-users/zsh)
   * GUI
     * [Albert](https://github.com/albertlauncher/albert)
@@ -44,8 +45,7 @@ $ git clone https://github.com/yverek/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 ```
 
-### Manual
-You can install every package you want using just [stow](https://www.gnu.org/software/stow)
+Now, you can install every package you want using just [stow](https://www.gnu.org/software/stow)
 ```bash
 $ stow zsh
 ```
