@@ -17,6 +17,10 @@ function take
     end
 end
 
+function fish_greeting
+    neofetch
+end
+
 function update_arch
     sudo pacman -Syu
 end

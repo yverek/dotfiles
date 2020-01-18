@@ -12,3 +12,7 @@ status --is-interactive; and source (pyenv init - | psub)
 
 # starship
 starship init fish | source
+
+function fish_greeting
+    neofetch
+end

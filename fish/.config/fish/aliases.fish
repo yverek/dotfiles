@@ -21,4 +21,3 @@ alias fish_reload 'source ~/.config/fish/config.fish'
 alias kittyconfig '$EDITOR ~/.config/kitty/kitty.conf'
 alias neofetchconfig '$EDITOR ~/.config/neofetch/config.conf'
 alias vimconfig '$EDITOR ~/.config/nvim/init.vim'
-
