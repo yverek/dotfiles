@@ -9,9 +9,8 @@ end
 
 # ls on steroids
 if command --search exa > /dev/null
-    alias l 'exa -Fghl --group-directories-first'
-    alias ls 'exa -FG --group-directories-first'
-    alias la 'exa -Fghla --group-directories-first'
+    alias l 'exa -Fghla --group-directories-first'
+    alias ls 'exa -Fghl --group-directories-first'
     alias ltree 'exa -FghTl --group-directories-first'
 end
 
