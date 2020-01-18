@@ -1,4 +1,6 @@
-# PATH functions
+#----------------#
+# PATH functions #
+#----------------#
 function path_append -d 'Append entries to PATH'
   for entry in $argv
     set i (contains -i $entry $PATH); and set -e PATH[$i]
@@ -29,24 +31,9 @@ function path_remove -d 'Remove entries from PATH'
   end
 end
 
-function take -d 'Create a directory and set CWD'
-    command mkdir $argv
-    if test $status = 0
-        switch $argv[(count $argv)]
-            case '-*'
-
-            case '*'
-                cd $argv[(count $argv)]
-                return
-        end
-    end
-end
-
-function fish_greeting
-    neofetch
-end
-
-# Updating functions
+#--------------------#
+# Updating functions #
+#--------------------#
 function update_arch -d 'Update Arch (pacman and yay)'
     sudo pacman -Syu
     yay -Syu
@@ -68,4 +55,24 @@ function update_system -d 'Update everything'
     update_zplug
     sleep 1
     update_vimplug
+end
+
+#-------------------#
+# General functions #
+#-------------------#
+function take -d 'Create a directory and set CWD'
+    command mkdir $argv
+    if test $status = 0
+        switch $argv[(count $argv)]
+            case '-*'
+
+            case '*'
+                cd $argv[(count $argv)]
+                return
+        end
+    end
+end
+
+function fish_greeting
+    neofetch
 end
