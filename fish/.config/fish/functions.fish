@@ -48,6 +48,7 @@ end
 
 function update_arch
     sudo pacman -Syu
+    yay -Syu
 end
 
 function update_zplug
