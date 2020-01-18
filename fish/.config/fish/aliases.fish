@@ -5,6 +5,7 @@ alias rd rmdir
 # haters gonna hate
 if command --search nvim > /dev/null
     alias vim nvim
+    alias v vim
 end
 
 # ls on steroids

@@ -1,5 +1,5 @@
-# Pyenv
+# pyenv
 source $PYENV_ROOT/completions/pyenv.fish
 
-# Pipenv
+# pipenv
 pipenv --completion | source
