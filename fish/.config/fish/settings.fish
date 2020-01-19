@@ -11,8 +11,11 @@ if command --search kitty > /dev/null
     set -gx TERMINAL kitty
 end
 
+# XGD
+set -gx XDG_CONFIG_HOME $HOME/.config
+
 # pyenv
 set -gx PYENV_ROOT $HOME/.pyenv
 
-# XGD
-set -gx XDG_CONFIG_HOME $HOME/.config
+# pipenv
+set pipenv_fish_fancy yes
