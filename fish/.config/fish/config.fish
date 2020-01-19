@@ -1,8 +1,17 @@
 source $__fish_config_dir/settings.fish
-source $__fish_config_dir/functions.fish
+
+# functions subdirectories
+for file in $__fish_config_dir/functions/{general,paths,updates}/*
+    source $file
+end
+
 source $__fish_config_dir/paths.fish
 source $__fish_config_dir/aliases.fish
-#source $__fish_config_dir/completions.fish
+
+# completions subdirectories
+for file in $__fish_config_dir/completions/*
+    source $file
+end
 
 # pyenv
 status --is-interactive; and source (pyenv init - | psub)
