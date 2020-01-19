@@ -1,7 +1,7 @@
 source $__fish_config_dir/settings.fish
 
 # functions subdirectories
-for file in $__fish_config_dir/functions/{general,paths,updates}/*
+for file in $__fish_config_dir/functions/{generals,paths,updates}/*
     source $file
 end
 
