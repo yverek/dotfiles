@@ -1,6 +1,3 @@
-#-------------------#
-# General functions #
-#-------------------#
 function take -d 'Create a directory and set CWD'
     command mkdir $argv
     if test $status = 0
@@ -12,8 +9,4 @@ function take -d 'Create a directory and set CWD'
                 return
         end
     end
-end
-
-function fish_greeting
-    neofetch
 end
