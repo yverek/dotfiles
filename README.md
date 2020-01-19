@@ -16,7 +16,7 @@ This is my personal collection dotfiles for configuring a development environmen
     * [Git](https://git-scm.com)
     * [htop](https://hisham.hm/htop)
     * [Neofetch](https://github.com/dylanaraps/neofetch)
-    * [Zsh](https://github.com/zsh-users/zsh)
+    * [Fish](https://github.com/fish-shell/fish-shell)
   * GUI
     * [Albert](https://github.com/albertlauncher/albert)
     * [kitty](https://github.com/kovidgoyal/kitty)
