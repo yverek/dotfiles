@@ -2,4 +2,4 @@
 source $PYENV_ROOT/completions/pyenv.fish
 
 # pipenv
-pipenv --completion | source
+eval (pipenv --completion)

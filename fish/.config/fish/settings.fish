@@ -9,3 +9,6 @@ end
 
 # pyenv
 set -gx PYENV_ROOT $HOME/.pyenv
+
+# XGD
+set -gx XDG_CONFIG_HOME $HOME/.config
