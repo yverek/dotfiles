@@ -3,7 +3,7 @@ function update_system -d 'Update everything'
     sleep 1
     update_pyenv
     sleep 1
-    #update_fisher
+    update_fisher
     sleep 1
     update_vimplug
 end
