@@ -16,3 +16,4 @@ Now install this package with
     $ stow ssh
     $ systemctl --user start ssh-agent
     $ ssh-add ~/.ssh/{your_key}
+    $ ssh-add -l  # check if key has been added to ssh-agent
