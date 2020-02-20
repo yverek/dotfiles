@@ -14,6 +14,6 @@ First of all, copy your SSH keys (public and private) into `~/.ssh` folder.\
 Now install this package with
 
     $ stow ssh
-    $ systemctl --user start ssh-agent
+    $ systemctl --user enable --now ssh-agent
     $ ssh-add ~/.ssh/{your_key}
     $ ssh-add -l  # check if key has been added to ssh-agent
