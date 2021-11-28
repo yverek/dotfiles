@@ -1,5 +1,5 @@
 function update_system -d 'Update everything'
-    update_arch
+    update_ubuntu
     sleep 1
     update_pyenv
     sleep 1

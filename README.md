@@ -1,6 +1,6 @@
 # Yverek's dotfiles
 This is my personal collection dotfiles for configuring a development environment based on 
-[Arch Linux](https://www.archlinux.org). :computer:
+[Ubuntu](https://ubuntu.com). :computer:
 
 ## Table of Contents
   * [Details](#details)
@@ -17,7 +17,6 @@ This is my personal collection dotfiles for configuring a development environmen
     * [htop](https://hisham.hm/htop)
     * [Neofetch](https://github.com/dylanaraps/neofetch)
     * [Neovim](https://neovim.io)
-    * [SSH](https://www.openssh.com)
   * GUI
     * [Albert](https://github.com/albertlauncher/albert)
     * [kitty](https://github.com/kovidgoyal/kitty)
@@ -29,7 +28,7 @@ Make sure the following requirements are installed:
 
 Install them with
 ```bash
-$ sudo pacman -S git stow
+$ sudo apt install git stow
 ```
 
 ## Installation
@@ -48,12 +47,12 @@ $ cd ~/.dotfiles
 
 Now, you can install every package you want using just [stow](https://www.gnu.org/software/stow)
 ```bash
-$ stow zsh
+$ stow fish
 ```
  
 To remove dotfiles
 ```bash
-$ stow -D zsh
+$ stow -D fish
 ```
 
 ## Updating

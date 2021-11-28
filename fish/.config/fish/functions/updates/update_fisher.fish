@@ -1,5 +1,7 @@
-function update_fisher -d 'Update fisher with its plugins'
-    fisher
+function update_fisher -d 'Update Fisher with its plugins'
+    print_warning "We are going to update Fisher!"
     sleep 1
-    fisher self-update
+    fisher update
+    sleep 1
+    print_success "Done"
 end
