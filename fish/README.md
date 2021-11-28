@@ -27,12 +27,14 @@
             └── settings.fish
 
 ## Requirements
-- `fisher` <<https://github.com/jorgebucaran/fisher>>
+- `kitty` <<https://github.com/kovidgoyal/kitty>>
+- `Fisher` <<https://github.com/jorgebucaran/fisher>>
+- `exa` <<https://github.com/ogham/exa>>
+- `pyenv` <<https://github.com/pyenv/pyenv>>
+- `pipenv` <<https://github.com/pyenv/pyenv>>
 - `A monospace Nerd Font` <<https://github.com/ryanoasis/nerd-fonts>>
-- `kitty` (optional) <<https://github.com/kovidgoyal/kitty>>
-- `exa` (optional) <<https://github.com/ogham/exa>>
-- `pyenv` (optional) <<https://github.com/pyenv/pyenv>>
-- `neofetch` (optional) <<https://github.com/dylanaraps/neofetch>>
+- `Starship` <<https://github.com/jorgebucaran/fisher>>
+- `neofetch` <<https://github.com/dylanaraps/neofetch>>
 
 ## Installation
 You can install this package with
