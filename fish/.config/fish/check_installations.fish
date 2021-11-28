@@ -45,6 +45,7 @@ end
 if not ls ~/.local/share/fonts/ | grep Hack > /dev/null
     print_error "Please install Hack Nerd Font family!"
     print_url "https://www.nerdfonts.com"
+    set ERROR_FOUND true
 end
 
 if not command -q starship
