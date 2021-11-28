@@ -1,27 +1,29 @@
-source $__fish_config_dir/settings.fish
+# load utility functions
+source $__fish_config_dir/utilities.fish
 
-# functions subdirectories
+# check if every software this fish configuration needs it's installed on the system
+set -q IS_FISH_INSTALLATION_OK; or source $__fish_config_dir/check_installations.fish
+if not set -q IS_FISH_INSTALLATION_OK
+    error "Please check your Fish installation before continue!"
+    exit -1
+end
+
+# load environment variables
+source $__fish_config_dir/env_variables.fish
+
+# load aliases and completions files
+for file in $__fish_config_dir/{aliases,completions}/*
+    source $file
+end
+
+# load functions
 for file in $__fish_config_dir/functions/{generals,paths,updates}/*
     source $file
 end
 
-source $__fish_config_dir/paths.fish
-source $__fish_config_dir/aliases.fish
+# start pyenv
+status is-login; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
 
-# completions subdirectories
-for file in $__fish_config_dir/completions/*
-    source $file
-end
-
-# pyenv
-status --is-interactive; and source (pyenv init - | psub)
-
-# starship
+# start starship
 starship init fish | source
-
-# fisher
-if not functions -q fisher
-    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
-    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
-    fish -c fisher
-end
