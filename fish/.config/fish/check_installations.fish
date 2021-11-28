@@ -24,6 +24,12 @@ if not functions -q fisher
     set ERROR_FOUND true
 end
 
+if not command -q exa
+    print_error "Please install exa!"
+    print_url "https://the.exa.website"
+    set ERROR_FOUND true
+end
+
 if not command -q pyenv
     print_error "Please install pyenv!"
     print_url "https://github.com/pyenv/pyenv"
