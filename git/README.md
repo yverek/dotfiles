@@ -1,17 +1,14 @@
 # Git
 
-    ├── .gitconfig
-    └── .gitignore
+    └── .gitconfig
 
 ## Requirements
 
 - `Git` <<https://git-scm.com>>
 
 ## Installation
+
 Before install this section, change `.gitconfig` with your credentials.
 
-    $ rm -f ~/.gitconfig ~/.gitignore
+    $ rm -f ~/.gitconfig
     $ stow git
-
-## Thanks
-- `github/gitignore` <<https://github.com/github/gitignore>>
