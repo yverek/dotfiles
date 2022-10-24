@@ -30,20 +30,8 @@ if not command -q exa
     set ERROR_FOUND true
 end
 
-if not command -q pyenv
-    print_error "Please install pyenv!"
-    print_url "https://github.com/pyenv/pyenv"
-    set ERROR_FOUND true
-end
-
-if not command -q pipenv
-    print_error "Please install pipenv and its plugin!"
-    print_url "https://github.com/sentriz/fish-pipenv"
-    set ERROR_FOUND true
-end
-
-if not ls ~/.local/share/fonts/ | grep Hack > /dev/null
-    print_error "Please install Hack Nerd Font family!"
+if not ls ~/.local/share/fonts/ | grep Fira > /dev/null
+    print_error "Please install Fira Nerd Font family!"
     print_url "https://www.nerdfonts.com"
     set ERROR_FOUND true
 end
@@ -57,16 +45,6 @@ end
 if not command -q neofetch
     print_error "Please install neofetch!"
     print_url "https://github.com/dylanaraps/neofetch"
-    set ERROR_FOUND true
-end
-
-if not test -d ~/.honeypot
-    print_error "Please install your honeypot!"
-    set ERROR_FOUND true
-end
-
-if not test -d ~/Sky
-    print_error "Please setup your working environment!"
     set ERROR_FOUND true
 end
 

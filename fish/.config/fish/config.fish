@@ -12,7 +12,7 @@ end
 source $__fish_config_dir/env_variables.fish
 
 # load aliases and completions files
-for file in $__fish_config_dir/{aliases,completions}/*
+for file in $__fish_config_dir/aliases/*
     source $file
 end
 
@@ -20,10 +20,6 @@ end
 for file in $__fish_config_dir/functions/{generals,paths,updates}/*
     source $file
 end
-
-# start pyenv
-status is-login; and pyenv init --path | source
-status is-interactive; and pyenv init - | source
 
 # start starship
 starship init fish | source

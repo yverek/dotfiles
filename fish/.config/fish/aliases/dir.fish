@@ -18,3 +18,7 @@ function take -d 'Create a directory and set CWD'
         end
     end
 end
+
+function dotfiles -d 'Cd into .dotfiles directory'
+    cd ~/.dotfiles
+end

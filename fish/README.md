@@ -30,8 +30,6 @@
 - `kitty` <<https://github.com/kovidgoyal/kitty>>
 - `Fisher` <<https://github.com/jorgebucaran/fisher>>
 - `exa` <<https://github.com/ogham/exa>>
-- `pyenv` <<https://github.com/pyenv/pyenv>>
-- `pipenv` <<https://github.com/pyenv/pyenv>>
 - `A monospace Nerd Font` <<https://github.com/ryanoasis/nerd-fonts>>
 - `Starship` <<https://github.com/jorgebucaran/fisher>>
 - `neofetch` <<https://github.com/dylanaraps/neofetch>>
