@@ -1,8 +1,0 @@
-# PyCharm
-.idea/
-
-# Albert
-# ignore everything in albert folder except the configuration file
-# this because of https://github.com/albertlauncher/albert/issues/585
-albert/.config/albert/*
-!albert/.config/albert/albert.conf

@@ -1,6 +1,5 @@
 # Yverek's dotfiles
-This is my personal collection dotfiles for configuring a development environment based on 
-[Ubuntu](https://ubuntu.com). :computer:
+This is my personal collection dotfiles for configuring a development environment based on [Ubuntu](https://ubuntu.com). :computer:
 
 ## Table of Contents
   * [Details](#details)
@@ -13,12 +12,10 @@ This is my personal collection dotfiles for configuring a development environmen
   * CLI
     * [Fish](https://github.com/fish-shell/fish-shell)
     * [Git](https://git-scm.com)
-    * [GPG](https://www.gnupg.org)
     * [htop](https://hisham.hm/htop)
     * [Neofetch](https://github.com/dylanaraps/neofetch)
     * [Neovim](https://neovim.io)
   * GUI
-    * [Albert](https://github.com/albertlauncher/albert)
     * [kitty](https://github.com/kovidgoyal/kitty)
 
 ## Requirements
