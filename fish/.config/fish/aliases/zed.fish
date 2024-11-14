@@ -1,3 +1,3 @@
 function zed
-    zededitor $argv
+    zeditor $argv
 end

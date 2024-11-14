@@ -1,5 +1,5 @@
 # Yverek's dotfiles
-This is my personal collection dotfiles for configuring a development environment based on [Ubuntu](https://ubuntu.com). :computer:
+This is my personal collection dotfiles for configuring a development environment based on [Arch Linux](https://www.archlinux.org). :computer:
 
 ## Table of Contents
   * [Details](#details)
@@ -25,7 +25,7 @@ Make sure the following requirements are installed:
 
 Install them with
 ```bash
-$ sudo apt install git stow
+$ sudo pacman -S git stow
 ```
 
 ## Installation
@@ -46,7 +46,7 @@ Now, you can install every package you want using just [stow](https://www.gnu.or
 ```bash
 $ stow fish
 ```
- 
+
 To remove dotfiles
 ```bash
 $ stow -D fish

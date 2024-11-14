@@ -1,5 +1,5 @@
 function update_system -d 'Update everything'
-    update_ubuntu
+    update_arch
     sleep 1
     update_fisher
     sleep 1

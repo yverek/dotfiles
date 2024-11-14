@@ -6,8 +6,8 @@ function kitty_config -d "Edit kitty terminal configuration"
     $EDITOR ~/.config/kitty/kitty.conf
 end
 
-function neofetch_config -d "Edit neofetch configuration"
-    $EDITOR ~/.config/neofetch/config.conf
+function fastfetch_config -d "Edit neofetch configuration"
+    $EDITOR ~/.config/fastfetch/config.jsonc
 end
 
 function vim_config -d "Edit nvim configuration"
