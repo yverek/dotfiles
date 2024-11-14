@@ -6,7 +6,7 @@ function kitty_config -d "Edit kitty terminal configuration"
     $EDITOR ~/.config/kitty/kitty.conf
 end
 
-function fastfetch_config -d "Edit neofetch configuration"
+function fastfetch_config -d "Edit fastfetch configuration"
     $EDITOR ~/.config/fastfetch/config.jsonc
 end
 

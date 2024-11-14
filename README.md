@@ -13,7 +13,7 @@ This is my personal collection dotfiles for configuring a development environmen
     * [Fish](https://github.com/fish-shell/fish-shell)
     * [Git](https://git-scm.com)
     * [htop](https://hisham.hm/htop)
-    * [Neofetch](https://github.com/dylanaraps/neofetch)
+    * [Fastfetch](https://github.com/fastfetch-cli/fastfetch)
     * [Neovim](https://neovim.io)
   * GUI
     * [kitty](https://github.com/kovidgoyal/kitty)

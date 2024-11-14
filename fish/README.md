@@ -35,7 +35,7 @@
 - `eza` <<https://github.com/eza-community/eza>>
 - `A monospace Nerd Font` <<https://github.com/ryanoasis/nerd-fonts>>
 - `Starship` <<https://starship.rs/>>
-- `neofetch` <<https://github.com/dylanaraps/neofetch>>
+- `fastfetch` <<https://github.com/fastfetch-cli/fastfetch>>
 
 ## Installation
 
