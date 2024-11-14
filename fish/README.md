@@ -1,14 +1,17 @@
 # Fish
+
     └── .config
         └── fish
-            ├── completions
-            │   ├── pipenv.fish
-            │   └── pyenv.fish
+            ├── aliases
+            │   ├── config.fish
+            │   ├── dir.fish
+            │   ├── eza.fish
+            │   └── vim.fish
             ├── functions
             │   ├── generals
+            │   │   ├── clean_ubuntu.fish
             │   │   ├── fish_greeting.fish
-            │   │   ├── fish_user_key_bindings.fish
-            │   │   └── take.fish
+            │   │   └── fish_user_key_bindings.fish
             │   ├── paths
             │   │   ├── path_append.fish
             │   │   ├── path_dedupe.fish
@@ -16,25 +19,26 @@
             │   │   ├── path_prepend.fish
             │   │   └── path_remove.fish
             │   └── updates
-            │       ├── update_arch.fish
-            │       ├── update_pyenv.fish
+            │       ├── update_fisher.fish
             │       ├── update_system.fish
+            │       ├── update_ubuntu.fish
             │       └── update_vimplug.fish
-            ├── aliases.fish
             ├── config.fish
-            ├── fishfile
-            ├── paths.fish
-            └── settings.fish
+            ├── env_variables.fish
+            ├── fish_plugins
+            └── utilities.fish
 
 ## Requirements
+
 - `kitty` <<https://github.com/kovidgoyal/kitty>>
 - `Fisher` <<https://github.com/jorgebucaran/fisher>>
-- `exa` <<https://github.com/ogham/exa>>
+- `eza` <<https://github.com/eza-community/eza>>
 - `A monospace Nerd Font` <<https://github.com/ryanoasis/nerd-fonts>>
-- `Starship` <<https://github.com/jorgebucaran/fisher>>
+- `Starship` <<https://starship.rs/>>
 - `neofetch` <<https://github.com/dylanaraps/neofetch>>
 
 ## Installation
+
 You can install this package with
 
     $ stow fish

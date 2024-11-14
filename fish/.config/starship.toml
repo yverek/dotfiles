@@ -1,45 +1,87 @@
-# These symbols will only show when battery levels are 20% or less
-[battery]
-    full_symbol = " "
-    charging_symbol = " "
-    discharging_symbol = " "
-    format = "[$symbol$percentage]($style) "
+# format = """\
+# [](bg:#002b36 fg:#7DF9AA)\
+# [󰀵 ](bg:#7DF9AA fg:#090c0c)\
+# [](fg:#7DF9AA bg:#FF9900)\
+# $aws\
+# [](fg:#FF9900 bg:#5B5B66)\
+# $bun\
+# [](fg:#5B5B66 bg:#3B76F0)\
+# $directory\
+# $docker_context\
+# [](fg:#3B76F0 bg:#FCF392)\
+# $git_branch\
+# $git_status\
+# $git_metrics\
+# [](fg:#FCF392 bg:#002b36)\
+# $character\
+# """
 
-# "bold red" style when capacity is between 0% and 10%
-[[battery.display]]
-    threshold = 10
-    style = "bold red"
+# # Inserts a blank line between shell prompts
+# add_newline = true
 
-# "bold orange" style when capacity is between 10% and 25%
-[[battery.display]]
-    threshold = 25
-    style = "bold orange"
+# [aws]
+#     format = "[ $symbol($profile)(\\($region\\) )(\\[$duration\\])]($style)"
+#     style = "fg:black bg:#FF9900"
 
-# "bold yellow" style when capacity is between 25% and 50%
-[[battery.display]]
-    threshold = 50
-    style ="bold yellow"
+# [aws.region_aliases]
+#     us-east-1 = 'us-e-1'
+#     eu-central-1 = 'euc1'
 
-# "bold green" style when capacity is between 25% and 50%
-[[battery.display]]
-    threshold = 100
-    style ="bold green"
+# [bun]
+#     format = '[ 🍔 $version ]($style)'
+#     style = "bg:#5B5B66 fg:white bold"
 
-[character]
-    error_symbol = "[✗](bold red) "
+# [character]
+#     success_symbol = '[ ➜](bold green) '
+#     error_symbol = '[ ✗](bold red) '
 
-[python]
-    symbol = " "
-    pyenv_version_name = true
-    pyenv_prefix = ""
-    style = "bold green"
+# [directory]
+#     format = "[ ﱮ $path ]($style)"
+#     style = "fg:#E4E4E4 bg:#3B76F0"
 
-# Clear visibility for exit codes
-[status]
-    symbol = "💣 "
-    format = '[\[$symbol$status\]]($style) '
-    disabled = false
+# [docker_context]
+#     format = 'via [🐋 $context](blue bold)'
 
-[time]
-    disabled = false
-    format = '[\[🕙 $time\]]($style) '
+# [python]
+#     symbol = " "
+#     pyenv_version_name = true
+#     pyenv_prefix = ""
+#     style = "bold green"
+
+# # Clear visibility for exit codes
+# [status]
+#     symbol = "💣 "
+#     format = '[\[$symbol$status\]]($style) '
+#     disabled = false
+
+
+
+# [git_branch]
+#     format = '[ $symbol$branch(:$remote_branch) ]($style)'
+#     symbol = "  "
+#     style = "fg:#1C3A5E bg:#FCF392"
+
+# [git_status]
+#     format = '[$all_status]($style)'
+#     style = "fg:#1C3A5E bg:#FCF392"
+
+# [git_metrics]
+#     format = "([+$added]($added_style))[]($added_style)"
+#     added_style = "fg:#1C3A5E bg:#FCF392"
+#     deleted_style = "fg:bright-red bg:235"
+#     disabled = false
+
+# [hg_branch]
+#     format = "[ $symbol$branch ]($style)"
+#     symbol = " "
+
+# [cmd_duration]
+#     format = "[  $duration ]($style)"
+#     style = "fg:bright-white bg:18"
+
+
+# [time]
+#     disabled = false
+#     time_format = "%R" # Hour:Minute Format
+#     style = "bg:#1d2230"
+#     format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
