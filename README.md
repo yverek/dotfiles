@@ -30,7 +30,7 @@ $ sudo pacman -S git stow
 
 ## Installation
 **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and
-remove things you don’t want or you don't need. Use at your own risk!
+remove things you don't want or you don't need. Use at your own risk!
 
 Two things before proceeding:
   1. Before installing anything, you **must** install the `stow` package: check its [README](stow/README.md)!
